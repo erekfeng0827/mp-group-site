@@ -11,7 +11,7 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box}
   body,html{width:100%;height:100%;background:#000;overflow:hidden;font-family:'Noto Serif TC',serif}
-  .bg{position:absolute;top:0;left:0;width:100%;height:100%;background:url('img/classical.jpg') center/cover;opacity:.45;z-index:1;transition:opacity 2s ease}
+  .bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:.45;z-index:1;transition:opacity 2s ease;background:#000}
   .bg.playing{opacity:.85}
   .content{position:relative;z-index:10;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#E8DCC8;text-align:center;padding:20px}
   h1{font-family:'Cormorant',serif;font-size:clamp(36px,8vw,72px);font-weight:300;letter-spacing:.12em;font-style:italic;margin-bottom:8px}
@@ -38,7 +38,7 @@
 </head>
 <body>
 <a href="index.html" class="back-btn">← Back</a>
-<div class="bg" id="bgLayer"></div>
+<video class="bg" id="bgLayer" autoplay muted loop playsinline disablepictureinpicture preload="auto" poster="img/classical.jpg"><source src="img/Video/classical_h264.mp4" type="video/mp4"><source src="img/Video/classical.mp4" type='video/mp4; codecs="hvc1"'></video>
 <div class="content">
   <h1>Eastern Zen</h1>
   <p class="subtitle">深山古寺與晨霧飛簷，沉浸於東方美學的空無頻率</p>
