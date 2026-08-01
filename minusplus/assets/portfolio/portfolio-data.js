@@ -1,7 +1,7 @@
 const PORTFOLIO = [
 {
   "slug": "minusplus-studio",
-  "colors": ['#C99C86', '#DDD7CC', '#6B6459', '#E6E2DB'],
+  "colors": ['#122930', '#302921', '#070808', '#D3CFC0'],
   "name": "加減設計工作室",
   "location": "高雄",
   "type": "商空",
@@ -30,7 +30,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "guo-yan",
-  "colors": ['#2B3E44', '#C99C86', '#16140F', '#DDD7CC'],
+  "colors": ['#A78D6F', '#8E7458', '#241910', '#D1B99B'],
   "name": "國硯",
   "location": "高雄",
   "type": "住宅",
@@ -61,7 +61,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "yu-zhi-yuan",
-  "colors": ['#1C2229', '#A69685', '#0E1114', '#E8E5DF'],
+  "colors": ['#514C45', '#0D0A08', '#1B1611', '#D2D1CE'],
   "name": "御之苑",
   "location": "高雄",
   "type": "住宅",
@@ -92,7 +92,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "chun-jing-shi-shang-fa",
-  "colors": ['#D2C4B7', '#735E51', '#362921', '#F8F6F4'],
+  "colors": ['#BEB2A4', '#9E8E7B', '#4C4433', '#D9CCBD'],
   "name": "純淨時尚髮",
   "location": "高雄",
   "type": "店面",
@@ -123,7 +123,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "zui-shang-shi",
-  "colors": ['#5B646D', '#C2B5A7', '#2D343A', '#F0EDE9'],
+  "colors": ['#4A4039', '#DBD0C4', '#241D18', '#DBD0C4'],
   "name": "最上石",
   "location": "高雄",
   "type": "住宅",
@@ -155,7 +155,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "shi-shang-di-bao",
-  "colors": ['#705E50', '#D3C2B1', '#332922', '#F6F2EE'],
+  "colors": ['#674632', '#C5AF95', '#281810', '#E9DBC7'],
   "name": "時尚帝寶",
   "location": "高雄",
   "type": "住宅",
@@ -186,7 +186,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "sen-qing-dao",
-  "colors": ['#4E644D', '#D0C9B8', '#1E291C', '#F4F2EB'],
+  "colors": ['#B4A08F', '#857465', '#2C2521', '#D2BDA9'],
   "name": "森青道",
   "location": "高雄",
   "type": "住宅",
@@ -213,7 +213,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "chun-fu-tian-yu",
-  "colors": ['#8C9287', '#D1C9BC', '#484E45', '#FAF8F5'],
+  "colors": ['#BDB4A9', '#816F59', '#41352C', '#C2BAB0'],
   "name": "春福天馭",
   "location": "台南",
   "type": "住宅",
@@ -241,7 +241,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "xin-min-quan",
-  "colors": ['#6B6459', '#DDD7CC', '#16140F', '#E6E2DB'],
+  "colors": ['#A68F76', '#5D4F41', '#150E0A', '#E2D2B8'],
   "name": "欣民權",
   "location": "高雄",
   "type": "住宅",
@@ -270,7 +270,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "mei-shu-bai-tian-e",
-  "colors": ['#D9C9BA', '#A2907E', '#2C2722', '#F9F6F2'],
+  "colors": ['#BAAEA4', '#96897F', '#3E3630', '#E1D6CD'],
   "name": "美術白天鵝",
   "location": "高雄",
   "type": "住宅",
@@ -299,7 +299,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "xin-yue-wan-8f",
-  "colors": ['#283C4D', '#C6B9A8', '#15212C', '#F4F1ED'],
+  "colors": ['#CCA77F', '#A6825B', '#26190F', '#E1CBB4'],
   "name": "新玥灣8F",
   "location": "高雄",
   "type": "住宅",
@@ -327,7 +327,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "xin-yue-wan-7f",
-  "colors": ['#8A7D6E', '#E2D3C5', '#473F36', '#FAF7F5'],
+  "colors": ['#9B856E', '#3A332C', '#3A332C', '#EEE7DD'],
   "name": "新玥灣7F",
   "location": "高雄",
   "type": "住宅",
@@ -355,7 +355,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "zun-yi-pu-zhen",
-  "colors": ['#6E5A47', '#D1C0AF', '#352A20', '#FAF8F6'],
+  "colors": ['#C9B59E', '#9D8973', '#35291F', '#EFE0CA'],
   "name": "尊邑璞真",
   "location": "高雄",
   "type": "住宅",
@@ -386,7 +386,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "chun-fu-tian-shi",
-  "colors": ['#5A685D', '#D4C7BA', '#2B362E', '#F8F6F2'],
+  "colors": ['#939797', '#7E796E', '#635B4F', '#A6A6A2'],
   "name": "春福天駛",
   "location": "台南",
   "type": "住宅",
@@ -412,7 +412,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "tai-jun-jian-she",
-  "colors": ['#4E5D6C', '#D2C5B8', '#232F3A', '#F7F5F2'],
+  "colors": ['#CDB797', '#63422B', '#41281A', '#EADABF'],
   "name": "泰郡建設",
   "location": "高雄",
   "type": "商空",
@@ -442,7 +442,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "ci-yi-men-shi",
-  "colors": ['#D2C0AE', '#9B8B7A', '#332A21', '#FAF7F3'],
+  "colors": ['#A08D7B', '#EBDECE', '#462516', '#EBDECE'],
   "name": "瓷譯門市",
   "location": "高雄",
   "type": "店面",
@@ -467,7 +467,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "zhong-yi-zhen-suo",
-  "colors": ['#8C7A63', '#D9CEBF', '#3F3223', '#FBF9F6'],
+  "colors": ['#C6B6A9', '#94816E', '#6E5A48', '#DFCFC0'],
   "name": "中醫診所",
   "location": "高雄",
   "type": "商空",
@@ -497,7 +497,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "du-hui-zhan",
-  "colors": ['#5C6E58', '#D9CBB6', '#293725', '#F6F5EE'],
+  "colors": ['#977F65', '#554233', '#342820', '#E4CAAA'],
   "name": "都薈綻",
   "location": "高雄",
   "type": "住宅",
@@ -524,7 +524,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "tai-yu-gong-fang",
-  "colors": ['#61695F', '#D9CBBF', '#2A2E29', '#F7F6F1'],
+  "colors": ['#5E5043', '#3F342B', '#1F1E1D', '#D8CDC0'],
   "name": "泰宇工坊",
   "location": "高雄",
   "type": "商空",
@@ -551,7 +551,7 @@ const PORTFOLIO = [
 },
 {
   "slug": "wen-sha-bao",
-  "colors": ['#7E6D5D', '#DDD3C6', '#3A3026', '#F9F7F4'],
+  "colors": ['#877363', '#433126', '#241913', '#D3C7BB'],
   "name": "溫莎堡",
   "location": "高雄",
   "type": "住宅",
