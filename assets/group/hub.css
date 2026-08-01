@@ -1,0 +1,104 @@
+/* 集團首頁 — 共用中性設計系統（CBDS 2027 Vol.02 §1–2 基礎），
+   不套用任一品牌的專屬強調色，只用四色小色塊做識別。 */
+:root{
+  --paper:#F8F8F6; --mist:#ECEAE5; --line:#D9D7D1; --slate:#6E7069; --ink:#1A1A18; --forest:#232E1E;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:64px;--s7:96px;--s8:128px;
+  --f-serif: 'Sohne', 'jf-jinxuan', 'jf-jinxuan-half', 'Noto Serif TC', 'PingFang TC', serif;
+  --f-sans: 'Sohne', 'jf-jinxuan', 'jf-jinxuan-half', 'Noto Sans TC', 'PingFang TC', sans-serif;
+  --f-label:'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --f-mono:'IBM Plex Mono', 'Courier New', monospace;
+  --ease: cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-sans);font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:0 var(--s5)}
+img{max-width:100%;display:block}
+a{color:inherit}
+p{max-width:68ch}
+
+.eyebrow{font-family:var(--f-label);font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--slate);display:block;margin-bottom:var(--s3)}
+
+.hub-hero{padding:var(--s8) 0 var(--s7);background:var(--forest);color:var(--paper)}
+.hub-hero .eyebrow{color:#9CA398}
+.hub-hero h1{font-family:var(--f-sans);font-weight:900;font-size:clamp(34px,6vw,64px);letter-spacing:.05em;line-height:1.2}
+.hub-hero .en{font-family:'Bodoni Moda',serif;font-size:clamp(16px,2.2vw,22px);letter-spacing:.1em;color:#B9C0B2;margin-top:var(--s3)}
+.hub-hero .lead{margin-top:var(--s5);font-size:clamp(15px,1.6vw,18px);line-height:2;color:#DEE2D8;max-width:62ch}
+.hub-hero .spectrum{display:flex;height:5px;margin-top:var(--s6)}
+.hub-hero .spectrum i{flex:1}
+.hub-hero .spectrum i:nth-child(1){background:#0C5170}
+.hub-hero .spectrum i:nth-child(2){background:#9C8352}
+.hub-hero .spectrum i:nth-child(3){background:#7A1F2B}
+.hub-hero .spectrum i:nth-child(4){background:#B5673A}
+
+section{padding:var(--s7) 0}
+.section-head{max-width:70ch;margin-bottom:var(--s6)}
+.section-head h2{font-family:var(--f-serif);font-weight:900;font-size:clamp(24px,3.4vw,36px);letter-spacing:.04em;line-height:1.3}
+.section-head p{margin-top:var(--s3);color:#3E423B;font-size:15.5px;line-height:1.95}
+
+.brand-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.brand-card{
+  padding:var(--s6) var(--s5);
+  min-height:500px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  text-decoration:none;
+  position:relative;
+  overflow:hidden;
+  border:none;
+  background-size:cover;
+  background-position:center;
+  transition:transform 0.4s var(--ease);
+}
+.brand-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+.brand-card:hover::before {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.9) 100%);
+}
+.brand-card > div, .brand-card > svg {
+  position: relative;
+  z-index: 2;
+  color: #fff !important;
+}
+
+/* Specific Brand Images */
+.minusplus-card { background-image: url('minusplus_card_bg.jpg'); }
+.ss-card { background-image: url('../../soft-structure/assets/images/khaki_room.jpg'); }
+.corey-card { background-image: url('../../aether-vibes/img/modern.jpg'); }
+.aether-card { background-image: url('../../aether-vibes/img/ocean.jpg'); }
+
+.brand-card .bc-top .tag{font-family:var(--f-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.7) !important;}
+.brand-card .bc-name-zh{font-weight:600;font-size:28px;letter-spacing:.08em;margin-top:14px;color:#fff !important;}
+.brand-card .bc-name-en{font-size:13px;letter-spacing:.14em;margin-top:8px;color:rgba(255,255,255,0.85) !important;}
+.brand-card .bc-pos{margin-top:var(--s5);font-size:15px;line-height:1.85;max-width:34ch;color:rgba(255,255,255,0.9) !important;}
+.brand-card .bc-cat{margin-top:var(--s4);font-size:12px;line-height:1.9;color:rgba(255,255,255,0.7) !important;}
+.brand-card .bc-cta{font-family:var(--f-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-top:var(--s5);display:inline-flex;align-items:center;gap:8px;color:#fff !important;}
+.brand-card .bc-mark{position:absolute;top:var(--s5);right:var(--s5);opacity:1;}
+
+.about-hub{background:var(--mist)}
+.about-hub .g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s6);align-items:start}
+.about-hub h3{font-family:var(--f-serif);font-weight:600;font-size:19px;letter-spacing:.04em;margin-bottom:var(--s2)}
+.about-hub p{font-size:14.5px;line-height:1.95;color:#3E423B}
+
+.founder{padding:var(--s7) 0}
+.founder .wrap{max-width:800px;text-align:center}
+.founder h2{font-family:var(--f-serif);font-weight:900;font-size:clamp(22px,3vw,30px);letter-spacing:.05em}
+.founder p{margin:var(--s4) auto 0;font-size:15.5px;line-height:2;color:#3E423B}
+.founder .role{font-family:var(--f-label);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-top:var(--s4)}
+
+footer{background:var(--forest);color:#DEE2D8;padding:var(--s6) 0}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:var(--s4);align-items:center}
+footer .fname{font-family:var(--f-serif);font-weight:900;font-size:15px;letter-spacing:.06em;color:var(--paper)}
+footer .flinks{display:flex;gap:22px;flex-wrap:wrap}
+footer a{font-family:var(--f-label);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9C0B2;text-decoration:none}
+footer a:hover{color:var(--paper)}
+footer .fcopy{font-family:var(--f-label);font-size:10.5px;letter-spacing:.1em;color:#7C8377;margin-top:var(--s3);width:100%}
+
+@media(max-width:640px){ .wrap{padding:0 var(--s3)} }

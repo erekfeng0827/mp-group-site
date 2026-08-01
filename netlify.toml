@@ -1,0 +1,41 @@
+[build]
+  publish = "."
+  command = "echo 'Static site - no build needed'"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/minusplus/*"
+  to = "/minusplus/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/soft-structure/*"
+  to = "/soft-structure/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/corey/*"
+  to = "/corey/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/aether-vibes/*"
+  to = "/aether-vibes/index.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"

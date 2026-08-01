@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>選品系列 - 軟構造 Soft Structure</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand" style="flex-direction:row; align-items:center; gap:12px;">
+      <svg class="brand-logo" width="42" height="42" viewBox="0 0 120 120">
+        <rect x="10" y="10" width="100" height="100" fill="currentColor"/>
+        <path d="M10 44 Q60 136 110 44 L110 110 L10 110 Z" fill="var(--brass)"/>
+      </svg>
+      <div style="display:flex; flex-direction:column;">
+        軟構造
+        <span class="sub">SOFT STRUCTURE</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html#collections">選品系列</a></li>
+      <li><a href="index.html#about">關於我們</a></li>
+      <li style="opacity:0.3; margin:0 8px;">|</li>
+      <li><a href="../index.html">MINUS PLUS STUDIO</a></li>
+      <li><a href="../minusplus/index.html">MINUSPLUS</a></li>
+      <li><a href="../corey/index.html">COREY</a></li>
+      <li><a href="../aether-vibes/index.html">AETHER VIBES</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="spacesContainer" style="padding-top: 80px;">
+  <!-- Spaces will be dynamically loaded here by JS -->
+</main>
+
+<footer class="site-footer">
+  <div class="footer-logo">SOFT STRUCTURE</div>
+  <div class="footer-copy">© 2026 MINUSPLUS DESIGN. ALL RIGHTS RESERVED.</div>
+</footer>
+
+<script src="js/products.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const currentTheme = urlParams.get('theme') || 'khaki';
+  
+  // Apply theme class to body
+  document.body.classList.add('theme-' + currentTheme);
+  const themeData = THEMES[currentTheme];
+
+  // Render Spaces
+  const container = document.getElementById('spacesContainer');
+  
+  Object.keys(SPACES).forEach(spaceKey => {
+    const spaceData = SPACES[spaceKey];
+    const products = getProducts(currentTheme, spaceKey);
+
+    const section = document.createElement('div');
+    section.className = 'space-block';
+    
+    // Space Hero (Full Bleed)
+    const hero = document.createElement('div');
+    hero.className = 'space-hero';
+    hero.style.backgroundImage = `url('assets/images/${currentTheme}_room.jpg')`;
+    hero.innerHTML = `
+      <div class="space-hero-text">
+        <span class="sub-title">${themeData.name} · ${spaceData.name}</span>
+        <h2 class="en-display">${themeData.label}</h2>
+        <p>Restraint and negative space grounded in tactile surfaces. The palette unified across every material simultaneously.</p>
+      </div>
+    `;
+    section.appendChild(hero);
+
+    // Tight Grid
+    const grid = document.createElement('div');
+    grid.className = 'tight-products';
+
+    products.forEach((prod) => {
+      const fallbackColor = currentTheme === 'khaki' ? '#C2B6A7' : 
+                            currentTheme === 'red' ? '#4A3335' : 
+                            currentTheme === 'blue' ? '#2A3845' : '#354538';
+      
+      const card = document.createElement('a');
+      card.href = `product.html?id=${prod.id}`;
+      card.className = 'prod-cell';
+      
+      card.innerHTML = `
+        <div class="img-wrap" style="background: ${fallbackColor};">
+          <img src="assets/images/${currentTheme}_room.jpg" alt="${prod.name}" style="opacity:0.85">
+        </div>
+        <div class="info-wrap">
+          <h4>${prod.name}</h4>
+          <p>NT$ ${prod.price.toLocaleString()}</p>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    section.appendChild(grid);
+    container.appendChild(section);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBDS 2027 — Vol. 01 企業識別系統</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Söhne+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600;900&family=Noto+Sans+TC:wght@200;300;400;500;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#232E1E; --navy:#0C5170; --pink:#F29CA7; --red:#E93429; --orange:#F39801;
+  --navy-a:#225065; --pink-a:#E5BEC3; --red-a:#9D4742; --orange-a:#A57930;
+  --paper:#F8F8F6; --mist:#ECEAE5; --line:#D9D7D1; --slate:#6E7069; --ink:#1A1A18;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:64px;--s7:96px;--s8:128px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",sans-serif;font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 var(--s4)}
+.mono{font-family:"IBM Plex Mono",monospace}
+p{max-width:70ch}
+
+.spectrum{display:flex;height:6px}
+.spectrum i{flex:1}
+.spectrum i:nth-child(1){background:var(--navy)}
+.spectrum i:nth-child(2){background:var(--red)}
+.spectrum i:nth-child(3){background:var(--pink)}
+.spectrum i:nth-child(4){background:var(--orange)}
+.spectrum i:nth-child(5){background:var(--forest)}
+
+nav{position:sticky;top:0;z-index:60;background:var(--forest)}
+nav .inner{max-width:1060px;margin:0 auto;padding:11px var(--s4);display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav a{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9CA398;text-decoration:none;white-space:nowrap;font-weight:500}
+nav a:hover{color:var(--orange)}
+
+.pg{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.2em;color:var(--slate);display:block;margin-bottom:10px}
+.eyebrow{font-family:"Archivo",sans-serif;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--navy);display:block;margin-bottom:var(--s3)}
+h1{font-family:"Söhne",serif;font-weight:400;font-size:clamp(38px,6.5vw,76px);line-height:1.03}
+h1 em{font-style:italic}
+h2{font-family:"金萱",serif;font-weight:900;font-size:clamp(20px,2.8vw,28px);letter-spacing:.05em;margin-bottom:var(--s3)}
+h3{font-family:"金萱",serif;font-weight:600;font-size:17px;letter-spacing:.04em;margin-bottom:var(--s2);margin-top:var(--s5)}
+h3:first-of-type{margin-top:0}
+section{padding:var(--s7) 0;border-top:1px solid var(--line)}
+header{padding:var(--s8) 0 var(--s7)}
+.lead{font-family:"金萱",serif;font-weight:400;font-size:clamp(16px,2.1vw,19px);line-height:1.95;color:#3E423B;max-width:60ch}
+
+table.d{width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--s3)}
+table.d th{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-align:left;padding:0 14px 11px 0;border-bottom:1px solid var(--ink);font-weight:600}
+table.d td{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.d td.n{font-family:"IBM Plex Mono",monospace;font-size:12.5px;white-space:nowrap}
+table.d td.r{text-align:right}
+
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--s5);align-items:start}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s3)}
+.tight{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s4)}
+.tight > div{background:var(--paper);padding:var(--s3)}
+.t5{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+
+.box{border:1px solid var(--line);background:#fff;padding:var(--s5) var(--s4);display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:190px}
+.box.dk{background:var(--forest);border-color:var(--forest)}
+.box.ms{background:var(--mist)}
+.box.nv{background:var(--navy);border-color:var(--navy)}
+.box.pk{background:var(--pink);border-color:var(--pink)}
+.box svg{max-width:100%;height:auto}
+.cap{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-top:var(--s3);text-align:center}
+.capzh{font-size:12px;color:var(--slate);text-align:center;margin-top:4px}
+.box.dk .cap,.box.dk .capzh,.box.nv .cap,.box.nv .capzh{color:rgba(255,255,255,.6)}
+.bad{border-color:#C4453A}
+.bad .capzh{color:#C4453A}
+
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:var(--s3);margin-top:var(--s4)}
+.sw{border:1px solid var(--line);background:#fff}
+.sw i{display:block;height:110px}
+.sw div{padding:13px}
+.sw b{display:block;font-family:"Söhne",serif;font-size:16px;font-weight:400}
+.sw .h{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--slate);display:block;margin-top:3px}
+.sw em{display:block;font-style:normal;font-size:11.5px;color:var(--slate);margin-top:8px;line-height:1.6}
+
+.ratio{display:flex;height:46px;margin-top:var(--s3);border:1px solid var(--line)}
+.ratio span{display:flex;align-items:center;justify-content:center;font-family:"Archivo",sans-serif;font-size:10px;letter-spacing:.1em;color:#fff}
+
+.tsp > div{padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.tsp .lbl{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+
+.dd{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s4);margin-top:var(--s4)}
+.dd > div{padding:var(--s4);border-top:3px solid var(--navy)}
+.dd > div.no{border-top-color:#C4453A}
+.dd h4{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:var(--s2);color:var(--navy);font-weight:600}
+.dd > div.no h4{color:#C4453A}
+.dd ul{list-style:none;font-size:14px}
+.dd li{padding:6px 0 6px 20px;position:relative;line-height:1.7}
+.dd li:before{content:"—";position:absolute;left:0;color:var(--line)}
+
+.mock{border:1px solid var(--line);background:#fff;overflow:hidden}
+.mock .hd{padding:var(--s4);min-height:180px;display:flex;flex-direction:column;justify-content:space-between}
+.mock .bd{padding:var(--s3);border-top:1px solid var(--line);font-size:12.5px;color:var(--slate);line-height:1.75}
+.mock .bd strong{display:block;font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:7px;font-weight:600}
+
+.code{background:var(--forest);color:#C6CCC2;padding:var(--s4);font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.9;margin-top:var(--s3);overflow-x:auto;white-space:pre-wrap}
+.code b{color:var(--orange);font-weight:500}
+
+.callout{background:var(--forest);color:#D2D8CE;padding:var(--s5);margin-top:var(--s5)}
+.callout h3{color:var(--paper);margin-top:0}
+.callout p{color:#D2D8CE}
+.callout strong{color:var(--orange);font-weight:500}
+
+.rule{font-family:"Archivo",sans-serif;font-size:10px;letter-spacing:.16em;padding:3px 8px;text-transform:uppercase;color:#fff}
+.rule.must{background:#C4453A}
+.rule.should{background:var(--navy)}
+
+footer{padding:var(--s7) 0 var(--s8);border-top:1px solid var(--line);font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.18em;color:var(--slate);text-transform:uppercase}
+@media(max-width:640px){.wrap{padding:0 var(--s3)} section{padding:var(--s6) 0}}
+</style>
+<style>
+@media (max-width: 768px) {
+  body { font-size: 16px; overflow-x: hidden; width: 100vw; }
+  svg, img, video { max-width: 100% !important; height: auto !important; }
+  table.d { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.d td, table.d th { white-space: normal; min-width: 120px; }
+  .box { min-height: auto !important; padding: 24px !important; }
+  h1 { font-size: clamp(32px, 8vw, 42px) !important; }
+  h2 { font-size: clamp(24px, 6vw, 28px) !important; }
+  .wrap { padding: 0 16px !important; }
+  .g2, .g3, .dd, .pal, .tight, .ratio { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+  .ratio span { padding: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="spectrum"><i></i><i></i><i></i><i></i><i></i></div>
+<nav><div class="inner">
+  <a href="#anat">構成</a><a href="#grid">製圖</a><a href="#clear">留白</a><a href="#minsize">最小尺寸</a>
+  <a href="#versions">版式</a><a href="#bg">底色</a><a href="#misuse">誤用</a><a href="#cobrand">聯名</a>
+  <a href="#color">色彩</a><a href="#apptier">應用色階</a><a href="#a11y">無障礙</a><a href="#print">印刷</a>
+  <a href="#typeface">字體</a><a href="#lockup">標準字</a><a href="#mixing">混排</a><a href="#fallback">替代字體</a>
+  <a href="#card">名片</a><a href="#envelope">信封</a><a href="#doc">公文</a><a href="#deck">簡報</a><a href="#email">Email</a><a href="#paper">紙材</a>
+</div></nav>
+
+<div class="wrap">
+
+<header>
+  <span class="pg">P. 013</span>
+  <span class="eyebrow">Volume 01 — Corporate Identity System</span>
+  <h1>Corporate<br><em>Identity</em></h1>
+  <p class="lead" style="margin-top:var(--s5)">第一冊 · 企業識別系統<br>標誌不重新設計。本冊定義的是它該怎麼被使用、在什麼情況下不能被使用。</p>
+  <div class="box" style="margin-top:var(--s6);background:var(--forest);border-color:var(--forest)">
+    <svg viewBox="0 0 157.633 57.664" width="300">
+      <rect width="157.633" height="57.664" fill="#232E1E"/>
+      <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/>
+      <circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/>
+      <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/>
+      <circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/>
+      <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/>
+      <rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ================= 1.1 LOGO ================= -->
+
+<section id="anat">
+  <span class="pg">P. 014 — 015</span>
+  <span class="eyebrow">1.1.1 — Anatomy</span>
+  <h2>標誌構成解析</h2>
+  <p class="lead">兩個等徑的圓緊密相切，坐落於深綠色滿版量體的右側。左圓為粉底，內含一道深藍滑軌與紅色端點，構成減號；右圓為深藍底，內含紅色橫棒與橙色直棒，構成加號。</p>
+
+  <div class="g2" style="margin-top:var(--s5)">
+    <div class="box ms" style="min-height:300px">
+      <svg viewBox="-14 -14 186 86" width="380">
+        <rect width="157.633" height="57.664" fill="#232E1E"/>
+        <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/>
+        <circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/>
+        <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/>
+        <circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/>
+        <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/>
+        <rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/>
+        <g stroke="#E93429" stroke-width=".7" fill="none">
+          <line x1="53.754" y1="-6" x2="53.754" y2="-1"/><line x1="149.711" y1="-6" x2="149.711" y2="-1"/>
+          <line x1="53.754" y1="-3.5" x2="149.711" y2="-3.5"/>
+        </g>
+        <text x="88" y="-6" font-family="IBM Plex Mono" font-size="5" fill="#E93429">60.9% W</text>
+        <text x="163" y="30" font-family="IBM Plex Mono" font-size="5" fill="#6E7069">D = .83 H</text>
+      </svg>
+      <div class="cap">Anatomy</div>
+    </div>
+    <div>
+      <table class="d">
+        <thead><tr><th>項目</th><th>實測</th><th>規則</th></tr></thead>
+        <tr><td>量體長寬比</td><td class="n">2.7336 : 1</td><td>必須維持</td></tr>
+        <tr><td>圓徑 ÷ 量體高</td><td class="n">0.8317</td><td>必須維持</td></tr>
+        <tr><td>雙圓間隙</td><td class="n">0.035 pt</td><td>實質相切，不可拉開或重疊</td></tr>
+        <tr><td>棒厚 ÷ 棒長</td><td class="n">1 : 4</td><td>加減號共用同一組尺寸</td></tr>
+        <tr><td>棒端圓角</td><td class="n">半圓 (r = 棒厚 ÷ 2)</td><td>全圓角，不可改方角</td></tr>
+        <tr><td>雙圓總寬 ÷ 量體寬</td><td class="n">60.86%</td><td>右重左輕的偏心構圖</td></tr>
+        <tr><td>雙圓垂直位置</td><td class="n">高於量體中心 1.60%</td><td>視覺補償，禁止「對正」</td></tr>
+      </table>
+      <div class="callout">
+        <h3>關於那 1.6% 的偏移</h3>
+        <p>雙圓並非置於量體的幾何正中，而是刻意上移 1.6%。人眼會把幾何正中判讀為偏低，這是標準的視覺補償。<strong>任何人若「發現」它沒對齊而動手修正，就是破壞標誌。</strong>同理，左右也是刻意偏心的：左留 53.77pt、右留 7.92pt。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="grid">
+  <span class="pg">P. 016</span>
+  <span class="eyebrow">1.1.2 — Construction Grid</span>
+  <h2>網格製圖</h2>
+  <p>以圓半徑 <span class="mono">r</span> 為唯一基準單位。所有尺寸皆為 r 的倍數，不可獨立調整任何單一項目。</p>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div class="box ms" style="min-height:290px">
+      <svg viewBox="-10 -10 178 78" width="380">
+        <g stroke="#B9BDB4" stroke-width=".5" stroke-dasharray="2.5 2.5">
+          <line x1="-6" y1="3.918" x2="164" y2="3.918"/><line x1="-6" y1="27.918" x2="164" y2="27.918"/><line x1="-6" y1="51.902" x2="164" y2="51.902"/>
+          <line x1="-6" y1="22.805" x2="164" y2="22.805"/><line x1="-6" y1="33.032" x2="164" y2="33.032"/>
+          <line x1="53.754" y1="-6" x2="53.754" y2="64"/><line x1="77.746" y1="-6" x2="77.746" y2="64"/>
+          <line x1="101.738" y1="-6" x2="101.738" y2="64"/><line x1="125.742" y1="-6" x2="125.742" y2="64"/><line x1="149.711" y1="-6" x2="149.711" y2="64"/>
+        </g>
+        <circle cx="77.746" cy="27.910" r="23.992" fill="none" stroke="#0C5170" stroke-width=".9"/>
+        <circle cx="125.742" cy="27.926" r="23.969" fill="none" stroke="#0C5170" stroke-width=".9"/>
+        <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="none" stroke="#E93429" stroke-width=".9"/>
+        <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="none" stroke="#E93429" stroke-width=".9"/>
+        <rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="none" stroke="#F39801" stroke-width=".9"/>
+        <rect x="0" y="0" width="157.633" height="57.664" fill="none" stroke="#232E1E" stroke-width=".9"/>
+      </svg>
+      <div class="cap">Construction Grid</div>
+    </div>
+    <div>
+      <table class="d">
+        <thead><tr><th>元素</th><th>以 r 表示</th></tr></thead>
+        <tr><td>圓半徑 r</td><td class="n">1 r</td></tr>
+        <tr><td>量體高</td><td class="n">2.405 r</td></tr>
+        <tr><td>量體寬</td><td class="n">6.573 r</td></tr>
+        <tr><td>圓心距</td><td class="n">2.001 r</td></tr>
+        <tr><td>棒長</td><td class="n">1.705 r</td></tr>
+        <tr><td>棒厚</td><td class="n">0.426 r</td></tr>
+        <tr><td>棒端半徑</td><td class="n">0.213 r</td></tr>
+        <tr><td>左圓心距左邊界</td><td class="n">3.241 r</td></tr>
+        <tr><td>右圓右緣距右邊界</td><td class="n">0.330 r</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 標誌一律從母檔取用。不得重繪、描圖，或從 PNG 轉向量。本頁的用途是驗證，不是重建說明。</p>
+    </div>
+  </div>
+</section>
+
+<section id="clear">
+  <span class="pg">P. 017</span>
+  <span class="eyebrow">1.1.3 — Clear Space</span>
+  <h2>安全留白</h2>
+  <p>四周至少保留 <span class="mono">1 r</span>（＝圓半徑，約量體高的 41.6%）的淨空。此範圍內不得有文字、圖形、影像或其他標誌。</p>
+  <div class="box ms" style="margin-top:var(--s4);min-height:280px">
+    <svg viewBox="-46 -46 250 150" width="440">
+      <rect x="-24" y="-24" width="205.6" height="105.7" fill="none" stroke="#E93429" stroke-width="1.2" stroke-dasharray="5 4"/>
+      <rect width="157.633" height="57.664" fill="#232E1E"/>
+      <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/>
+      <circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/>
+      <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/>
+      <circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/>
+      <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/>
+      <rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/>
+      <g stroke="#E93429" stroke-width=".8"><line x1="157.633" y1="70" x2="181.6" y2="70"/></g>
+      <text x="-24" y="-30" font-family="IBM Plex Mono" font-size="7" fill="#E93429">1 r clear space</text>
+      <text x="160" y="80" font-family="IBM Plex Mono" font-size="7" fill="#E93429">1r = 24pt</text>
+    </svg>
+    <div class="cap">Clear Space</div>
+  </div>
+  <table class="d">
+    <tr><td>一般應用</td><td class="n">1 r</td><td>名片、信封、簡報、網站頁首</td></tr>
+    <tr><td>與其他標誌並置</td><td class="n">2 r</td><td>聯名、合作方標示、得獎標章</td></tr>
+    <tr><td>置於影像上</td><td class="n">2 r</td><td>且該範圍內影像須為單純無雜訊區域</td></tr>
+    <tr><td>極窄版位（頁尾、橫幅）</td><td class="n">0.5 r</td><td>僅限純圖案版 B，需事前核可</td></tr>
+  </table>
+</section>
+
+<section id="minsize">
+  <span class="pg">P. 018</span>
+  <span class="eyebrow">1.1.4 — Minimum Size</span>
+  <h2>最小尺寸</h2>
+  <p>限制因素是棒厚：它只有量體高的 17.7%。彩色版在 64px 寬時棒厚僅剩 1.1px，印刷會糊、螢幕會斷。以下為重新計算後的安全值。</p>
+  <table class="d">
+    <thead><tr><th>載體</th><th>版式</th><th>最小寬度</th><th>此時棒厚</th></tr></thead>
+    <tr><td>螢幕</td><td>A 彩色版</td><td class="n">96 px</td><td class="n">≈ 6.2 px</td></tr>
+    <tr><td>螢幕</td><td>B 純圖案版</td><td class="n">48 px</td><td class="n">≈ 5.1 px</td></tr>
+    <tr><td>螢幕 · Favicon</td><td>G 方形版</td><td class="n">32 px</td><td class="n">≈ 3.4 px</td></tr>
+    <tr><td>印刷 · 平版</td><td>A 彩色版</td><td class="n">25 mm</td><td class="n">≈ 1.6 mm</td></tr>
+    <tr><td>印刷 · 平版</td><td>B 純圖案版</td><td class="n">14 mm</td><td class="n">≈ 1.5 mm</td></tr>
+    <tr><td>燙印 / 雷雕</td><td>C 單色版</td><td class="n">18 mm</td><td class="n">≈ 1.9 mm</td></tr>
+    <tr><td>刺繡</td><td>C 單色版</td><td class="n">30 mm</td><td class="n">≈ 3.2 mm</td></tr>
+    <tr><td>網版印刷 · 布料</td><td>C 單色版</td><td class="n">22 mm</td><td class="n">≈ 2.3 mm</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule should">應該</span> 低於 48px 或 14mm 時一律改用方形版 G；低於 32px 時改用單色版。</p>
+</section>
+
+<section id="versions">
+  <span class="pg">P. 019 — 025</span>
+  <span class="eyebrow">1.1.5 — Standard Versions</span>
+  <h2>七種標準版式</h2>
+  <p>只有這七種。任何其他組合都需事前核可。</p>
+
+  <div class="g3" style="margin-top:var(--s5)">
+    <div class="box">
+      <svg viewBox="0 0 157.633 57.664" width="220"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+      <div class="cap">A — Full Colour</div><div class="capzh">彩色版 · 主要使用 · P.019</div>
+    </div>
+    <div class="box">
+      <svg viewBox="53.754 3.918 95.957 47.984" width="175"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+      <div class="cap">B — Mark Only</div><div class="capzh">純圖案版 · 小尺寸／鈐印</div>
+    </div>
+    <div class="box dk">
+      <svg viewBox="53.754 3.918 95.957 47.984" width="175"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#F8F8F6"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#F8F8F6"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F8F8F6"/></svg>
+      <div class="cap">E — Reversed</div><div class="capzh">反白版 · 深底 · P.020</div>
+    </div>
+    <div class="box ms">
+      <svg viewBox="53.754 3.918 95.957 47.984" width="175">
+        <defs><mask id="mb"><rect x="0" y="0" width="200" height="70" fill="#000"/><circle cx="77.746" cy="27.910" r="23.992" fill="#fff"/><circle cx="125.742" cy="27.926" r="23.969" fill="#fff"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#000"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#000"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#000"/></mask></defs>
+        <rect width="200" height="70" fill="#000" mask="url(#mb)"/>
+      </svg>
+      <div class="cap">C — Mono Black</div><div class="capzh">單色黑 · 傳真／雷雕 · P.021</div>
+    </div>
+    <div class="box dk">
+      <svg viewBox="53.754 3.918 95.957 47.984" width="175">
+        <defs><mask id="mw"><rect x="0" y="0" width="200" height="70" fill="#000"/><circle cx="77.746" cy="27.910" r="23.992" fill="#fff"/><circle cx="125.742" cy="27.926" r="23.969" fill="#fff"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#000"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#000"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#000"/></mask></defs>
+        <rect width="200" height="70" fill="#F8F8F6" mask="url(#mw)"/>
+      </svg>
+      <div class="cap">D — Mono White</div><div class="capzh">單色白 · 深底單色</div>
+    </div>
+    <div class="box">
+      <svg viewBox="53.754 3.918 95.957 47.984" width="175"><circle cx="77.746" cy="27.910" r="23.992" fill="#BEBEB9"/><circle cx="125.742" cy="27.926" r="23.969" fill="#575A54"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#575A54"/><circle cx="93.086" cy="27.918" r="5.113" fill="#8A8D86"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#8A8D86"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#CBCBC6"/></svg>
+      <div class="cap">F — Greyscale</div><div class="capzh">灰階版 · 報紙／單色文件 · P.022</div>
+    </div>
+    <div class="box">
+      <svg viewBox="0 0 158 158" width="150"><rect width="158" height="158" fill="#232E1E"/><g transform="translate(-70.9 51.1)"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></g></svg>
+      <div class="cap">G — Square</div><div class="capzh">方形版 · 社群頭像／Favicon</div>
+    </div>
+    <div class="box">
+      <div style="display:flex;align-items:center;gap:16px">
+        <svg viewBox="0 0 157.633 57.664" width="96"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+        <div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:19px;letter-spacing:.05em">加減設計多媒體工作站</div>
+          <div style="font-family:'Söhne',serif;font-size:13px;letter-spacing:.06em;color:var(--navy);margin-top:2px">MINUS PLUS STUDIO</div>
+        </div>
+      </div>
+      <div class="cap">H — Lockup</div><div class="capzh">中英複合版 · 正式文件 · P.024–025</div>
+    </div>
+  </div>
+</section>
+
+<section id="bg">
+  <span class="pg">P. 023</span>
+  <span class="eyebrow">1.1.6 — Background Rules</span>
+  <h2>底色使用規則</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="box"><svg viewBox="53.754 3.918 95.957 47.984" width="140"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✓ 淺底 → B 純圖案版</div></div>
+    <div class="box dk"><svg viewBox="53.754 3.918 95.957 47.984" width="140"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#F8F8F6"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#F8F8F6"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F8F8F6"/></svg><div class="capzh">✓ 深底 → E 反白版</div></div>
+    <div class="box nv bad"><svg viewBox="53.754 3.918 95.957 47.984" width="140"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✕ 品牌色底 → 藍圓消失</div></div>
+    <div class="box pk bad"><svg viewBox="53.754 3.918 95.957 47.984" width="140"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✕ 粉色底 → 粉圓消失</div></div>
+  </div>
+  <table class="d">
+    <tr><td>淺色底（明度 &gt; 75%）</td><td class="n">B 純圖案版</td></tr>
+    <tr><td>深色底（明度 &lt; 30%）</td><td class="n">E 反白版 或 A 彩色版</td></tr>
+    <tr><td>中間明度底（30–75%）</td><td class="n">A 彩色版（帶量體，確保對比）</td></tr>
+    <tr><td>影像底</td><td class="n">A 彩色版 · 且該區影像須單純無雜訊</td></tr>
+    <tr><td>品牌五色任一色滿版底</td><td class="n">禁止直接置放，一律改用 A 彩色版</td></tr>
+  </table>
+</section>
+
+<section id="misuse">
+  <span class="pg">P. 026</span>
+  <span class="eyebrow">1.1.7 — Misuse</span>
+  <h2>十二種禁止用法</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="130" height="45" preserveAspectRatio="none"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✕ 01 不等比拉伸</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120" style="transform:rotate(-13deg)"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✕ 02 旋轉</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="43 3.918 116 47.984" width="130"><circle cx="72" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="132" cy="27.926" r="23.969" fill="#0C5170"/><rect x="51.5" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="111.5" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="126.9" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✕ 03 拆開雙圓</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><circle cx="77.746" cy="27.910" r="23.992" fill="#8AC24A"/><circle cx="125.742" cy="27.926" r="23.969" fill="#5B3FA0"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#fff"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#fff"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#fff"/></svg><div class="capzh">✕ 04 改用非品牌色</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><defs><filter id="sh1"><feDropShadow dx="3" dy="4" stdDeviation="2.5" flood-opacity=".55"/></filter></defs><g filter="url(#sh1)"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></g></svg><div class="capzh">✕ 05 加陰影</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><defs><linearGradient id="gr1" x1="0" x2="1"><stop offset="0" stop-color="#F29CA7"/><stop offset="1" stop-color="#F39801"/></linearGradient></defs><circle cx="77.746" cy="27.910" r="23.992" fill="url(#gr1)"/><circle cx="125.742" cy="27.926" r="23.969" fill="url(#gr1)"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#0C5170"/></svg><div class="capzh">✕ 06 加漸層</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" fill="#F39801"/></svg><div class="capzh">✕ 07 棒端改方角</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7" opacity=".45"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170" opacity=".45"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170" opacity=".45"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429" opacity=".45"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801" opacity=".45"/></svg><div class="capzh">✕ 08 降低不透明度</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7" stroke="#232E1E" stroke-width="3"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170" stroke="#232E1E" stroke-width="3"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✕ 09 加外框線</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><circle cx="125.742" cy="27.926" r="23.969" fill="#F29CA7"/><circle cx="77.746" cy="27.910" r="23.992" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#F29CA7"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg><div class="capzh">✕ 10 對調左右配色</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/><text x="60" y="49" font-family="sans-serif" font-size="9" fill="#232E1E">SINCE 2020</text></svg><div class="capzh">✕ 11 加入額外文字</div></div>
+    <div class="box bad" style="min-height:130px"><svg viewBox="53.754 3.918 95.957 47.984" width="120"><g transform="skewX(-14)"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></g></svg><div class="capzh">✕ 12 傾斜／變形</div></div>
+  </div>
+</section>
+
+<section id="cobrand">
+  <span class="pg">P. 027</span>
+  <span class="eyebrow">1.1.8 — Co-branding</span>
+  <h2>共存與聯名</h2>
+  <p>與客戶、合作方、得獎標章並置時的規則。目的是避免加減設計多媒體工作站的標誌被誤讀為對方的子品牌，或反之。</p>
+  <div class="box ms" style="margin-top:var(--s4);min-height:180px">
+    <svg viewBox="0 0 300 60" width="440">
+      <g transform="translate(0,4) scale(0.33)">
+        <rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/>
+      </g>
+      <line x1="84" y1="10" x2="84" y2="50" stroke="#6E7069" stroke-width=".8"/>
+      <rect x="106" y="17" width="70" height="26" fill="none" stroke="#B9BDB4" stroke-width=".8" stroke-dasharray="3 3"/>
+      <text x="118" y="34" font-family="IBM Plex Mono" font-size="7" fill="#6E7069">PARTNER</text>
+      <text x="66" y="57" font-family="IBM Plex Mono" font-size="6" fill="#E93429">2r</text>
+    </svg>
+    <div class="cap">Co-branding Lockup</div>
+  </div>
+  <table class="d">
+    <tr><td>分隔方式</td><td class="n">0.75pt 垂直細線 · Slate #6E7069</td></tr>
+    <tr><td>線兩側間距</td><td class="n">各 2 r</td></tr>
+    <tr><td>視覺等重</td><td>對方標誌以「視覺面積」而非「實際高度」對齊，必要時可縮放</td></tr>
+    <tr><td>排序</td><td>加減設計多媒體工作站為主辦方時置左；為協力方時置右</td></tr>
+    <tr><td>禁止</td><td>疊加、包框、共用色底、加上「×」或「＋」等符號連接</td></tr>
+    <tr><td>禁止字樣</td><td>不使用「a brand by ⋯」「powered by ⋯」等背書句</td></tr>
+  </table>
+</section>
+
+<!-- ================= 1.2 COLOUR ================= -->
+
+<section id="color">
+  <span class="pg">P. 028 — 034</span>
+  <span class="eyebrow">1.2.1 — Colour System</span>
+  <h2>色彩系統</h2>
+  <p class="lead">以下五色取自標誌檔案實際填色，非目測值。這是<b style="font-weight:500">標誌色</b>——用於標誌本身，數值不可更動。大面積應用請見下一節的應用色階。</p>
+
+  <div class="pal">
+    <div class="sw"><i style="background:#0C5170"></i><div><b>Primary Navy</b><span class="h">#0C5170</span><span class="h">R12 G81 B112</span><span class="h">C89 M56 Y30 K11</span><em>主色。減號滑軌、右圓底。品牌識別的核心色。</em></div></div>
+    <div class="sw"><i style="background:#E93429"></i><div><b>Signal Red</b><span class="h">#E93429</span><span class="h">R233 G52 B41</span><span class="h">C0 M89 Y87 K0</span><em>減號端點、加號橫棒。高彩度，僅限小面積。</em></div></div>
+    <div class="sw"><i style="background:#F29CA7"></i><div><b>Rose Pink</b><span class="h">#F29CA7</span><span class="h">R242 G156 B167</span><span class="h">C0 M47 Y23 K0</span><em>左圓底色。系統中唯一的柔性色。</em></div></div>
+    <div class="sw"><i style="background:#F39801"></i><div><b>Signal Orange</b><span class="h">#F39801</span><span class="h">R243 G152 B1</span><span class="h">C0 M46 Y99 K0</span><em>加號直棒。與紅色不可相鄰大面積並置。</em></div></div>
+    <div class="sw"><i style="background:#232E1E"></i><div><b>Deep Forest</b><span class="h">#232E1E</span><span class="h">R35 G46 B30</span><span class="h">C74 M55 Y82 K69</span><em>量體底色。可作為深底主色使用。</em></div></div>
+  </div>
+
+  <h3>中性色</h3>
+  <div class="pal">
+    <div class="sw"><i style="background:#F8F8F6;border-bottom:1px solid #D9D7D1"></i><div><b>Paper</b><span class="h">#F8F8F6</span><em>頁面底色。不使用純白 #FFFFFF。</em></div></div>
+    <div class="sw"><i style="background:#ECEAE5"></i><div><b>Mist</b><span class="h">#ECEAE5</span><em>次層底色、卡片、圖片襯底。</em></div></div>
+    <div class="sw"><i style="background:#D9D7D1"></i><div><b>Line</b><span class="h">#D9D7D1</span><em>分隔線、表格框線。不用於文字。</em></div></div>
+    <div class="sw"><i style="background:#6E7069"></i><div><b>Slate</b><span class="h">#6E7069</span><em>次要文字、圖說、標籤。</em></div></div>
+  </div>
+</section>
+
+<section>
+  <span class="pg">P. 035</span>
+  <span class="eyebrow">1.2.2 — Ratio</span>
+  <h2>色彩比例：高級感的關鍵是節制</h2>
+  <div class="ratio">
+    <span style="background:#F8F8F6;color:#1A1A18;flex:45">PAPER 45%</span>
+    <span style="background:#ECEAE5;color:#1A1A18;flex:15">MIST 15%</span>
+    <span style="background:#0C5170;flex:24">NAVY 24%</span>
+    <span style="background:#232E1E;flex:10">FOREST 10%</span>
+    <span style="background:#E93429;flex:3"></span>
+    <span style="background:#F39801;flex:2"></span>
+    <span style="background:#F29CA7;flex:1"></span>
+  </div>
+  <table class="d">
+    <tr><td>Paper + Mist</td><td class="n">60%</td><td>底色。任何版面的絕對多數</td></tr>
+    <tr><td>Navy</td><td class="n">24%</td><td>主色。標題、色塊、按鈕、頁首</td></tr>
+    <tr><td>Forest</td><td class="n">10%</td><td>深底區塊、頁尾、章節扉頁</td></tr>
+    <tr><td>Red + Orange + Pink</td><td class="n">合計 ≤ 6%</td><td>僅限小面積：圖示、標籤、分類色、強調點</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> Red、Orange、Pink 三色<b style="font-weight:500">不得滿版</b>，也不得兩色以上同時出現在同一個版面的大面積區塊。五色皆現身、但主從分明，才是善用色彩卻不庸俗的關鍵。</p>
+</section>
+
+<section id="apptier">
+  <span class="pg">P. 036</span>
+  <span class="eyebrow">1.2.3 — Application Tier</span>
+  <h2>應用色階</h2>
+  <p class="lead">標誌的五色偏高彩度，直接大面積使用會與「靜奢」的調性衝突。解法不是改標誌，而是<b style="font-weight:500">分層</b>：標誌永遠用原色，大面積應用改用低飽和的應用色階。</p>
+  <table class="d">
+    <thead><tr><th>色彩</th><th>標誌色（不可更動）</th><th>應用色階（大面積）</th><th>轉換</th></tr></thead>
+    <tr><td>Navy</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#0C5170;margin-right:7px;vertical-align:-1px"></span>#0C5170</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#225065;margin-right:7px;vertical-align:-1px"></span>#225065</td><td class="n">飽和 ×0.62</td></tr>
+    <tr><td>Red</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#E93429;margin-right:7px;vertical-align:-1px"></span>#E93429</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#9D4742;margin-right:7px;vertical-align:-1px"></span>#9D4742</td><td class="n">飽和 ×0.50 · 明度 −10</td></tr>
+    <tr><td>Orange</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#F39801;margin-right:7px;vertical-align:-1px"></span>#F39801</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#A57930;margin-right:7px;vertical-align:-1px"></span>#A57930</td><td class="n">飽和 ×0.55 · 明度 −6</td></tr>
+    <tr><td>Pink</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#F29CA7;margin-right:7px;vertical-align:-1px"></span>#F29CA7</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#E5BEC3;margin-right:7px;vertical-align:-1px"></span>#E5BEC3</td><td class="n">飽和 ×0.55 · 明度 +4</td></tr>
+    <tr><td>Forest</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#232E1E;margin-right:7px;vertical-align:-1px"></span>#232E1E</td><td class="n"><span style="display:inline-block;width:12px;height:12px;background:#232E1E;margin-right:7px;vertical-align:-1px"></span>#232E1E</td><td class="n">不變</td></tr>
+  </table>
+  <h3>使用界線</h3>
+  <table class="d">
+    <tr><td class="n" style="color:var(--navy)">用標誌色</td><td>標誌本身、圖示、標籤、按鈕、圖表資料點、任何小於版面 5% 的區塊</td></tr>
+    <tr><td class="n" style="color:var(--slate)">用應用色階</td><td>滿版色塊、章節底色、大面積背景、簡報封面、印刷品底色、超過版面 5% 的區塊</td></tr>
+  </table>
+  <div class="callout">
+    <h3>為什麼不直接改標誌</h3>
+    <p>標誌是資產，改一次就要重印所有既有物料、重新申請商標圖樣、重做所有平台頭像。分層做法讓標誌保持不動，同時讓整體視覺往靜奢收斂——<strong>這是多數國際品牌處理「舊標誌、新調性」的標準做法。</strong></p>
+  </div>
+</section>
+
+<section id="a11y">
+  <span class="pg">P. 037</span>
+  <span class="eyebrow">1.2.4 — Accessibility</span>
+  <h2>無障礙對比檢核</h2>
+  <table class="d">
+    <thead><tr><th>前景 / 背景</th><th>對比</th><th>WCAG</th><th>可用於</th></tr></thead>
+    <tr><td>Forest on Paper</td><td class="n">13.33 : 1</td><td class="n">AAA</td><td>內文、標題、全部</td></tr>
+    <tr><td>Navy on Paper</td><td class="n">8.14 : 1</td><td class="n">AAA</td><td>內文、標題、連結</td></tr>
+    <tr><td>Slate on Paper</td><td class="n">4.62 : 1</td><td class="n">AA</td><td>次要文字，建議 ≥14px</td></tr>
+    <tr><td>Red-app on Paper</td><td class="n">5.79 : 1</td><td class="n">AA</td><td>警示文字、錯誤訊息</td></tr>
+    <tr><td>Red on Paper</td><td class="n">3.96 : 1</td><td class="n">AA Large</td><td>僅限 ≥19px 或粗體</td></tr>
+    <tr><td>Orange on Paper</td><td class="n">2.12 : 1</td><td class="n">✕ 不合格</td><td>不可用於文字，僅限色塊</td></tr>
+    <tr><td>Pink on Paper</td><td class="n">1.96 : 1</td><td class="n">✕ 不合格</td><td>不可用於文字，僅限色塊</td></tr>
+    <tr><td>Paper on Forest</td><td class="n">13.33 : 1</td><td class="n">AAA</td><td>反白內文</td></tr>
+    <tr><td>Pink on Forest</td><td class="n">6.81 : 1</td><td class="n">AA</td><td>深底上的強調文字</td></tr>
+    <tr><td>Orange on Forest</td><td class="n">6.28 : 1</td><td class="n">AA</td><td>深底上的強調文字、連結</td></tr>
+    <tr><td>Navy on Forest</td><td class="n">1.64 : 1</td><td class="n">✕ 不合格</td><td>絕不並置</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> Orange 與 Pink 永遠不作為淺底上的文字色。深底上才可使用。</p>
+</section>
+
+<section id="print">
+  <span class="pg">P. 038 — 039</span>
+  <span class="eyebrow">1.2.5 — Print &amp; Colour Management</span>
+  <h2>印刷特別色與色差管理</h2>
+  <h3>特別色對照</h3>
+  <table class="d">
+    <thead><tr><th>色彩</th><th>Pantone 近似</th><th>CMYK</th><th>備註</th></tr></thead>
+    <tr><td>Primary Navy</td><td class="n">PANTONE 302 C</td><td class="n">89 / 56 / 30 / 11</td><td>四色印刷易偏綠，建議專色</td></tr>
+    <tr><td>Signal Red</td><td class="n">PANTONE 1795 C</td><td class="n">0 / 89 / 87 / 0</td><td>四色可達成，無須專色</td></tr>
+    <tr><td>Rose Pink</td><td class="n">PANTONE 1765 C</td><td class="n">0 / 47 / 23 / 0</td><td>淺色區域注意網點斷階</td></tr>
+    <tr><td>Signal Orange</td><td class="n">PANTONE 137 C</td><td class="n">0 / 46 / 99 / 0</td><td>四色偏暗，建議專色</td></tr>
+    <tr><td>Deep Forest</td><td class="n">PANTONE 5605 C</td><td class="n">74 / 55 / 82 / 69</td><td>總墨量 280%，注意背印</td></tr>
+  </table>
+
+  <h3>印刷工藝對應</h3>
+  <table class="d">
+    <tr><td>燙金</td><td class="n">霧面古銅</td><td>僅用於名片與資料夾的標誌，不用於文字</td></tr>
+    <tr><td>打凸</td><td class="n">單層 0.3mm</td><td>標誌純圖案版；不與燙印同區疊加</td></tr>
+    <tr><td>表面處理</td><td class="n">霧膜 / 不上光</td><td>禁止亮膜、局部 UV、雷射膜</td></tr>
+    <tr><td>裁切</td><td class="n">直角</td><td>不做圓角裁切</td></tr>
+  </table>
+
+  <h3>色彩管理</h3>
+  <table class="d">
+    <tr><td>螢幕工作色域</td><td class="n">sRGB IEC61966-2.1</td></tr>
+    <tr><td>印刷輸出色域</td><td class="n">FOGRA39 (ISO Coated v2)</td></tr>
+    <tr><td>影片色域</td><td class="n">Rec.709 · Gamma 2.4</td></tr>
+    <tr><td>轉換方式</td><td class="n">相對色度 + 黑點補償</td></tr>
+    <tr><td>總墨量上限</td><td class="n">300%</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule should">應該</span> 首次印刷任何新品項時，必須打數位樣並核對 Navy 與 Forest 兩色。這兩色在四色印刷中最容易偏移。</p>
+</section>
+
+<!-- ================= 1.3 TYPE ================= -->
+
+<section id="typeface">
+  <span class="pg">P. 040 — 043</span>
+  <span class="eyebrow">1.3.1 — Typefaces</span>
+  <h2>指定字體</h2>
+  <div class="tight">
+    <div><div class="t5">中文標題 / 標準字</div><p style="font-family:'金萱',serif;font-weight:900;font-size:26px;margin-top:10px">金萱 (justfont)</p><p style="font-size:12.5px;color:var(--slate);margin-top:6px">金萱 · 半糖 / 微微糖</p></div>
+    <div><div class="t5">中文內文</div><p style="font-family:'Noto Sans TC',sans-serif;font-size:26px;margin-top:10px">思源黑體</p><p style="font-size:12.5px;color:var(--slate);margin-top:6px">Noto Sans TC · Light 300 / Regular 400</p></div>
+    <div><div class="t5">英文 Display</div><p style="font-family:'Söhne',serif;font-size:28px;margin-top:10px">Söhne</p><p style="font-size:12.5px;color:var(--slate);margin-top:6px">Medium 500 · 極簡無襯線字體</p></div>
+    <div><div class="t5">英文 Utility</div><p style="font-family:'Archivo',sans-serif;font-size:26px;margin-top:10px">Archivo</p><p style="font-size:12.5px;color:var(--slate);margin-top:6px">Medium 500 · 標籤、數據、導覽</p></div>
+  </div>
+
+  <h3>字重使用範圍</h3>
+  <table class="d">
+    <thead><tr><th>字體</th><th>允許字重</th><th>禁止</th></tr></thead>
+    <tr><td>金萱 (justfont)</td><td class="n">900 Black · 600 SemiBold</td><td class="n">400 以下不使用</td></tr>
+    <tr><td>思源黑體</td><td class="n">300 Light · 400 Regular · 500 Medium</td><td class="n">700 以上僅限極小標籤</td></tr>
+    <tr><td>Söhne</td><td class="n">400 Regular · 400 Italic</td><td class="n">不使用 Bold</td></tr>
+    <tr><td>Archivo</td><td class="n">500 Medium · 600 SemiBold</td><td class="n">不使用 Italic</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 禁止使用系統合成的偽粗體與偽斜體（faux bold / faux italic）。需要粗體時改用真實字重。</p>
+
+  <h3>為什麼是 Söhne 與金萱</h3>\n  <p>Söhne 是一款極致現代的無襯線字體，其俐落的幾何結構與建築的精準立面完美呼應，傳遞冷靜與理性的專業感。而中文選用「金萱」，則是因為它巧妙融合了明體的優雅與黑體的現代，在剛硬的建築空間中注入了一絲溫潤的生活質地。這對組合完美詮釋了「以減法還原純粹，以加法疊加質地」的品牌核心。</p>
+</section>
+
+<section id="lockup">
+  <span class="pg">P. 044</span>
+  <span class="eyebrow">1.3.2 — Logotype &amp; Lockup</span>
+  <h2>標準字組合</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div class="box ms" style="min-height:230px">
+      <div style="text-align:center">
+        <div style="font-family:'金萱',serif;font-weight:900;font-size:clamp(30px,5vw,44px);letter-spacing:.05em">加減設計多媒體工作站</div>
+        <div style="font-family:'Söhne',serif;font-size:clamp(18px,3vw,26px);letter-spacing:.06em;color:var(--navy);margin-top:6px">MINUS PLUS STUDIO</div>
+      </div>
+      <div class="cap">Primary Logotype</div>
+    </div>
+    <div>
+      <table class="d">
+        <thead><tr><th>項目</th><th>規格</th></tr></thead>
+        <tr><td>中文字體 / 字重</td><td class="n">金萱 (justfont) · 900</td></tr>
+        <tr><td>中文字距</td><td class="n">0.05 em</td></tr>
+        <tr><td>英文字體</td><td class="n">Söhne · 400</td></tr>
+        <tr><td>英文字距</td><td class="n">0.06 em</td></tr>
+        <tr><td>英文字級 ÷ 中文字級</td><td class="n">0.60</td></tr>
+        <tr><td>中英之間垂直間距</td><td class="n">0.14 × 中文字級</td></tr>
+        <tr><td>對齊</td><td class="n">置中或齊左，不齊右</td></tr>
+        <tr><td>標誌與標準字間距</td><td class="n">≥ 1.2 × 標誌高度</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="mixing">
+  <span class="pg">P. 045 — 046</span>
+  <span class="eyebrow">1.3.3 — Mixed Typesetting</span>
+  <h2>中英混排規則</h2>
+  <div class="dd">
+    <div>
+      <h4>應該</h4>
+      <ul>
+        <li>中英之間插入 0.25em 空隙（可用 CSS <span class="mono">text-spacing</span> 或手動）</li>
+        <li>中文與阿拉伯數字之間同樣插入 0.25em</li>
+        <li>數字與單位視為一體，不斷行：<span class="mono">121 號</span>、<span class="mono">45×45 cm</span></li>
+        <li>英文專有名詞保持原始大小寫</li>
+        <li>中文使用全形標點，英文句子內使用半形標點</li>
+        <li>括號依內容語言決定全形或半形</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h4>不應該</h4>
+      <ul>
+        <li>中文段落使用兩端對齊（會產生不均勻的字間空隙）</li>
+        <li>行首出現句號、逗號、右括號等收尾標點</li>
+        <li>行尾出現左括號、左引號</li>
+        <li>單字或單一標點獨立成行（孤字）</li>
+        <li>中英混排時把英文改成全形</li>
+        <li>用空白鍵手動排版對齊</li>
+      </ul>
+    </div>
+  </div>
+  <h3>避頭尾字元</h3>
+  <div class="code">行首禁止：  。 ， 、 ； ： ？ ！ ） 」 』 》 ％ ‰ ℃
+行尾禁止：  （ 「 『 《 ＃ ＄ ＠
+不可分割：  數字＋單位 · 數字＋% · 姓名 · 英文單字</div>
+</section>
+
+<section id="fallback">
+  <span class="pg">P. 047 — 049</span>
+  <span class="eyebrow">1.3.4 — Licensing &amp; Fallback</span>
+  <h2>字體授權與替代字體</h2>
+  <p>全系統只採用 SIL Open Font License 字體：可商用、可嵌入、可交給外包，無授權費與續約風險。</p>
+  <table class="d">
+    <thead><tr><th>字體</th><th>授權</th><th>來源</th></tr></thead>
+    <tr><td>金萱 (justfont) / 思源黑體</td><td class="n">SIL OFL 1.1</td><td class="n">Google Fonts · Adobe</td></tr>
+    <tr><td>Söhne</td><td class="n">SIL OFL 1.1</td><td class="n">Google Fonts</td></tr>
+    <tr><td>Archivo</td><td class="n">SIL OFL 1.1</td><td class="n">Google Fonts</td></tr>
+  </table>
+
+  <h3>替代字體對照</h3>
+  <table class="d">
+    <thead><tr><th>場合</th><th>中文</th><th>英文標題</th><th>英文內文</th></tr></thead>
+    <tr><td>網頁（無法載入 webfont）</td><td class="n">金萱 → PingFang TC → 微軟正黑體</td><td class="n">Söhne → Didot → Georgia</td><td class="n">Archivo → Helvetica → Arial</td></tr>
+    <tr><td>Word / PowerPoint</td><td class="n">金萱 (justfont)（需安裝）→ 標楷體不可用</td><td class="n">Didot → Georgia</td><td class="n">Arial</td></tr>
+    <tr><td>Email HTML</td><td class="n">系統預設無襯線</td><td class="n">Georgia</td><td class="n">Arial · Helvetica</td></tr>
+    <tr><td>簽約 / 公文</td><td class="n">金萱 (justfont)</td><td class="n">Times New Roman</td><td class="n">Times New Roman</td></tr>
+  </table>
+
+  <h3>CSS 字體堆疊</h3>
+  <div class="code">--font-display: <b>"Söhne"</b>, Didot, Georgia, serif;
+--font-serif-tc: <b>"金萱"</b>, "PingFang TC", "Songti TC", serif;
+--font-sans-tc: <b>"Noto Sans TC"</b>, "PingFang TC", "Microsoft JhengHei", sans-serif;
+--font-utility: <b>"Archivo"</b>, Helvetica, Arial, sans-serif;</div>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 標楷體、新細明體、DFKai-SB 在任何情況下都不得使用，包含公文與合約。</p>
+</section>
+
+<!-- ================= 1.4 STATIONERY ================= -->
+
+<section id="card">
+  <span class="pg">P. 050 — 051</span>
+  <span class="eyebrow">1.4.1 — Business Card</span>
+  <h2>名片</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock">
+      <div class="hd" style="background:#F29CA7">
+        <div style="background:#F39801;padding:10px 12px;display:inline-block;align-self:flex-start">
+          <div style="font-family:'Archivo',sans-serif;font-size:11px;line-height:1.35;color:#232E1E;font-weight:500">Minus<br>plus<br>design</div>
+          <div style="font-size:9px;color:#232E1E;margin-top:3px">加減設計多媒體工作站</div>
+        </div>
+        <div style="align-self:flex-end">
+          <svg viewBox="0 0 157.633 57.664" width="86"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+        </div>
+      </div>
+      <div class="bd"><strong>正面 · 91 × 55 mm</strong>Pink 滿版（此處為既有版式，屬 Pink 唯一允許的滿版例外）。橙色資訊塊齊左上，標誌齊右下。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:#ECEAE5">
+        <div>
+          <div style="font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.14em;color:var(--slate)">專案 空間設計師</div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:22px;letter-spacing:.16em;margin-top:8px">馮　凱瑞</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:11px;letter-spacing:.18em;font-weight:600">COREY FENG</div>
+        </div>
+        <div style="font-family:'Archivo',sans-serif;font-size:9px;line-height:1.9;color:var(--slate)">
+          +886 955 050 400<br>81354 高雄市左營區洲仔路 121 號<br>erek.feng@gmail.com
+        </div>
+      </div>
+      <div class="bd"><strong>背面 · 91 × 55 mm</strong>Mist 底。姓名為金萱 (justfont) 900、字距 0.16em。聯絡資訊 Archivo 8pt、行高 1.9。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:#fff;justify-content:center">
+        <table class="d" style="margin:0;font-size:12.5px">
+          <tr><td>完成尺寸</td><td class="n r">91 × 55 mm</td></tr>
+          <tr><td>出血</td><td class="n r">各邊 3 mm</td></tr>
+          <tr><td>安全邊界</td><td class="n r">內縮 5 mm</td></tr>
+          <tr><td>紙材</td><td class="n r">棉絨紙 300g</td></tr>
+          <tr><td style="border:none">工藝</td><td class="n r" style="border:none">標誌打凸 · 不上光</td></tr>
+        </table>
+      </div>
+      <div class="bd"><strong>完稿規格</strong>四邊出血 3mm，重要資訊距裁切線至少 5mm。輸出 PDF/X-4，字體全部外框化。</div>
+    </div>
+  </div>
+</section>
+
+<section id="envelope">
+  <span class="pg">P. 052 — 054</span>
+  <span class="eyebrow">1.4.2 — Envelope &amp; Letterhead</span>
+  <h2>信封與信紙</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock">
+      <div class="hd" style="background:#fff;border-left:5px solid #0C5170;padding-left:20px">
+        <div>
+          <svg viewBox="0 0 157.633 57.664" width="66"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:14px;margin-top:14px;letter-spacing:.05em">加減設計多媒體工作站</div>
+          <div style="font-family:'Söhne',serif;font-size:11px;color:var(--navy)">MINUS PLUS STUDIO</div>
+        </div>
+        <div style="font-size:10px;color:var(--slate)">高雄市左營區洲仔路 121 號</div>
+      </div>
+      <div class="bd"><strong>橫式信封 · 220 × 110 mm</strong>左側 5mm Navy 直帶為固定裝置。標誌齊左上，地址齊左下。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:#fff;align-items:center;text-align:center">
+        <div style="width:100%;border-top:3px solid #0C5170;padding-top:16px">
+          <svg viewBox="0 0 157.633 57.664" width="58"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:13px;margin-top:12px;letter-spacing:.06em">加減設計多媒體工作站</div>
+          <div style="font-family:'Söhne',serif;font-size:9.5px;color:var(--navy)">MINUS PLUS STUDIO</div>
+        </div>
+        <div style="border-top:1px solid var(--line);padding-top:10px;font-size:9.5px;color:var(--slate);width:100%">高雄市左營區<br>洲仔路 121 號</div>
+      </div>
+      <div class="bd"><strong>直式信封 · 120 × 235 mm</strong>頂端 3mm Navy 橫帶。全部置中對齊。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:#fff">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start">
+          <svg viewBox="0 0 157.633 57.664" width="60"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+          <div style="font-family:'Archivo',sans-serif;font-size:8px;color:var(--slate);text-align:right;line-height:1.7">MINUS PLUS STUDIO<br>KAOHSIUNG · TAIWAN</div>
+        </div>
+        <div style="border-top:1px solid var(--line);font-size:8px;color:var(--slate);padding-top:8px">+886 955 050 400 · erek.feng@gmail.com · 高雄市左營區洲仔路 121 號</div>
+      </div>
+      <div class="bd"><strong>A4 信紙 · 210 × 297 mm</strong>頁首高 40mm，頁尾高 24mm。打字區左右邊界各 25mm，首行距頁首 16mm。</div>
+    </div>
+  </div>
+</section>
+
+<section id="doc">
+  <span class="pg">P. 055 — 057</span>
+  <span class="eyebrow">1.4.3 — Documents</span>
+  <h2>公文、合約與資料夾</h2>
+  <table class="d">
+    <thead><tr><th>品項</th><th>規格</th><th>要點</th></tr></thead>
+    <tr><td>合約書首頁</td><td class="n">A4</td><td>標誌置頂齊左；文號欄齊右；標題金萱 (justfont) 600 · 20pt；內文思源黑體 300 · 11pt / 行高 1.9</td></tr>
+    <tr><td>騎縫章位置</td><td class="n">右側裝訂邊</td><td>距頁緣 12mm，跨頁蓋印；不使用標誌作為騎縫章</td></tr>
+    <tr><td>報價單</td><td class="n">A4</td><td>表頭 Navy 底反白；欄線 0.5pt Line 色；金額欄右對齊、Archivo 等寬數字</td></tr>
+    <tr><td>請款單</td><td class="n">A4</td><td>同報價單版式；總計列以 Forest 底反白強調</td></tr>
+    <tr><td>A4 資料夾</td><td class="n">220 × 307 mm</td><td>封面 Navy 滿版、標誌置左上距邊 20mm；底部 60mm 為 Forest 色帶；內袋刀模斜切 45°</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 所有正式文件一律使用中英複合版 H 或彩色版 A，不使用純圖案版 B。</p>
+</section>
+
+<section id="deck">
+  <span class="pg">P. 058 — 060</span>
+  <span class="eyebrow">1.4.4 — Presentation</span>
+  <h2>簡報模板</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock">
+      <div class="hd" style="background:#232E1E;justify-content:flex-end;min-height:150px">
+        <div>
+          <div style="font-family:'Archivo',sans-serif;font-size:8.5px;letter-spacing:.24em;color:#F39801">PROJECT PROPOSAL · 2027</div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:19px;color:#F8F8F6;margin-top:10px;letter-spacing:.05em">左營青田路<br>整層住宅改造</div>
+        </div>
+      </div>
+      <div class="bd"><strong>封面</strong>Forest 滿版。眉標 Archivo · Orange；主標金萱 (justfont) 900 · 44pt，齊左下。標誌置右上，尺寸 ≥96px。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:#F8F8F6;min-height:150px">
+        <div style="border-top:3px solid #0C5170;padding-top:12px">
+          <div style="font-family:'Archivo',sans-serif;font-size:8.5px;letter-spacing:.2em;color:var(--slate)">03 — MATERIAL</div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:16px;margin-top:8px;letter-spacing:.05em">材質計畫</div>
+        </div>
+        <div style="font-size:10px;color:var(--slate);line-height:1.9">單頁單一訊息。內文不超過 6 行，字級不小於 18pt。</div>
+      </div>
+      <div class="bd"><strong>內頁</strong>Paper 底。頂部 3pt Navy 橫線為固定裝置。標題區高度固定 96px，內容區起始位置一致。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:#0C5170;align-items:center;justify-content:center;min-height:150px">
+        <div style="text-align:center">
+          <div style="font-family:'Söhne',serif;font-size:34px;color:#F8F8F6">04</div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:15px;color:#F8F8F6;letter-spacing:.1em;margin-top:8px">預算與時程</div>
+        </div>
+      </div>
+      <div class="bd"><strong>章節頁</strong>Navy 滿版。章號 Söhne · 96pt，章名金萱 (justfont) 900 · 32pt，垂直置中。</div>
+    </div>
+  </div>
+  <table class="d">
+    <tr><td>畫布</td><td class="n">1920 × 1080 px · 16:9</td></tr>
+    <tr><td>邊界</td><td class="n">上下 80px · 左右 120px</td></tr>
+    <tr><td>最小字級</td><td class="n">18pt（投影用），內文 24pt 為佳</td></tr>
+    <tr><td>每頁訊息量</td><td class="n">一頁一個訊息；條列不超過 5 項</td></tr>
+    <tr><td>轉場</td><td class="n">無轉場或淡入 200ms；禁止翻頁、方塊、立方體</td></tr>
+  </table>
+</section>
+
+<section id="email">
+  <span class="pg">P. 061 — 063</span>
+  <span class="eyebrow">1.4.5 — Email &amp; Merchandise</span>
+  <h2>Email 簽名檔與周邊</h2>
+  <div class="code">&lt;table cellpadding="0" cellspacing="0" style="font-family:'Noto Sans TC',Arial,sans-serif;font-size:13px;color:<b>#1A1A18</b>"&gt;
+  &lt;tr&gt;
+    &lt;td style="padding-right:18px;border-right:3px solid <b>#0C5170</b>"&gt;
+      &lt;img src="mp-logo-B-mark-192.png" width="72" alt="加減設計多媒體工作站"&gt;
+    &lt;/td&gt;
+    &lt;td style="padding-left:18px"&gt;
+      &lt;div style="font-weight:500;font-size:15px"&gt;馮凱瑞　Corey Feng&lt;/div&gt;
+      &lt;div style="color:<b>#6E7069</b>;font-size:12px;padding-top:2px"&gt;專案 空間設計師&lt;/div&gt;
+      &lt;div style="color:<b>#6E7069</b>;font-size:12px;padding-top:10px;line-height:1.7"&gt;
+        加減設計多媒體工作站 MINUS PLUS STUDIO&lt;br&gt;
+        +886 955 050 400&lt;br&gt;
+        高雄市左營區洲仔路 121 號
+      &lt;/div&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;</div>
+  <table class="d">
+    <tr><td>簽名檔圖片</td><td class="n">PNG · 72px 寬 · 2× 解析度 (144px)</td><td>不使用 SVG（多數郵件客戶端不支援）</td></tr>
+    <tr><td>禁止</td><td class="n">—</td><td>社群圖示列、格言、環保標語、背景圖</td></tr>
+    <tr><td>馬克杯</td><td class="n">Navy 釉</td><td>純圖案版 B 單面燒印，直徑 40mm</td></tr>
+    <tr><td>紙袋</td><td class="n">Forest 滿版</td><td>反白版 E 置中，尺寸為袋寬的 30%</td></tr>
+    <tr><td>工地標示牌</td><td class="n">A2 · 珊瑚板</td><td>彩色版 A 置頂，案名金萱 (justfont) 900 · 90pt</td></tr>
+    <tr><td>產品鈐印 / 貼紙</td><td class="n">40 × 40 mm</td><td>方形版 G</td></tr>
+  </table>
+</section>
+
+<section id="paper">
+  <span class="pg">P. 064</span>
+  <span class="eyebrow">1.4.6 — Paper &amp; Finishing</span>
+  <h2>指定紙材與工藝</h2>
+  <table class="d">
+    <thead><tr><th>品項</th><th>紙材</th><th>磅數</th><th>表面處理</th></tr></thead>
+    <tr><td>名片</td><td>棉絨紙 / Colorplan</td><td class="n">300 g</td><td class="n">不上光 · 標誌打凸</td></tr>
+    <tr><td>信封</td><td>模造紙</td><td class="n">120 g</td><td class="n">不上光</td></tr>
+    <tr><td>信紙</td><td>模造紙</td><td class="n">100 g</td><td class="n">不上光</td></tr>
+    <tr><td>合約 / 公文</td><td>雙面銅版</td><td class="n">100 g</td><td class="n">不上光</td></tr>
+    <tr><td>A4 資料夾</td><td>單面銅版裱卡</td><td class="n">350 g</td><td class="n">霧膜 · 標誌燙古銅</td></tr>
+    <tr><td>提案簡報（印刷版）</td><td>雪面銅版</td><td class="n">150 g</td><td class="n">不上光 · 騎馬釘或膠裝</td></tr>
+    <tr><td>產品貼紙</td><td>合成紙</td><td class="n">—</td><td class="n">霧面</td></tr>
+  </table>
+  <div class="callout">
+    <h3>一條總則</h3>
+    <p>整套識別禁止亮膜、局部 UV、雷射膜、金蔥與圓角裁切。<strong>紙的觸感就是這個品牌的觸感</strong>——「以減法還原空間的純粹」如果印在亮膜上，就變成一句空話。</p>
+  </div>
+</section>
+
+<footer>CBDS 2027 · Volume 01 企業識別系統 · P.013–064 ／ Rev. A ／ 2026.07</footer>
+
+</div>
+</body>
+</html>

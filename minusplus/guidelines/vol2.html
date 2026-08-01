@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBDS 2027 — Vol. 02 品牌設計系統</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Söhne+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600;900&family=Noto+Sans+TC:wght@200;300;400;500;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#232E1E; --navy:#0C5170; --pink:#F29CA7; --red:#E93429; --orange:#F39801;
+  --navy-a:#225065; --pink-a:#E5BEC3; --red-a:#9D4742; --orange-a:#A57930;
+  --paper:#F8F8F6; --mist:#ECEAE5; --line:#D9D7D1; --slate:#6E7069; --ink:#1A1A18;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:64px;--s7:96px;--s8:128px;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",sans-serif;font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 var(--s4)}
+.mono{font-family:"IBM Plex Mono",monospace}
+p{max-width:70ch}
+
+.spectrum{display:flex;height:6px}
+.spectrum i{flex:1}
+.spectrum i:nth-child(1){background:var(--navy)}
+.spectrum i:nth-child(2){background:var(--red)}
+.spectrum i:nth-child(3){background:var(--pink)}
+.spectrum i:nth-child(4){background:var(--orange)}
+.spectrum i:nth-child(5){background:var(--forest)}
+
+nav{position:sticky;top:0;z-index:60;background:var(--forest)}
+nav .inner{max-width:1060px;margin:0 auto;padding:11px var(--s4);display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav a{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9CA398;text-decoration:none;white-space:nowrap;font-weight:500}
+nav a:hover{color:var(--orange)}
+
+.pg{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.2em;color:var(--slate);display:block;margin-bottom:10px}
+.eyebrow{font-family:"Archivo",sans-serif;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--navy);display:block;margin-bottom:var(--s3)}
+h1{font-family:"Söhne",serif;font-weight:400;font-size:clamp(38px,6.5vw,76px);line-height:1.03}
+h1 em{font-style:italic}
+h2{font-family:"金萱",serif;font-weight:900;font-size:clamp(20px,2.8vw,28px);letter-spacing:.05em;margin-bottom:var(--s3)}
+h3{font-family:"金萱",serif;font-weight:600;font-size:17px;letter-spacing:.04em;margin-bottom:var(--s2);margin-top:var(--s5)}
+h3:first-of-type{margin-top:0}
+section{padding:var(--s7) 0;border-top:1px solid var(--line)}
+header{padding:var(--s8) 0 var(--s7)}
+.lead{font-family:"金萱",serif;font-weight:400;font-size:clamp(16px,2.1vw,19px);line-height:1.95;color:#3E423B;max-width:60ch}
+
+table.d{width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--s3)}
+table.d th{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-align:left;padding:0 14px 11px 0;border-bottom:1px solid var(--ink);font-weight:600}
+table.d td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.d td.n{font-family:"IBM Plex Mono",monospace;font-size:12.5px;white-space:nowrap}
+table.d td.r{text-align:right}
+
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--s5);align-items:start}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s3)}
+.tight{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s4)}
+.tight > div{background:var(--paper);padding:var(--s3)}
+.t5{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+
+.box{border:1px solid var(--line);background:#fff;padding:var(--s4);min-height:180px}
+.box.ctr{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.box.dk{background:var(--forest);border-color:var(--forest);color:var(--paper)}
+.box.ms{background:var(--mist)}
+.cap{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-top:var(--s3);text-align:center}
+.capzh{font-size:12px;color:var(--slate);text-align:center;margin-top:4px}
+
+.code{background:var(--forest);color:#C6CCC2;padding:var(--s4);font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.9;margin-top:var(--s3);overflow-x:auto;white-space:pre}
+.code b{color:var(--orange);font-weight:500}
+.code .c{color:#7E8A78}
+
+.callout{background:var(--forest);color:#D2D8CE;padding:var(--s5);margin-top:var(--s5)}
+.callout h3{color:var(--paper);margin-top:0}
+.callout p{color:#D2D8CE}
+.callout strong{color:var(--orange);font-weight:500}
+
+.rule{font-family:"Archivo",sans-serif;font-size:10px;letter-spacing:.16em;padding:3px 8px;text-transform:uppercase;color:#fff}
+.rule.must{background:#C4453A}
+.rule.should{background:var(--navy)}
+.rule.may{background:var(--slate)}
+
+/* spacing ladder */
+.ladder{margin-top:var(--s4)}
+.ladder .row{display:flex;align-items:center;gap:var(--s3);padding:7px 0;border-bottom:1px solid var(--line)}
+.ladder .tok{font-family:"IBM Plex Mono",monospace;font-size:12px;width:96px;color:var(--slate);flex-shrink:0}
+.ladder .val{font-family:"IBM Plex Mono",monospace;font-size:12px;width:58px;flex-shrink:0}
+.ladder .bar{height:12px;background:var(--navy)}
+.ladder .use{font-size:12.5px;color:var(--slate);margin-left:auto;text-align:right;flex-shrink:0;padding-left:var(--s3)}
+
+/* grid diagram */
+.gridfig{display:flex;gap:2px;height:110px;margin-top:var(--s3);border:1px solid var(--line);padding:10px;background:#fff}
+.gridfig i{flex:1;background:rgba(12,81,112,.14)}
+
+/* type scale */
+.tsp > div{padding:var(--s3) 0;border-bottom:1px solid var(--line)}
+.tsp .lbl{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--slate);margin-bottom:8px}
+.tsp .spec{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--slate);margin-top:6px}
+
+/* components */
+.btn{display:inline-block;font-family:"Archivo",sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:13px 26px;border:1px solid var(--navy);background:var(--navy);color:#fff;transition:all .2s var(--ease);cursor:pointer}
+.btn:hover{background:var(--forest);border-color:var(--forest)}
+.btn.sec{background:transparent;color:var(--navy)}
+.btn.sec:hover{background:var(--navy);color:#fff}
+.btn.dis{background:var(--line);border-color:var(--line);color:var(--slate);cursor:not-allowed}
+.btn:focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.tag{display:inline-block;font-family:"Archivo",sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 10px;border:1px solid var(--line);color:var(--slate)}
+.tag.fill{background:var(--forest);color:var(--paper);border-color:var(--forest)}
+.tag.acc{background:var(--orange-a);color:#fff;border-color:var(--orange-a)}
+
+/* icon grid */
+.icons{display:grid;grid-template-columns:repeat(auto-fit,minmax(78px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s3)}
+.icons div{background:#fff;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+
+/* mock */
+.mock{border:1px solid var(--line);background:#fff;overflow:hidden}
+.mock .hd{padding:var(--s4);min-height:175px;display:flex;flex-direction:column;justify-content:space-between}
+.mock .bd{padding:var(--s3);border-top:1px solid var(--line);font-size:12.5px;color:var(--slate);line-height:1.75}
+.mock .bd strong{display:block;font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:7px;font-weight:600}
+
+.dd{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s4);margin-top:var(--s4)}
+.dd > div{padding:var(--s4);border-top:3px solid var(--navy)}
+.dd > div.no{border-top-color:#C4453A}
+.dd h4{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:var(--s2);color:var(--navy);font-weight:600}
+.dd > div.no h4{color:#C4453A}
+.dd ul{list-style:none;font-size:14px}
+.dd li{padding:6px 0 6px 20px;position:relative;line-height:1.7}
+.dd li:before{content:"—";position:absolute;left:0;color:var(--line)}
+
+footer{padding:var(--s7) 0 var(--s8);border-top:1px solid var(--line);font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.18em;color:var(--slate);text-transform:uppercase}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media(max-width:640px){.wrap{padding:0 var(--s3)} section{padding:var(--s6) 0} .ladder .use{display:none}}
+</style>
+<style>
+@media (max-width: 768px) {
+  body { font-size: 16px; overflow-x: hidden; width: 100vw; }
+  svg, img, video { max-width: 100% !important; height: auto !important; }
+  table.d { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.d td, table.d th { white-space: normal; min-width: 120px; }
+  .box { min-height: auto !important; padding: 24px !important; }
+  h1 { font-size: clamp(32px, 8vw, 42px) !important; }
+  h2 { font-size: clamp(24px, 6vw, 28px) !important; }
+  .wrap { padding: 0 16px !important; }
+  .g2, .g3, .dd, .pal, .tight, .ratio { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+  .ratio span { padding: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="spectrum"><i></i><i></i><i></i><i></i><i></i></div>
+<nav><div class="inner">
+  <a href="#grid8">8pt 原理</a><a href="#tokens">Token</a><a href="#cols">網格</a><a href="#density">密度</a><a href="#printlayout">印刷版面</a>
+  <a href="#scale">字級</a><a href="#metrics">度量</a><a href="#para">段落</a><a href="#longform">長文</a>
+  <a href="#imgratio">圖片比例</a><a href="#artdir">攝影</a><a href="#crop">裁切</a>
+  <a href="#buttons">元件</a><a href="#icons">Icon</a><a href="#tables">表格</a>
+  <a href="#social">社群</a><a href="#ig">IG</a><a href="#yt">YouTube</a><a href="#matrix">內容矩陣</a>
+  <a href="#lp">Landing</a><a href="#rwd">RWD</a><a href="#motion">動效</a><a href="#a11y">可存取性</a>
+</div></nav>
+
+<div class="wrap">
+
+<header>
+  <span class="pg">P. 065</span>
+  <span class="eyebrow">Volume 02 — Brand Design System</span>
+  <h1>Design<br><em>System</em></h1>
+  <p class="lead" style="margin-top:var(--s5)">第二冊 · 品牌設計系統<br>第一冊定義「長什麼樣子」，本冊定義「怎麼把它排出來」。這一冊的內容應該被寫進 CSS 變數與 Figma variables，而不是只被讀過一次。</p>
+</header>
+
+<!-- ============ 2.1 GRID ============ -->
+
+<section id="grid8">
+  <span class="pg">P. 066 — 067</span>
+  <span class="eyebrow">2.1.1 — The 8pt Grid</span>
+  <h2>8pt 網格原理</h2>
+  <p class="lead">所有間距、留白、元件內距、元件高度皆為 8 的倍數。理由不是美學，是<b style="font-weight:500">一致性成本</b>——當每個數值都來自同一組級數，跨媒材（官網、簡報、社群、印刷）的節奏會自動對齊，不需要每次重新判斷。</p>
+  <div class="ladder">
+    <div class="row"><span class="tok">space-1</span><span class="val">8 px</span><span class="bar" style="width:8px"></span><span class="use">圖示與文字之間</span></div>
+    <div class="row"><span class="tok">space-2</span><span class="val">16 px</span><span class="bar" style="width:16px"></span><span class="use">元件內距（小）、卡片間距</span></div>
+    <div class="row"><span class="tok">space-3</span><span class="val">24 px</span><span class="bar" style="width:24px"></span><span class="use">段落間距、卡片內距</span></div>
+    <div class="row"><span class="tok">space-4</span><span class="val">32 px</span><span class="bar" style="width:32px"></span><span class="use">元件之間、行動版邊界</span></div>
+    <div class="row"><span class="tok">space-5</span><span class="val">40 px</span><span class="bar" style="width:40px"></span><span class="use">小標與內文之間</span></div>
+    <div class="row"><span class="tok">space-6</span><span class="val">48 px</span><span class="bar" style="width:48px"></span><span class="use">子區塊之間</span></div>
+    <div class="row"><span class="tok">space-7</span><span class="val">64 px</span><span class="bar" style="width:64px"></span><span class="use">桌機邊界、區塊內距</span></div>
+    <div class="row"><span class="tok">space-8</span><span class="val">80 px</span><span class="bar" style="width:80px"></span><span class="use">簡報上下邊界</span></div>
+    <div class="row"><span class="tok">space-9</span><span class="val">96 px</span><span class="bar" style="width:96px"></span><span class="use">區塊之間（標準）</span></div>
+    <div class="row"><span class="tok">space-10</span><span class="val">128 px</span><span class="bar" style="width:128px"></span><span class="use">章節之間</span></div>
+    <div class="row"><span class="tok">space-11</span><span class="val">160 px</span><span class="bar" style="width:160px"></span><span class="use">Hero 上下留白</span></div>
+    <div class="row"><span class="tok">space-12</span><span class="val">192 px</span><span class="bar" style="width:192px"></span><span class="use">最大留白，僅限封面與扉頁</span></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 不得出現級數外的數值。需要 20px 時，往上取 24 或往下取 16，不新增 20。</p>
+</section>
+
+<section id="tokens">
+  <span class="pg">P. 068 — 069</span>
+  <span class="eyebrow">2.1.2 — Design Tokens</span>
+  <h2>Token 表</h2>
+  <p>以下可直接貼進 CSS 或 Figma。四個品牌共用間距與斷點 token，只有色彩與字體 token 各自不同。</p>
+  <div class="code"><span class="c">/* ---- Spacing ---- */</span>
+<b>--space-1</b>:8px;   <b>--space-2</b>:16px;  <b>--space-3</b>:24px;  <b>--space-4</b>:32px;
+<b>--space-5</b>:40px;  <b>--space-6</b>:48px;  <b>--space-7</b>:64px;  <b>--space-8</b>:80px;
+<b>--space-9</b>:96px;  <b>--space-10</b>:128px; <b>--space-11</b>:160px; <b>--space-12</b>:192px;
+
+<span class="c">/* ---- Colour · MINUS PLUS STUDIO ---- */</span>
+<b>--brand-navy</b>:#0C5170;      <b>--brand-red</b>:#E93429;
+<b>--brand-pink</b>:#F29CA7;      <b>--brand-orange</b>:#F39801;
+<b>--brand-forest</b>:#232E1E;
+<b>--app-navy</b>:#225065;        <b>--app-red</b>:#9D4742;
+<b>--app-orange</b>:#A57930;      <b>--app-pink</b>:#E5BEC3;
+<b>--paper</b>:#F8F8F6;  <b>--mist</b>:#ECEAE5;  <b>--line</b>:#D9D7D1;  <b>--slate</b>:#6E7069;
+
+<span class="c">/* ---- Type ---- */</span>
+<b>--font-display</b>:"Söhne",Didot,Georgia,serif;
+<b>--font-serif</b>:"金萱","PingFang TC",serif;
+<b>--font-sans</b>:"Noto Sans TC","PingFang TC",sans-serif;
+<b>--font-utility</b>:"Archivo",Helvetica,Arial,sans-serif;
+
+<span class="c">/* ---- Layout ---- */</span>
+<b>--bp-xl</b>:1440px; <b>--bp-lg</b>:1024px; <b>--bp-md</b>:768px; <b>--bp-sm</b>:390px;
+<b>--max-width</b>:1280px; <b>--measure</b>:68ch;
+
+<span class="c">/* ---- Motion ---- */</span>
+<b>--ease</b>:cubic-bezier(.2,.8,.2,1);
+<b>--dur-fast</b>:150ms; <b>--dur-base</b>:200ms; <b>--dur-slow</b>:400ms;</div>
+</section>
+
+<section id="cols">
+  <span class="pg">P. 070 — 072</span>
+  <span class="eyebrow">2.1.3 — Column Grids</span>
+  <h2>三套網格</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div>
+      <div class="t5">Web · 桌機</div>
+      <div class="gridfig"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <table class="d" style="font-size:13px">
+        <tr><td>欄數</td><td class="n r">12</td></tr>
+        <tr><td>溝槽</td><td class="n r">24 px</td></tr>
+        <tr><td>邊界</td><td class="n r">64 px</td></tr>
+        <tr><td style="border:none">最大寬</td><td class="n r" style="border:none">1280 px</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="t5">簡報 · 16:9</div>
+      <div class="gridfig"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <table class="d" style="font-size:13px">
+        <tr><td>欄數</td><td class="n r">6</td></tr>
+        <tr><td>溝槽</td><td class="n r">32 px</td></tr>
+        <tr><td>邊界</td><td class="n r">左右 120 · 上下 80</td></tr>
+        <tr><td style="border:none">畫布</td><td class="n r" style="border:none">1920 × 1080</td></tr>
+      </table>
+    </div>
+    <div>
+      <div class="t5">行動 · Mobile</div>
+      <div class="gridfig"><i></i><i></i><i></i><i></i></div>
+      <table class="d" style="font-size:13px">
+        <tr><td>欄數</td><td class="n r">4</td></tr>
+        <tr><td>溝槽</td><td class="n r">16 px</td></tr>
+        <tr><td>邊界</td><td class="n r">24 px</td></tr>
+        <tr><td style="border:none">基準寬</td><td class="n r" style="border:none">390 px</td></tr>
+      </table>
+    </div>
+  </div>
+  <h3>常用欄位配置</h3>
+  <table class="d">
+    <thead><tr><th>用途</th><th>桌機</th><th>平板</th><th>行動</th></tr></thead>
+    <tr><td>單欄長文</td><td class="n">4–9 欄（置中）</td><td class="n">2–7 欄</td><td class="n">滿版</td></tr>
+    <tr><td>圖文並置</td><td class="n">1–6 / 7–12</td><td class="n">1–4 / 5–8</td><td class="n">上下堆疊</td></tr>
+    <tr><td>作品列表</td><td class="n">每列 3 件（4 欄一件）</td><td class="n">每列 2 件</td><td class="n">每列 1 件</td></tr>
+    <tr><td>商品列表</td><td class="n">每列 3 件</td><td class="n">每列 3 件</td><td class="n">每列 2 件</td></tr>
+    <tr><td>全幅影像</td><td class="n">跨滿版（突破邊界）</td><td class="n">跨滿版</td><td class="n">跨滿版</td></tr>
+  </table>
+</section>
+
+<section id="density">
+  <span class="pg">P. 073 — 075</span>
+  <span class="eyebrow">2.1.4 — Layout Density</span>
+  <h2>版面密度三級</h2>
+  <p>同一套網格，三種呼吸感。選錯密度比選錯顏色更容易毀掉一個版面。</p>
+  <table class="d">
+    <thead><tr><th>密度</th><th>區塊間距</th><th>內文字級</th><th>行高</th><th>使用場合</th></tr></thead>
+    <tr><td><b style="font-weight:500">Editorial</b><br><span style="font-size:12.5px;color:var(--slate)">編輯型</span></td><td class="n">160–192 px</td><td class="n">20 px</td><td class="n">2.0</td><td>品牌故事、專案深度介紹、關於我們</td></tr>
+    <tr><td><b style="font-weight:500">Standard</b><br><span style="font-size:12.5px;color:var(--slate)">標準型</span></td><td class="n">96 px</td><td class="n">16 px</td><td class="n">1.85</td><td>多數頁面、規範文件、部落格</td></tr>
+    <tr><td><b style="font-weight:500">Compact</b><br><span style="font-size:12.5px;color:var(--slate)">緊湊型</span></td><td class="n">48 px</td><td class="n">14 px</td><td class="n">1.7</td><td>後台、商品列表、表格、資料密集頁</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 同一頁只能用一種密度。不得在頁面中途切換。</p>
+</section>
+
+<section id="printlayout">
+  <span class="pg">P. 076 — 077</span>
+  <span class="eyebrow">2.1.5 — Print Layout</span>
+  <h2>印刷版面主版</h2>
+  <table class="d">
+    <thead><tr><th>開數</th><th>成品</th><th>天/地/內/外</th><th>欄數</th><th>用途</th></tr></thead>
+    <tr><td>A4 直式</td><td class="n">210 × 297 mm</td><td class="n">25 / 30 / 25 / 20</td><td class="n">2</td><td>提案書、規範、報價</td></tr>
+    <tr><td>A4 橫式</td><td class="n">297 × 210 mm</td><td class="n">20 / 25 / 25 / 20</td><td class="n">3</td><td>作品集、簡報印刷版</td></tr>
+    <tr><td>A5 直式</td><td class="n">148 × 210 mm</td><td class="n">18 / 22 / 18 / 15</td><td class="n">1</td><td>小冊、卡片、說明書</td></tr>
+    <tr><td>方形</td><td class="n">210 × 210 mm</td><td class="n">22 / 22 / 22 / 22</td><td class="n">2</td><td>選品型錄、周邊出版</td></tr>
+  </table>
+  <table class="d">
+    <tr><td>出血</td><td class="n">各邊 3 mm</td></tr>
+    <tr><td>安全邊界</td><td class="n">距裁切線內縮 5 mm</td></tr>
+    <tr><td>頁碼位置</td><td class="n">外側頁腳，距地 12 mm · Archivo 8pt</td></tr>
+    <tr><td>頁眉</td><td class="n">章節名齊內側 · Archivo 7.5pt · Slate 色</td></tr>
+    <tr><td>輸出</td><td class="n">PDF/X-4 · FOGRA39 · 字體外框化</td></tr>
+  </table>
+</section>
+
+<!-- ============ 2.2 TYPOGRAPHY ============ -->
+
+<section id="scale">
+  <span class="pg">P. 078 — 080</span>
+  <span class="eyebrow">2.2.1 — Type Scale</span>
+  <h2>字級層級</h2>
+  <p>只有這九級。不得自行插入中間值——需要 40px 時，選 32 或 48。</p>
+
+  <div class="tsp" style="margin-top:var(--s4)">
+    <div>
+      <div class="lbl">Display · Söhne</div>
+      <div style="font-family:'Söhne',serif;font-size:clamp(40px,8vw,86px);line-height:1.02">Quiet Luxury</div>
+      <div class="spec">螢幕 96px / 印刷 48pt · 行高 1.02 · 字距 −0.01em · 僅限封面與 Hero</div>
+    </div>
+    <div>
+      <div class="lbl">H1 · 金萱 (justfont) 900</div>
+      <div style="font-family:'金萱',serif;font-weight:900;font-size:clamp(32px,6vw,66px);line-height:1.15;letter-spacing:.03em">靜謐的平衡</div>
+      <div class="spec">螢幕 72px / 印刷 36pt · 行高 1.15 · 字距 0.03em</div>
+    </div>
+    <div>
+      <div class="lbl">H2 · 金萱 (justfont) 900</div>
+      <div style="font-family:'金萱',serif;font-weight:900;font-size:clamp(26px,4.2vw,46px);line-height:1.25;letter-spacing:.04em">品味疊加　質感策展</div>
+      <div class="spec">螢幕 48px / 印刷 24pt · 行高 1.25 · 字距 0.04em</div>
+    </div>
+    <div>
+      <div class="lbl">H3 · Archivo Medium / 金萱 (justfont) 600</div>
+      <div style="font-family:'Archivo',sans-serif;font-weight:500;font-size:clamp(22px,3vw,31px);letter-spacing:.06em">Sensory Ambiance 感官介質</div>
+      <div class="spec">螢幕 32px / 印刷 18pt · 行高 1.4 · 字距 0.06em</div>
+    </div>
+    <div>
+      <div class="lbl">H4 · 金萱 (justfont) 600</div>
+      <div style="font-family:'金萱',serif;font-weight:600;font-size:24px;letter-spacing:.04em">材質與工法</div>
+      <div class="spec">螢幕 24px / 印刷 14pt · 行高 1.5 · 字距 0.04em</div>
+    </div>
+    <div>
+      <div class="lbl">Body Large · 思源黑體 300</div>
+      <div style="font-size:20px;line-height:2">好的設計能超越流行，成為無懼時間考驗的當代經典。</div>
+      <div class="spec">螢幕 20px / 印刷 11pt · 行高 2.0 · Editorial 密度專用</div>
+    </div>
+    <div>
+      <div class="lbl">Body · 思源黑體 300</div>
+      <div style="font-size:16px;line-height:1.85">以「加法」疊加生活質地，以「減法」還原空間純粹。從大尺度的空間建築企劃，到小尺度的日常軟裝物件。</div>
+      <div class="spec">螢幕 16px / 印刷 10pt · 行高 1.85 · 預設內文</div>
+    </div>
+    <div>
+      <div class="lbl">Caption · 思源黑體 300</div>
+      <div style="font-size:14px;line-height:1.7;color:var(--slate)">圖 03 — 客廳立面比例研究，2026 年 4 月</div>
+      <div class="spec">螢幕 14px / 印刷 8pt · 行高 1.7 · Slate 色</div>
+    </div>
+    <div style="border:none">
+      <div class="lbl">Label · Archivo Medium</div>
+      <div style="font-family:'Archivo',sans-serif;font-weight:500;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)">Kaohsiung · Taiwan · Est. 2020</div>
+      <div class="spec">螢幕 12px / 印刷 7pt · 字距 0.16em · 全大寫</div>
+    </div>
+  </div>
+</section>
+
+<section id="metrics">
+  <span class="pg">P. 081 — 084</span>
+  <span class="eyebrow">2.2.2 — Metrics</span>
+  <h2>行高與字距</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div>
+      <h3>行高 Line-height</h3>
+      <table class="d">
+        <thead><tr><th>層級</th><th>中文</th><th>英文</th></tr></thead>
+        <tr><td>Display</td><td class="n">1.10</td><td class="n">1.02</td></tr>
+        <tr><td>H1</td><td class="n">1.15</td><td class="n">1.05</td></tr>
+        <tr><td>H2</td><td class="n">1.25</td><td class="n">1.15</td></tr>
+        <tr><td>H3 / H4</td><td class="n">1.40</td><td class="n">1.30</td></tr>
+        <tr><td>Body Large</td><td class="n">2.00</td><td class="n">1.65</td></tr>
+        <tr><td>Body</td><td class="n">1.85</td><td class="n">1.55</td></tr>
+        <tr><td>Caption</td><td class="n">1.70</td><td class="n">1.45</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)">中文行高一律高於英文：中文字面率高、無升降部，需要更多行間才不壅塞。</p>
+    </div>
+    <div>
+      <h3>字距 Letter-spacing</h3>
+      <table class="d">
+        <thead><tr><th>用途</th><th>數值</th></tr></thead>
+        <tr><td>中文內文</td><td class="n">0.02 em</td></tr>
+        <tr><td>中文標題</td><td class="n">0.03 – 0.05 em</td></tr>
+        <tr><td>中文標準字</td><td class="n">0.05 em</td></tr>
+        <tr><td>英文內文</td><td class="n">0</td></tr>
+        <tr><td>英文標題（Söhne）</td><td class="n">−0.01 em</td></tr>
+        <tr><td>英文全大寫標籤</td><td class="n">0.16 – 0.24 em</td></tr>
+        <tr><td>數字（表格）</td><td class="n">0 · 使用等寬數字</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)"><span class="rule must">必須</span> 中文絕不使用負字距。負字距會讓筆畫互相干擾，是最常見的「看起來很擠但說不出為什麼」的原因。</p>
+    </div>
+  </div>
+</section>
+
+<section id="para">
+  <span class="pg">P. 085 — 087</span>
+  <span class="eyebrow">2.2.3 — Paragraph &amp; Alignment</span>
+  <h2>段落、對齊與斷行</h2>
+  <table class="d">
+    <thead><tr><th>項目</th><th>規則</th></tr></thead>
+    <tr><td>段距</td><td class="n">24 px（space-3）· 不使用首行縮排</td></tr>
+    <tr><td>段前段後</td><td class="n">皆為 8 的倍數；標題前 40、標題後 16</td></tr>
+    <tr><td>單行長度</td><td class="n">中文 30–36 字 · 英文 60–72 字元 · 上限 68ch</td></tr>
+    <tr><td>對齊</td><td class="n">齊左（中英皆是）</td></tr>
+    <tr><td>兩端對齊</td><td class="n">禁止用於中文；英文長文可用，須開啟連字符</td></tr>
+    <tr><td>置中</td><td class="n">僅限標題、引文、章節頁；不用於內文段落</td></tr>
+    <tr><td>齊右</td><td class="n">僅限表格數字欄與圖說</td></tr>
+  </table>
+
+  <h3>孤行處理</h3>
+  <div class="dd">
+    <div>
+      <h4>應該</h4>
+      <ul>
+        <li>標題以 <span class="mono">&lt;br&gt;</span> 或 <span class="mono">text-wrap:balance</span> 手動控制斷點，讓每行長度接近</li>
+        <li>段落最後一行至少要有 4 個中文字或 2 個英文單字</li>
+        <li>專有名詞、姓名、數字＋單位以不斷行空格連接</li>
+        <li>調整前先試著改文案——刪兩個字通常比調排版有效</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h4>不應該</h4>
+      <ul>
+        <li>用縮小字級或壓縮字距來「擠掉」孤行</li>
+        <li>用空白鍵或 <span class="mono">&amp;nbsp;</span> 硬推位置</li>
+        <li>讓標題在「的」「與」「和」之後斷行</li>
+        <li>讓一個標點符號單獨成行</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="longform">
+  <span class="pg">P. 088 — 089</span>
+  <span class="eyebrow">2.2.4 — Long-form Layouts</span>
+  <h2>長文兩種版型</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div class="box">
+      <div style="border-left:2px solid var(--navy);padding-left:20px">
+        <div class="t5">品牌故事型</div>
+        <div style="font-family:'金萱',serif;font-weight:900;font-size:19px;margin-top:10px;letter-spacing:.04em">流動的靜謐</div>
+        <div style="font-size:13px;line-height:2;color:var(--slate);margin-top:12px">單欄置中，寬度 4–9 欄。<br>Editorial 密度：內文 20px、行高 2.0、段距 32px。<br>每 3–4 段插入一張全幅影像。<br>不使用小標，用留白分段。</div>
+      </div>
+      <div class="cap">Editorial — 品牌故事、關於我們</div>
+    </div>
+    <div class="box">
+      <div style="border-left:2px solid var(--orange-a);padding-left:20px">
+        <div class="t5">專案說明型</div>
+        <div style="font-family:'金萱',serif;font-weight:900;font-size:19px;margin-top:10px;letter-spacing:.04em">左營青田路住宅</div>
+        <div style="font-size:13px;line-height:2;color:var(--slate);margin-top:12px">雙欄：左 1–3 欄放資訊表（坪數、工期、材質），右 5–12 欄放內文與圖。<br>Standard 密度：內文 16px、行高 1.85。<br>每個小節有 H4 小標。<br>資訊表在行動版移到最上方。</div>
+      </div>
+      <div class="cap">Structured — 專案、作品、規範</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.3 IMAGERY ============ -->
+
+<section id="imgratio">
+  <span class="pg">P. 090 — 091</span>
+  <span class="eyebrow">2.3.1 — Image Ratios</span>
+  <h2>圖片比例系統</h2>
+  <table class="d">
+    <thead><tr><th>比例</th><th>用途</th><th>裁切原則</th></tr></thead>
+    <tr><td class="n">1 : 1</td><td>材質特寫、社群方形貼文、商品第三張</td><td>主體置中，四周留白對稱</td></tr>
+    <tr><td class="n">4 : 5</td><td>商品主圖、IG 直式貼文、人像</td><td>上方留白多於下方</td></tr>
+    <tr><td class="n">3 : 2</td><td>情境圖、作品照、分類頁封面</td><td>水平線落在上或下三分之一</td></tr>
+    <tr><td class="n">16 : 9</td><td>Hero、影片、簡報全幅圖</td><td>主體偏左或偏右，留出壓字空間</td></tr>
+    <tr><td class="n">21 : 9</td><td>官網 Hero 寬幅、影片寬銀幕</td><td>僅用於空間全景，不用於物件</td></tr>
+    <tr><td class="n">9 : 16</td><td>限動、Reels、Shorts</td><td>依第三冊四段分區規範</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 不使用比例外的自訂裁切。同一頁面內的圖片比例最多兩種。</p>
+</section>
+
+<section id="artdir">
+  <span class="pg">P. 092 — 093</span>
+  <span class="eyebrow">2.3.2 — Art Direction</span>
+  <h2>攝影方向</h2>
+  <p class="lead">三個原則：<b style="font-weight:500">單一光源、保留陰影、低飽和高反差。</b>這三件事決定了照片看起來是作品集還是型錄。</p>
+  <div class="dd">
+    <div>
+      <h4>要這樣拍</h4>
+      <ul>
+        <li>單一側向自然光，光源在主體左後方 45°</li>
+        <li>陰影保留，不用反光板打到全平</li>
+        <li>色調偏 Navy / Forest，飽和度壓低</li>
+        <li>構圖留白：主體佔畫面 55–62%</li>
+        <li>空間照使用真實時段的光（早晨或午後）</li>
+        <li>35mm 拍空間、50mm 拍局部、85mm 拍物件</li>
+        <li>垂直線必須垂直（用移軸或後製校正）</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h4>不要這樣拍</h4>
+      <ul>
+        <li>純白去背棚拍</li>
+        <li>雙燈打平、零陰影</li>
+        <li>HDR、過度提亮暗部</li>
+        <li>加暖色濾鏡或膠片模擬預設</li>
+        <li>廣角變形的「顯大」空間照</li>
+        <li>擺滿道具的情境堆疊</li>
+        <li>人物入鏡搶過空間或物件</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="crop">
+  <span class="pg">P. 094 — 097</span>
+  <span class="eyebrow">2.3.3 — Crop, Caption &amp; Grading</span>
+  <h2>裁切、圖說與調性</h2>
+  <h3>裁切安全區</h3>
+  <table class="d">
+    <tr><td>主體佔比</td><td class="n">55 – 62%</td><td>低於 55% 顯得空洞，高於 62% 顯得擁擠</td></tr>
+    <tr><td>主體距畫面邊緣</td><td class="n">≥ 8% 短邊</td><td>不得切到主體的關鍵輪廓</td></tr>
+    <tr><td>壓字區域</td><td class="n">畫面下 1/3</td><td>該區影像須為單純無雜訊區塊</td></tr>
+    <tr><td>RWD 焦點</td><td class="n">指定 focal point</td><td>行動版裁切時以該點為中心，不用預設置中</td></tr>
+  </table>
+
+  <h3>圖說 Caption</h3>
+  <table class="d">
+    <tr><td>字級 / 顏色</td><td class="n">14px · Slate #6E7069</td></tr>
+    <tr><td>位置</td><td class="n">圖下方，齊左，距圖 8px</td></tr>
+    <tr><td>格式</td><td class="n">圖 NN — 說明文字，年月</td></tr>
+    <tr><td>長度</td><td class="n">單行，不超過 30 字</td></tr>
+    <tr><td>非實拍</td><td class="n">須標註「情境示意」或「AI 生成」</td></tr>
+  </table>
+
+  <h3>靜態影像調性 Preset</h3>
+  <div class="code"><span class="c">/* 與第三冊 LUT 同源，靜態圖套用簡化版 */</span>
+曝光       −0.15 EV
+對比       +12
+高光       −20        <span class="c">/* 保留窗光細節 */</span>
+陰影       −8         <span class="c">/* 不提亮，保留層次 */</span>
+黑色       +4         <span class="c">/* 輕微上提，避免死黑 */</span>
+飽和度     −14
+自然飽和   +6         <span class="c">/* 補回膚色與木質 */</span>
+色溫       依現場，不統一暖化
+分離色調   陰影 +Navy 8 / 高光 +Orange 4
+顆粒       強度 8 · 尺寸 25</div>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule should">應該</span> 同一組照片（同專案、同檔期）必須套用完全相同的 preset，不逐張微調。</p>
+</section>
+
+<!-- ============ 2.4 COMPONENTS ============ -->
+
+<section id="buttons">
+  <span class="pg">P. 098 — 099</span>
+  <span class="eyebrow">2.4.1 — Buttons, Tags &amp; Cards</span>
+  <h2>元件庫</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div class="box">
+      <div class="t5" style="margin-bottom:var(--s3)">按鈕 · 五種狀態</div>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+        <span class="btn">主要按鈕</span>
+        <span class="btn sec">次要按鈕</span>
+        <span class="btn dis">停用</span>
+      </div>
+      <table class="d" style="font-size:13px">
+        <tr><td>高度</td><td class="n r">48 px</td></tr>
+        <tr><td>內距</td><td class="n r">13 / 26 px</td></tr>
+        <tr><td>字級</td><td class="n r">12px · 字距 .16em · 全大寫</td></tr>
+        <tr><td>圓角</td><td class="n r">0</td></tr>
+        <tr><td>Hover</td><td class="n r">Navy → Forest · 200ms</td></tr>
+        <tr><td style="border:none">Focus</td><td class="n r" style="border:none">2px Orange 外框 · offset 3px</td></tr>
+      </table>
+    </div>
+    <div class="box">
+      <div class="t5" style="margin-bottom:var(--s3)">標籤 Tag</div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px">
+        <span class="tag">室內設計</span>
+        <span class="tag fill">進行中</span>
+        <span class="tag acc">新案</span>
+        <span class="tag">2026</span>
+      </div>
+      <div class="t5" style="margin:var(--s5) 0 var(--s2)">分隔線</div>
+      <div style="border-top:1px solid var(--line);padding-top:10px;font-size:12.5px;color:var(--slate)">1px · Line #D9D7D1 · 一般分隔</div>
+      <div style="border-top:3px solid var(--navy);padding-top:10px;margin-top:14px;font-size:12.5px;color:var(--slate)">3px · Navy · 章節起始</div>
+    </div>
+  </div>
+  <h3>卡片</h3>
+  <table class="d">
+    <tr><td>邊框</td><td class="n">1px Line，或無邊框（僅靠溝槽分隔）</td></tr>
+    <tr><td>陰影</td><td class="n">禁止</td></tr>
+    <tr><td>圓角</td><td class="n">0</td></tr>
+    <tr><td>內距</td><td class="n">24 px（Standard）／ 16 px（Compact）</td></tr>
+    <tr><td>Hover</td><td class="n">圖片 scale 1.02 · 200ms；卡片本身不位移</td></tr>
+  </table>
+</section>
+
+<section id="icons">
+  <span class="pg">P. 100 — 102</span>
+  <span class="eyebrow">2.4.2 — Icon System</span>
+  <h2>Icon 系統</h2>
+  <div class="icons">
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><rect x="3" y="3" width="18" height="18"/><path d="M3 9h18M9 21V9"/></svg></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><path d="M3 11l9-8 9 8v10H3z"/><path d="M9 21v-7h6v7"/></svg></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><rect x="3" y="5" width="18" height="14"/><path d="M3 15l5-5 4 4 3-3 6 6"/></svg></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M8 4v16M4 8h16"/></svg></div>
+    <div><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#232E1E" stroke-width="1.5"><path d="M12 3v18M3 12h18"/></svg></div>
+  </div>
+  <table class="d">
+    <tr><td>格點</td><td class="n">24 × 24 px</td></tr>
+    <tr><td>可視區 Live Area</td><td class="n">20 × 20 px（四周留 2px）</td></tr>
+    <tr><td>線寬</td><td class="n">1.5 px · 所有圖示一致</td></tr>
+    <tr><td>端點 / 轉角</td><td class="n">直角（butt / miter）· 不使用圓端</td></tr>
+    <tr><td>圓角</td><td class="n">0 或 2px，全系統統一</td></tr>
+    <tr><td>填色</td><td class="n">線條為主；填色版僅用於作用中狀態</td></tr>
+    <tr><td>顏色</td><td class="n">繼承文字色；不獨立上品牌色</td></tr>
+    <tr><td>放大</td><td class="n">32 / 48px 時線寬等比放大為 2 / 3px</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 不混用不同來源的圖示庫。需要新圖示時依上表規格繪製，不從網路直接下載。</p>
+</section>
+
+<section id="tables">
+  <span class="pg">P. 103 — 105</span>
+  <span class="eyebrow">2.4.3 — Tables, Data &amp; Forms</span>
+  <h2>表格、圖表與表單</h2>
+  <h3>表格</h3>
+  <table class="d">
+    <tr><td>表頭</td><td class="n">Archivo 500 · 10.5px · 字距 .16em · 全大寫 · Slate</td></tr>
+    <tr><td>表頭下框</td><td class="n">1px Ink</td></tr>
+    <tr><td>列分隔</td><td class="n">1px Line · 無直線、無斑馬紋</td></tr>
+    <tr><td>列高</td><td class="n">48 px（Standard）／ 40 px（Compact）</td></tr>
+    <tr><td>數字欄</td><td class="n">齊右 · 等寬數字 · 千分位逗號</td></tr>
+    <tr><td>總計列</td><td class="n">上方 2px Ink 線；不使用底色</td></tr>
+  </table>
+
+  <h3>圖表</h3>
+  <table class="d">
+    <tr><td>配色</td><td class="n">Navy 為主 · Slate 為次 · 第三色才用 Orange-app</td></tr>
+    <tr><td>資料點上限</td><td class="n">單圖 5 個系列；超過改用小倍數圖</td></tr>
+    <tr><td>格線</td><td class="n">僅水平 · 1px Line · 不畫垂直格線</td></tr>
+    <tr><td>圖例</td><td class="n">直接標在線末，不用色塊圖例</td></tr>
+    <tr><td>禁止</td><td class="n">3D、陰影、漸層填色、圓餅圖超過 4 塊</td></tr>
+  </table>
+
+  <h3>表單</h3>
+  <table class="d">
+    <tr><td>欄位高度</td><td class="n">48 px</td></tr>
+    <tr><td>邊框</td><td class="n">1px Line；focus 時 1px Navy</td></tr>
+    <tr><td>標籤位置</td><td class="n">欄位上方，永遠顯示（不使用 placeholder 當標籤）</td></tr>
+    <tr><td>必填標示</td><td class="n">標籤後加「必填」二字，不用星號</td></tr>
+    <tr><td>錯誤訊息</td><td class="n">欄位下方 · Red-app #9D4742 · 說明如何修正，不只說錯了</td></tr>
+    <tr><td>觸控目標</td><td class="n">最小 44 × 44 px</td></tr>
+  </table>
+</section>
+
+<!-- ============ 2.5 SOCIAL ============ -->
+
+<section id="social">
+  <span class="pg">P. 106 — 107</span>
+  <span class="eyebrow">2.5.1 — Platform Roles &amp; Specs</span>
+  <h2>平台分工與規格總表</h2>
+  <table class="d">
+    <thead><tr><th>平台</th><th>角色</th><th>內容重心</th><th>發文頻率</th></tr></thead>
+    <tr><td>Instagram</td><td class="n">主力</td><td>作品藝廊、材質細節、In-Situ 標籤</td><td class="n">每週 3–4</td></tr>
+    <tr><td>YouTube</td><td class="n">信任</td><td>電影級空間開箱、工法解析、選物邏輯</td><td class="n">每月 2</td></tr>
+    <tr><td>Facebook</td><td class="n">轉換</td><td>全案故事、檔期、客戶見證</td><td class="n">每週 2</td></tr>
+    <tr><td>Threads</td><td class="n">觀點</td><td>美學隨筆、產業觀察、短思考</td><td class="n">每週 4–5</td></tr>
+    <tr><td>LinkedIn</td><td class="n">B2B</td><td>商業空間案例、團隊、產業合作</td><td class="n">每月 2</td></tr>
+    <tr><td>TikTok</td><td class="n">觸及</td><td>Before/After、Unboxing ASMR</td><td class="n">每週 1–2</td></tr>
+  </table>
+
+  <h3>規格總表</h3>
+  <table class="d">
+    <thead><tr><th>平台</th><th>頭像</th><th>封面 / 橫幅</th><th>主要貼文</th><th>簡介字數</th></tr></thead>
+    <tr><td>Instagram</td><td class="n">320×320</td><td class="n">—</td><td class="n">1080×1350</td><td class="n">150</td></tr>
+    <tr><td>Facebook</td><td class="n">360×360</td><td class="n">1640×856</td><td class="n">1200×630</td><td class="n">255</td></tr>
+    <tr><td>YouTube</td><td class="n">800×800</td><td class="n">2560×1440<br>安全區 1546×423</td><td class="n">縮圖 1280×720</td><td class="n">1000</td></tr>
+    <tr><td>LinkedIn</td><td class="n">400×400</td><td class="n">1128×191</td><td class="n">1200×627</td><td class="n">2000</td></tr>
+    <tr><td>Threads</td><td class="n">320×320</td><td class="n">—</td><td class="n">1080×1350</td><td class="n">160</td></tr>
+    <tr><td>TikTok</td><td class="n">200×200</td><td class="n">—</td><td class="n">1080×1920</td><td class="n">80</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 所有平台頭像一律使用方形版 G，不加文字、不加外框、不隨檔期更換。</p>
+</section>
+
+<section id="ig">
+  <span class="pg">P. 108 — 111</span>
+  <span class="eyebrow">2.5.2 — Instagram &amp; Facebook</span>
+  <h2>Instagram 與 Facebook 版型</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock">
+      <div class="hd" style="background:var(--mist);justify-content:flex-end">
+        <div>
+          <div style="font-family:'Archivo',sans-serif;font-size:8.5px;letter-spacing:.24em;color:var(--orange-a)">PROJECT 014</div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:18px;letter-spacing:.05em;margin-top:8px">左營青田路<br>整層住宅</div>
+        </div>
+      </div>
+      <div class="bd"><strong>貼文 · 1080×1350</strong>圖佔上 2/3，文字壓在下 1/3 的留白區。眉標 Archivo，主標金萱 (justfont) 900。四周邊界 64px（以 1080 寬計）。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:#fff;padding:0">
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;height:100%">
+          <div style="background:var(--mist)"></div><div style="background:#D5D9D2"></div><div style="background:var(--forest)"></div>
+          <div style="background:#D5D9D2"></div><div style="background:var(--forest)"></div><div style="background:var(--mist)"></div>
+          <div style="background:var(--forest)"></div><div style="background:var(--mist)"></div><div style="background:#D5D9D2"></div>
+        </div>
+      </div>
+      <div class="bd"><strong>九宮格節奏</strong>三張一循環：全景 → 局部 → 材質特寫。深色與淺色交錯，避免連續三張同調性。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:var(--forest);justify-content:space-between;min-height:175px">
+        <div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.2em;color:var(--orange)">01 / 06</div>
+        <div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:17px;color:var(--paper);letter-spacing:.05em">為什麼我們<br>不用主燈</div>
+          <div style="font-size:10px;color:#9CA398;margin-top:10px">← 滑動</div>
+        </div>
+      </div>
+      <div class="bd"><strong>輪播 Carousel</strong>6–8 張為佳。第一張是問題或結論，中間拆解，最後一張是行動呼籲。頁碼固定在左上。</div>
+    </div>
+  </div>
+  <table class="d">
+    <tr><td>限動 Story</td><td class="n">1080×1920</td><td>上 250px 與下 250px 為介面遮蔽區，不放關鍵資訊</td></tr>
+    <tr><td>Reels 封面</td><td class="n">1080×1920</td><td>另需 1080×1350 的 Grid 裁切版，兩版文字位置需各自檢查</td></tr>
+    <tr><td>FB 貼文</td><td class="n">1200×630</td><td>橫式為主；文字面積不超過畫面 20%</td></tr>
+    <tr><td>FB 封面</td><td class="n">1640×856</td><td>行動版會裁切左右，關鍵內容置中 1000px 內</td></tr>
+  </table>
+</section>
+
+<section id="yt">
+  <span class="pg">P. 112 — 115</span>
+  <span class="eyebrow">2.5.3 — YouTube, LinkedIn &amp; Others</span>
+  <h2>YouTube 封面與其他平台</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock">
+      <div class="hd" style="background:linear-gradient(90deg,var(--forest) 0%,var(--forest) 42%,#3A4835 42%,#5A6A52 100%);justify-content:flex-end;min-height:150px">
+        <div>
+          <div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.24em;color:var(--orange)">EP.14</div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:21px;color:var(--paper);letter-spacing:.06em;margin-top:8px">不用主燈的家</div>
+        </div>
+      </div>
+      <div class="bd"><strong>縮圖 · 1280×720</strong>中文標題 <b style="font-weight:500">7 字以內</b>，齊左下。影像佔右 58%，Forest 色塊漸隱壓在左側。集數用 Archivo。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:var(--forest);align-items:center;justify-content:center;min-height:150px">
+        <div style="border:1px dashed rgba(255,255,255,.3);padding:14px 22px;text-align:center">
+          <div style="font-family:'Söhne',serif;font-size:15px;color:var(--paper)">MINUS PLUS STUDIO</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:7.5px;letter-spacing:.2em;color:#9CA398;margin-top:5px">SAFE AREA 1546×423</div>
+        </div>
+      </div>
+      <div class="bd"><strong>頻道橫幅 · 2560×1440</strong>只有中央 1546×423 在所有裝置都看得到。所有文字與標誌必須在此範圍內。</div>
+    </div>
+    <div class="mock">
+      <div class="hd" style="background:var(--mist);justify-content:center;min-height:150px">
+        <div>
+          <div style="font-family:'Archivo',sans-serif;font-size:8.5px;letter-spacing:.2em;color:var(--slate)">LINKEDIN · COMPANY</div>
+          <div style="font-family:'金萱',serif;font-weight:600;font-size:15px;margin-top:10px;letter-spacing:.04em">商業空間設計：<br>從動線到品牌體驗</div>
+          <div style="font-size:11px;color:var(--slate);margin-top:10px">語氣偏理性，不用形容詞堆疊</div>
+        </div>
+      </div>
+      <div class="bd"><strong>LinkedIn</strong>B2B 語氣：講決策、成本、流程與成果數字。不使用 Instagram 的抒情文案。</div>
+    </div>
+  </div>
+  <h3>YouTube 縮圖硬規則</h3>
+  <div class="dd">
+    <div>
+      <h4>應該</h4>
+      <ul>
+        <li>中文 7 字以內，英文 4 個單字以內</li>
+        <li>字級以手機縮圖（約 246px 寬）能讀為準</li>
+        <li>使用實際影片中的一格畫面</li>
+        <li>同系列使用固定的版式與集數位置</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h4>不應該</h4>
+      <ul>
+        <li>誇張表情、紅圈紅箭頭、爆炸字</li>
+        <li>與影片內容不符的標題</li>
+        <li>三種以上字級或兩種以上字體</li>
+        <li>加外框、加陰影、加漸層背景</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="matrix">
+  <span class="pg">P. 116</span>
+  <span class="eyebrow">2.5.4 — Content Matrix</span>
+  <h2>內容矩陣與發文節奏</h2>
+  <table class="d">
+    <thead><tr><th>象限</th><th>目的</th><th>內容形式</th><th>比重</th></tr></thead>
+    <tr><td><b style="font-weight:500">作品</b></td><td>證明能力</td><td>完工案例、細節特寫、Before/After</td><td class="n">40%</td></tr>
+    <tr><td><b style="font-weight:500">觀點</b></td><td>建立專業感</td><td>材質解析、工法說明、設計判斷的理由</td><td class="n">30%</td></tr>
+    <tr><td><b style="font-weight:500">幕後</b></td><td>建立信任</td><td>工地紀錄、選材過程、團隊日常</td><td class="n">20%</td></tr>
+    <tr><td><b style="font-weight:500">轉換</b></td><td>促成聯繫</td><td>服務說明、諮詢預約、檔期公告</td><td class="n">10%</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule should">應該</span> 連續兩則轉換型貼文之間，至少要有四則非轉換內容。</p>
+</section>
+
+<!-- ============ 2.6 WEB ============ -->
+
+<section id="lp">
+  <span class="pg">P. 117 — 119</span>
+  <span class="eyebrow">2.6.1 — Landing Page</span>
+  <h2>Landing Page 骨架</h2>
+  <p class="lead">四段式，順序不可調換：<b style="font-weight:500">Hero → Proof → Offer → CTA</b>。每一段只做一件事。</p>
+  <table class="d">
+    <thead><tr><th>段落</th><th>任務</th><th>內容</th><th>高度</th></tr></thead>
+    <tr><td><b style="font-weight:500">01 Hero</b></td><td>三秒內說清楚你是誰、做什麼</td><td>全幅影像 ＋ 一句定位 ＋ 單一 CTA</td><td class="n">100vh 或 720px</td></tr>
+    <tr><td><b style="font-weight:500">02 Proof</b></td><td>證明你做得到</td><td>作品縮圖列、數字、客戶名單</td><td class="n">自適應</td></tr>
+    <tr><td><b style="font-weight:500">03 Offer</b></td><td>說明能買到什麼</td><td>服務項目、流程、價格區間</td><td class="n">自適應</td></tr>
+    <tr><td><b style="font-weight:500">04 CTA</b></td><td>降低聯繫門檻</td><td>Forest 滿版 ＋ 單一按鈕 ＋ 聯絡方式</td><td class="n">≥ 480px</td></tr>
+  </table>
+  <h3>導覽列與頁尾</h3>
+  <table class="d">
+    <tr><td>導覽列高度</td><td class="n">80 px（捲動後縮為 64px）</td></tr>
+    <tr><td>導覽列背景</td><td class="n">透明 → 捲動後 Paper 95% 毛玻璃</td></tr>
+    <tr><td>導覽項目</td><td class="n">最多 5 項 · Archivo 12px · 字距 .16em</td></tr>
+    <tr><td>標誌位置</td><td class="n">齊左 · 純圖案版 B · 高 32px</td></tr>
+    <tr><td>頁尾</td><td class="n">Forest 滿版 · 上下內距 96px · 三欄</td></tr>
+  </table>
+</section>
+
+<section id="rwd">
+  <span class="pg">P. 120 — 121</span>
+  <span class="eyebrow">2.6.2 — Responsive</span>
+  <h2>斷點與行動版</h2>
+  <table class="d">
+    <thead><tr><th>斷點</th><th>寬度</th><th>欄數</th><th>邊界</th><th>H1</th><th>Body</th></tr></thead>
+    <tr><td>XL 桌機</td><td class="n">≥ 1440</td><td class="n">12</td><td class="n">64</td><td class="n">72px</td><td class="n">16px</td></tr>
+    <tr><td>LG 筆電</td><td class="n">1024–1439</td><td class="n">12</td><td class="n">48</td><td class="n">56px</td><td class="n">16px</td></tr>
+    <tr><td>MD 平板</td><td class="n">768–1023</td><td class="n">8</td><td class="n">40</td><td class="n">44px</td><td class="n">16px</td></tr>
+    <tr><td>SM 行動</td><td class="n">&lt; 768</td><td class="n">4</td><td class="n">24</td><td class="n">32px</td><td class="n">16px</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 內文字級在任何裝置皆不小於 16px。標題可縮，內文不可縮。</p>
+  <h3>行動版調整</h3>
+  <table class="d">
+    <tr><td>導覽</td><td class="n">收為漢堡選單；展開為全螢幕 Forest 底</td></tr>
+    <tr><td>圖文並置</td><td class="n">改為上下堆疊，圖在上</td></tr>
+    <tr><td>表格</td><td class="n">橫向捲動，或改為卡片式堆疊</td></tr>
+    <tr><td>影像裁切</td><td class="n">依 focal point 裁切，不預設置中</td></tr>
+    <tr><td>觸控目標</td><td class="n">最小 44×44 px，間距至少 8px</td></tr>
+  </table>
+</section>
+
+<section id="motion">
+  <span class="pg">P. 122 — 123</span>
+  <span class="eyebrow">2.6.3 — Interaction &amp; Motion</span>
+  <h2>互動狀態與動效</h2>
+  <div class="code"><b>--ease</b>: cubic-bezier(.2,.8,.2,1);   <span class="c">/* 快出慢進 */</span>
+<b>--dur-fast</b>: 150ms;   <span class="c">/* hover、focus */</span>
+<b>--dur-base</b>: 200ms;   <span class="c">/* 按鈕、卡片、展開 */</span>
+<b>--dur-slow</b>: 400ms;   <span class="c">/* 頁面轉場、Hero 淡入 */</span></div>
+  <table class="d">
+    <thead><tr><th>互動</th><th>變化</th><th>時間</th></tr></thead>
+    <tr><td>按鈕 hover</td><td class="n">背景 Navy → Forest</td><td class="n">200ms</td></tr>
+    <tr><td>連結 hover</td><td class="n">底線由左展開</td><td class="n">150ms</td></tr>
+    <tr><td>卡片 hover</td><td class="n">內部圖片 scale 1.02（卡片不動）</td><td class="n">400ms</td></tr>
+    <tr><td>捲動進場</td><td class="n">opacity 0→1，位移 16px</td><td class="n">400ms · 延遲 60ms 遞增</td></tr>
+    <tr><td>頁面轉場</td><td class="n">淡出淡入</td><td class="n">400ms</td></tr>
+    <tr><td>Focus</td><td class="n">2px Orange 外框 · offset 3px</td><td class="n">即時</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 禁止彈跳（bounce）、彈簧、視差捲動、自動輪播。所有動效必須在 <span class="mono">prefers-reduced-motion: reduce</span> 下停用。</p>
+</section>
+
+<section id="a11y">
+  <span class="pg">P. 124</span>
+  <span class="eyebrow">2.6.4 — Accessibility Floor</span>
+  <h2>可存取性基準線</h2>
+  <table class="d">
+    <thead><tr><th>項目</th><th>基準</th></tr></thead>
+    <tr><td>文字對比</td><td class="n">內文 ≥ 4.5:1 · 大字 ≥ 3:1（見第一冊 P.037）</td></tr>
+    <tr><td>鍵盤操作</td><td class="n">所有互動元素可 Tab 到達，焦點可見</td></tr>
+    <tr><td>焦點樣式</td><td class="n">2px Orange 外框 · 不得移除 outline</td></tr>
+    <tr><td>觸控目標</td><td class="n">≥ 44 × 44 px</td></tr>
+    <tr><td>圖片替代文字</td><td class="n">全部提供；裝飾性圖片使用空 alt</td></tr>
+    <tr><td>標題結構</td><td class="n">H1 唯一，層級不跳號</td></tr>
+    <tr><td>表單</td><td class="n">label 與欄位以 for/id 關聯</td></tr>
+    <tr><td>動態偏好</td><td class="n">尊重 prefers-reduced-motion</td></tr>
+    <tr><td>顏色不作為唯一資訊</td><td class="n">狀態須同時以文字或圖示表示</td></tr>
+  </table>
+  <div class="callout">
+    <h3>為什麼這頁放在設計系統，而不是交給工程</h3>
+    <p>對比不足、焦點被移除、觸控目標太小——這三件事有九成是<strong>設計階段就決定的</strong>，工程只是照做。等到開發完再回頭修，成本是設計階段的十倍。</p>
+  </div>
+</section>
+
+<footer>CBDS 2027 · Volume 02 品牌設計系統 · P.065–124 ／ Rev. A ／ 2026.07</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>結帳 - 軟構造</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Noto+Serif+TC:wght@400;600;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .checkout-container {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--s6);
+      padding: var(--s6) 0;
+    }
+
+    .checkout-form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s5);
+    }
+
+    .form-section {
+      padding: var(--s4);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+    }
+
+    .form-section h3 {
+      margin-top: 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--s3);
+      margin-top: var(--s3);
+    }
+
+    .form-grid.full {
+      grid-template-columns: 1fr;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s1);
+    }
+
+    .form-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #666;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 10px 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-family: var(--f-sans);
+      font-size: 14px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--blue-primary);
+      box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+    }
+
+    .order-summary {
+      padding: var(--s4);
+      background: var(--bg-light);
+      border-radius: 8px;
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
+
+    .order-summary h3 {
+      margin-top: 0;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--s2) 0;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 14px;
+    }
+
+    .order-item-details {
+      flex: 1;
+    }
+
+    .order-item-name {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .order-item-qty {
+      font-size: 12px;
+      color: #999;
+    }
+
+    .order-summary-total {
+      margin-top: var(--s4);
+      padding-top: var(--s3);
+      border-top: 2px solid var(--border-color);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: var(--s2);
+      font-size: 14px;
+    }
+
+    .summary-row.total {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--blue-primary);
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: var(--s3);
+      background: var(--blue-primary);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+      margin-top: var(--s3);
+    }
+
+    .submit-btn:hover {
+      background: #3A7BC8;
+    }
+
+    .submit-btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    @media (max-width: 768px) {
+      .checkout-container {
+        grid-template-columns: 1fr;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .order-summary {
+        position: static;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">軟構造</a>
+    <ul class="nav-links">
+      <li><a href="index.html#themes">主題系列</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h1 style="margin-top: var(--s6);">訂單結帳</h1>
+
+  <div class="checkout-container">
+    <!-- Checkout Form -->
+    <form class="checkout-form" id="checkoutForm">
+      <!-- Shipping Information -->
+      <div class="form-section">
+        <h3>📍 收貨資訊</h3>
+        <div class="form-grid full">
+          <div class="form-group">
+            <label>收貨人姓名 *</label>
+            <input type="text" required placeholder="請輸入姓名">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>電話 *</label>
+            <input type="tel" required placeholder="09xx-xxx-xxx">
+          </div>
+          <div class="form-group">
+            <label>信箱 *</label>
+            <input type="email" required placeholder="your@email.com">
+          </div>
+        </div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>縣市 *</label>
+            <select required>
+              <option>-- 請選擇 --</option>
+              <option>台北市</option>
+              <option>新北市</option>
+              <option>台中市</option>
+              <option>台南市</option>
+              <option>高雄市</option>
+              <option>其他</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>郵遞區號 *</label>
+            <input type="text" required placeholder="10001">
+          </div>
+        </div>
+        <div class="form-grid full">
+          <div class="form-group">
+            <label>街道地址 *</label>
+            <input type="text" required placeholder="例：中山區南京東路三段100號5樓">
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipping Method -->
+      <div class="form-section">
+        <h3>🚚 運送方式</h3>
+        <div class="form-grid full">
+          <label style="display: flex; align-items: center; gap: var(--s2); cursor: pointer;">
+            <input type="radio" name="shipping" value="delivery" checked required>
+            <span>宅配到府 (3-5 個工作天) - NT$300</span>
+          </label>
+        </div>
+        <div class="form-grid full">
+          <label style="display: flex; align-items: center; gap: var(--s2); cursor: pointer;">
+            <input type="radio" name="shipping" value="pickup" required>
+            <span>自取 (可協議時間) - 免運費</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="form-section">
+        <h3>💳 付款方式</h3>
+        <div class="form-grid full">
+          <label style="display: flex; align-items: center; gap: var(--s2); cursor: pointer;">
+            <input type="radio" name="payment" value="credit" checked required>
+            <span>信用卡 (立即扣款)</span>
+          </label>
+        </div>
+        <div class="form-grid full">
+          <label style="display: flex; align-items: center; gap: var(--s2); cursor: pointer;">
+            <input type="radio" name="payment" value="linepay" required>
+            <span>LINE Pay (掃碼支付)</span>
+          </label>
+        </div>
+        <div class="form-grid full">
+          <label style="display: flex; align-items: center; gap: var(--s2); cursor: pointer;">
+            <input type="radio" name="payment" value="ecpay" required>
+            <span>超商條碼繳費 (24小時內繳費)</span>
+          </label>
+        </div>
+        <div class="form-grid full">
+          <label style="display: flex; align-items: center; gap: var(--s2); cursor: pointer;">
+            <input type="radio" name="payment" value="bank" required>
+            <span>銀行轉帳 (匯款後確認)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Special Instructions -->
+      <div class="form-section">
+        <h3>📝 備註</h3>
+        <div class="form-grid full">
+          <div class="form-group">
+            <label>收貨備註</label>
+            <textarea placeholder="如有特殊交貨要求，請在此說明..." rows="4"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Agreement -->
+      <div style="display: flex; gap: var(--s2); align-items: flex-start;">
+        <input type="checkbox" id="agreement" required style="margin-top: 4px;">
+        <label for="agreement" style="font-size: 13px;">
+          我同意 <a href="#" style="color: var(--blue-primary);">服務條款</a> 與 <a href="#" style="color: var(--blue-primary);">隱私政策</a>
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn">確認訂單並付款</button>
+    </form>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h3>訂單摘要</h3>
+      <div id="orderItems"></div>
+
+      <div class="order-summary-total">
+        <div class="summary-row">
+          <span>商品小計</span>
+          <span id="subtotal">NT$0</span>
+        </div>
+        <div class="summary-row">
+          <span>運費</span>
+          <span id="shippingFee">NT$300</span>
+        </div>
+        <div class="summary-row total">
+          <span>合計金額</span>
+          <span id="totalAmount">NT$0</span>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--s3); padding: var(--s2); background: #f0f7f4; border-radius: 4px; border-left: 3px solid #52a578; font-size: 13px;">
+        ✓ 所有商品享 1 年原廠保修
+        ✓ 到府送禮免費加購禮盒
+        ✓ 7 天無條件退貨
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer" style="margin-top: var(--s7);">
+  <div class="footer-content">
+    <p>&copy; 2026 軟構造 Soft Structure. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+// Load cart items
+function loadCheckout() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if (cart.length === 0) {
+    window.location.href = 'index.html';
+    return;
+  }
+
+  // Display items
+  const container = document.getElementById('orderItems');
+  container.innerHTML = cart.map(item => `
+    <div class="order-item">
+      <div class="order-item-details">
+        <div class="order-item-name">${item.name}</div>
+        <div class="order-item-qty">數量：${item.qty}</div>
+      </div>
+      <div>NT$${(item.price * item.qty).toLocaleString()}</div>
+    </div>
+  `).join('');
+
+  updateSummary();
+}
+
+// Calculate totals
+function updateSummary() {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const shipping = document.querySelector('input[name="shipping"]:checked').value === 'delivery' ? 300 : 0;
+  const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  const total = subtotal + shipping;
+
+  document.getElementById('subtotal').textContent = `NT$${subtotal.toLocaleString()}`;
+  document.getElementById('shippingFee').textContent = `NT$${shipping.toLocaleString()}`;
+  document.getElementById('totalAmount').textContent = `NT$${total.toLocaleString()}`;
+}
+
+// Shipping method change
+document.querySelectorAll('input[name="shipping"]').forEach(radio => {
+  radio.addEventListener('change', updateSummary);
+});
+
+// Form submission
+document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const payment = document.querySelector('input[name="payment"]:checked').value;
+  const order = {
+    id: 'ORD-' + Date.now(),
+    date: new Date().toLocaleString(),
+    cart: JSON.parse(localStorage.getItem('cart')),
+    payment: payment
+  };
+
+  localStorage.setItem('lastOrder', JSON.stringify(order));
+  localStorage.removeItem('cart');
+
+  alert('訂單已提交！訂單編號：' + order.id + '\n\n感謝您的購買。我們會盡快與您聯繫。');
+  window.location.href = 'index.html';
+});
+
+// Initialize
+document.addEventListener('DOMContentLoaded', loadCheckout);
+</script>
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBDS 2027 — Vol. 04 四本品牌 Brand Book</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Söhne+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Marcellus&family=Cormorant:ital,wght@0,300;0,600;1,300&family=Bricolage+Grotesque:wght@400;600;800&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+TC:wght@300;400;600;900&family=Noto+Sans+TC:wght@200;300;400;700&family=Archivo:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F8F8F6; --mist:#ECEAE5; --line:#D9D7D1; --slate:#6E7069; --ink:#1A1A18;
+  --s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:64px;--s7:96px;--s8:128px;
+}
+/* Brand colour tokens */
+.mp{ --bc:#0C5170; --bc2:#E93429; --bc3:#F29CA7; --bc4:#F39801; --bc5:#232E1E; --bpaper:#F8F8F6; }
+.ss{ --bc:#22282A; --bc2:#9C8352; --bc3:#EFEDE7; --bc4:#43293A; --bc5:#B4B7B0; --bpaper:#F5F3EE; }
+.cy{ --bc:#14110F; --bc2:#7A1F2B; --bc3:#EAE3D8; --bc4:#5C5C52; --bc5:#14110F; --bpaper:#EAE3D8; }
+.av{ --bc:#B5673A; --bc2:#8A9A7E; --bc3:#E8DCC8; --bc4:#3B2A22; --bc5:#211A15; --bpaper:#F2EDE4; }
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",sans-serif;font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 var(--s4)}
+p{max-width:68ch}
+
+/* top spectrum */
+.spectrum{display:flex;height:6px}
+.spectrum i{flex:1}
+.spectrum i:nth-child(1){background:#0C5170}
+.spectrum i:nth-child(2){background:#E93429}
+.spectrum i:nth-child(3){background:#F29CA7}
+.spectrum i:nth-child(4){background:#F39801}
+.spectrum i:nth-child(5){background:#232E1E}
+
+nav{position:sticky;top:0;z-index:60;background:#1A1A18}
+nav .inner{max-width:1060px;margin:0 auto;padding:11px var(--s4);display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav a{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#888;text-decoration:none;white-space:nowrap;font-weight:500}
+nav a:hover{color:#F39801}
+
+/* --- BRAND CHAPTER HEADER --- */
+.brand-cover{min-height:70vh;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--s8) var(--s6) var(--s7);position:relative;overflow:hidden}
+.brand-cover .num{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;opacity:.6;margin-bottom:var(--s4)}
+.brand-cover h1{line-height:1.02;font-weight:400}
+.brand-cover .desc{margin-top:var(--s4);max-width:52ch;opacity:.8}
+.brand-cover .page-range{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;opacity:.55;margin-top:var(--s5)}
+
+/* --- SECTIONS WITHIN A BOOK --- */
+.book-section{padding:var(--s7) 0;border-top:1px solid var(--line)}
+.book-section.first{border-top:none;padding-top:var(--s6)}
+.pg{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.2em;color:var(--slate);display:block;margin-bottom:10px}
+.eyebrow{font-family:"Archivo",sans-serif;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;display:block;margin-bottom:var(--s3)}
+h2{font-size:clamp(20px,2.8vw,28px);font-weight:900;letter-spacing:.05em;margin-bottom:var(--s3)}
+h3{font-size:17px;font-weight:600;letter-spacing:.04em;margin-bottom:var(--s2);margin-top:var(--s5)}
+h3:first-of-type{margin-top:0}
+.lead{font-weight:400;font-size:clamp(16px,2.1vw,19px);line-height:1.95;color:#3E423B;max-width:60ch}
+
+table.d{width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--s3)}
+table.d th{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-align:left;padding:0 14px 11px 0;border-bottom:1px solid var(--ink);font-weight:600}
+table.d td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px}
+table.d td.n{font-family:"IBM Plex Mono",monospace;font-size:12.5px;white-space:nowrap}
+
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:var(--s5);align-items:start}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:var(--s3)}
+.t5{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+.mono{font-family:"IBM Plex Mono",monospace}
+
+.pal{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:var(--s3);margin-top:var(--s4)}
+.sw{border:1px solid var(--line);background:#fff}
+.sw i{display:block;height:100px}
+.sw div{padding:13px}
+.sw b{display:block;font-size:15px;font-weight:400}
+.sw .h{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--slate);display:block;margin-top:3px}
+.sw em{display:block;font-style:normal;font-size:11.5px;color:var(--slate);margin-top:8px;line-height:1.6}
+
+.box{border:1px solid var(--line);background:#fff;padding:var(--s4);min-height:160px}
+.box.ctr{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.cap{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-top:var(--s3);text-align:center}
+.capzh{font-size:12px;color:var(--slate);text-align:center;margin-top:4px}
+
+.mock{border:1px solid var(--line);background:#fff;overflow:hidden}
+.mock .hd{padding:var(--s4);min-height:160px;display:flex;flex-direction:column;justify-content:space-between}
+.mock .bd{padding:var(--s3);border-top:1px solid var(--line);font-size:12.5px;color:var(--slate);line-height:1.75}
+.mock .bd strong{display:block;font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:7px;font-weight:600}
+
+.code{background:#1A1A18;color:#C6CCC2;padding:var(--s4);font-family:"IBM Plex Mono",monospace;font-size:12px;line-height:1.9;margin-top:var(--s3);overflow-x:auto;white-space:pre-wrap}
+.code b{color:#F39801;font-weight:500}
+.code .neg{color:#C0796F}
+
+.chapter-divider{min-height:10px;border-top:4px solid var(--line);margin:var(--s8) 0 0}
+
+footer{padding:var(--s7) 0 var(--s8);border-top:1px solid var(--line);font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.18em;color:var(--slate);text-transform:uppercase}
+@media(max-width:640px){.wrap{padding:0 var(--s3)} .brand-cover{padding:var(--s7) var(--s4) var(--s6)}}
+</style>
+<style>
+@media (max-width: 768px) {
+  body { font-size: 16px; overflow-x: hidden; width: 100vw; }
+  svg, img, video { max-width: 100% !important; height: auto !important; }
+  table.d { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.d td, table.d th { white-space: normal; min-width: 120px; }
+  .box { min-height: auto !important; padding: 24px !important; }
+  h1 { font-size: clamp(32px, 8vw, 42px) !important; }
+  h2 { font-size: clamp(24px, 6vw, 28px) !important; }
+  .wrap { padding: 0 16px !important; }
+  .g2, .g3, .dd, .pal, .tight, .ratio { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+  .ratio span { padding: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="spectrum"><i></i><i></i><i></i><i></i><i></i></div>
+<nav><div class="inner">
+  <a href="#mp">加減設計多媒體工作站</a><a href="#ss">軟構造</a><a href="#cy">COREY</a><a href="#av">Aether Vibes</a>
+</div></nav>
+
+<!-- ═══════════════════════════════════════
+     BOOK A ─ 加減設計多媒體工作站 MINUS PLUS STUDIO
+════════════════════════════════════════ -->
+<div class="mp" id="mp">
+<div class="brand-cover" style="background:#0C5170;color:#F8F8F6">
+  <div class="num">Vol. 04 · Book A · P.173–187</div>
+  <h1 style="font-family:'金萱',serif;font-weight:900;font-size:clamp(42px,8vw,96px);letter-spacing:.06em">加減設計多媒體工作站</h1>
+  <h1 style="font-family:'Söhne',serif;font-size:clamp(26px,4.5vw,54px);margin-top:var(--s3)">MINUS PLUS STUDIO</h1>
+  <p class="desc" style="font-family:'Noto Sans TC',sans-serif;font-weight:300">室內建築設計事務所 · 空間設計 · 專案管理</p>
+  <div class="page-range">P.173 — 187 · 15 pages</div>
+</div>
+
+<div class="wrap">
+
+<div class="book-section first" id="mp-pos">
+  <span class="pg">P. 174</span>
+  <span class="eyebrow" style="color:#0C5170">01 — Brand Positioning</span>
+  <h2 style="font-family:'金萱',serif">品牌定位</h2>
+  <p class="lead" style="font-family:'金萱',serif">空間是靜默的畫布，而器物是日常生活中得以摸索的詩篇。</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s5)">
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">一句話定位</div><p style="font-family:'金萱',serif;font-weight:600;font-size:17px;margin-top:10px;letter-spacing:.04em">以「加法」疊加生活質地，以「減法」還原空間純粹</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">業務範圍</div><p style="font-size:14px;margin-top:8px;line-height:1.8">住宅設計 · 商業空間 · 空間改造 · 軟裝顧問（轉介軟構造）</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">目標客層</div><p style="font-size:14px;margin-top:8px;line-height:1.8">35–55 歲、重視生活品質、預算充裕的屋主與商業業主</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">品牌角色</div><p style="font-size:14px;margin-top:8px;line-height:1.8">Studio 空間設計事務所<br>（電商業務已切出為軟構造）</p></div>
+  </div>
+</div>
+
+<div class="book-section" id="mp-story">
+  <span class="pg">P. 175</span>
+  <span class="eyebrow" style="color:#0C5170">02 — Brand Story</span>
+  <h2 style="font-family:'金萱',serif">品牌故事</h2>
+  <div class="g2">
+    <div>
+      <h3 style="font-family:'金萱',serif">長版</h3>
+      <p style="font-size:15px;line-height:2">我們相信，一個極具品味的家，不應只是建築結構的硬性組合，更是一場關於「人、空間與物件」的深邃對話。</p>
+      <p style="font-size:15px;line-height:2;margin-top:var(--s3)">以「加法」疊加生活的豐富質感——自然器物、溫潤織品、微光燈具；以「減法」還原空間的純粹建築感——精準的立面比例與陰影層次。</p>
+      <p style="font-size:15px;line-height:2;margin-top:var(--s3)">從大尺度的空間建築企劃，到小尺度的日常軟裝物件，MINUS PLUS STUDIO 提供無縫銜接的完整生活美學解決方案。我們不定義風格，我們為您定格歲月的安寧。</p>
+    </div>
+    <div>
+      <h3 style="font-family:'金萱',serif">30 字精簡版</h3>
+      <div style="border-left:3px solid #0C5170;padding-left:var(--s3);font-family:'金萱',serif;font-size:18px;letter-spacing:.04em;line-height:1.9">加法疊加質地，減法還原純粹。<br>空間設計，為歲月定格。</div>
+      <h3 style="font-family:'金萱',serif">廣告標語</h3>
+      <div style="border-left:3px solid #0C5170;padding-left:var(--s3)">
+        <p style="font-family:'金萱',serif;font-size:20px;letter-spacing:.06em">「不定義風格，定格安寧。」</p>
+        <p style="font-family:'Söhne',serif;font-size:16px;letter-spacing:.1em;color:#0C5170;margin-top:10px">We frame stillness, not style.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 176</span>
+  <span class="eyebrow" style="color:#0C5170">03 — Logo</span>
+  <h2 style="font-family:'金萱',serif">Logo 排版示意</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="box ctr" style="background:#232E1E;min-height:180px">
+      <svg viewBox="0 0 157.633 57.664" width="200"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+      <div class="cap" style="color:rgba(255,255,255,.5)">A — 彩色版</div>
+    </div>
+    <div class="box ctr" style="min-height:180px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <svg viewBox="0 0 157.633 57.664" width="80"><rect width="157.633" height="57.664" fill="#232E1E"/><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+        <div><div style="font-family:'金萱',serif;font-weight:900;font-size:20px;letter-spacing:.05em">加減設計多媒體工作站</div><div style="font-family:'Söhne',serif;font-size:13px;letter-spacing:.07em;color:#0C5170;margin-top:3px">MINUS PLUS STUDIO</div></div>
+      </div>
+      <div class="cap">H — 複合排版版</div>
+    </div>
+    <div class="box ctr" style="background:#F8F8F6;min-height:180px">
+      <svg viewBox="53.754 3.918 95.957 47.984" width="100"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/><circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/></svg>
+      <div class="cap">B — 純圖案版</div>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 177 — 178</span>
+  <span class="eyebrow" style="color:#0C5170">04 — Typeface &amp; Type Scale</span>
+  <h2 style="font-family:'金萱',serif">字體與字級</h2>
+  <table class="d">
+    <tr><td>中文標題 / 標準字</td><td style="font-family:'金萱',serif;font-weight:900;font-size:22px">金萱 (justfont) · Black 900</td></tr>
+    <tr><td>英文 Display</td><td style="font-family:'Söhne',serif;font-size:22px">Söhne · Regular</td></tr>
+    <tr><td>內文 / UI</td><td style="font-family:'Noto Sans TC',sans-serif;font-size:18px;font-weight:300">思源黑體 · Light 300</td></tr>
+    <tr><td style="border:none">標籤 / 數據</td><td style="font-family:'Archivo',sans-serif;font-size:16px;border:none">Archivo · Medium 500</td></tr>
+  </table>
+  <h3 style="font-family:'金萱',serif">品牌專屬字級</h3>
+  <table class="d">
+    <tr><td>H1</td><td class="n">72px · 金萱 (justfont) 900 · 行高 1.15 · 字距 .03em</td></tr>
+    <tr><td>H2</td><td class="n">48px · 金萱 (justfont) 900 · 行高 1.25</td></tr>
+    <tr><td>Display EN</td><td class="n">64px · Söhne · 行高 1.02</td></tr>
+    <tr><td>Body</td><td class="n">16px · 思源黑體 300 · 行高 1.85</td></tr>
+    <tr><td style="border:none">Label</td><td class="n" style="border:none">12px · Archivo 500 · 字距 .16em · 全大寫</td></tr>
+  </table>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 179 — 180</span>
+  <span class="eyebrow" style="color:#0C5170">05 — Colour</span>
+  <h2 style="font-family:'金萱',serif">色彩規範</h2>
+  <div class="pal">
+    <div class="sw"><i style="background:#0C5170"></i><div><b style="font-family:'Söhne',serif">Primary Navy</b><span class="h">#0C5170</span><em>主色 · 標誌、標題、按鈕</em></div></div>
+    <div class="sw"><i style="background:#E93429"></i><div><b style="font-family:'Söhne',serif">Signal Red</b><span class="h">#E93429</span><em>點綴 · 僅限 5% 以下</em></div></div>
+    <div class="sw"><i style="background:#F29CA7"></i><div><b style="font-family:'Söhne',serif">Rose Pink</b><span class="h">#F29CA7</span><em>點綴 · 名片、標籤</em></div></div>
+    <div class="sw"><i style="background:#F39801"></i><div><b style="font-family:'Söhne',serif">Signal Orange</b><span class="h">#F39801</span><em>點綴 · CTA 唯一強調</em></div></div>
+    <div class="sw"><i style="background:#232E1E"></i><div><b style="font-family:'Söhne',serif">Deep Forest</b><span class="h">#232E1E</span><em>深底 · 頁尾、封面</em></div></div>
+  </div>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)">大面積應用色階：Navy → #225065 · Red → #9D4742 · Orange → #A57930 · Pink → #E5BEC3</p>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 181</span>
+  <span class="eyebrow" style="color:#0C5170">06 — Ad Layout</span>
+  <h2 style="font-family:'金萱',serif">廣告版型</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock"><div class="hd" style="background:#232E1E;justify-content:flex-end"><div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.24em;color:#F39801">INTERIOR DESIGN</div><div style="font-family:'金萱',serif;font-weight:900;font-size:20px;color:#F8F8F6;margin-top:8px;letter-spacing:.05em">空間是詩，<br>器物是語言。</div><div style="background:#0C5170;color:#F8F8F6;font-family:'Archivo',sans-serif;font-size:9px;letter-spacing:.18em;padding:8px 14px;display:inline-block;margin-top:14px">了解更多</div></div></div><div class="bd"><strong>橫幅廣告 · 1200×628</strong>Forest 底 · 標題宋體 900 · CTA Navy 方塊</div></div>
+    <div class="mock"><div class="hd" style="background:var(--mist);justify-content:flex-end"><div><div style="font-family:'Söhne',serif;font-size:13px;letter-spacing:.16em;color:#0C5170">MINUS PLUS STUDIO</div><div style="font-family:'金萱',serif;font-weight:900;font-size:18px;letter-spacing:.06em;margin-top:8px">左營住宅<br>空間企劃</div></div></div><div class="bd"><strong>方形廣告 · 1080×1080</strong>Mist 底 · 圖佔上 55% · 文字壓下</div></div>
+    <div class="mock"><div class="hd" style="background:#0C5170;justify-content:center;align-items:center"><svg viewBox="53.754 3.918 95.957 47.984" width="100"><circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/><rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#F8F8F6"/><rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#F8F8F6"/><rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F8F8F6"/></svg></div><div class="bd"><strong>直式廣告 · 400×700</strong>Navy 滿版 · 反白版標誌 · 無文字</div></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 182</span>
+  <span class="eyebrow" style="color:#0C5170">07 — Website</span>
+  <h2 style="font-family:'金萱',serif">官網版型</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div class="mock"><div class="hd" style="background:#232E1E;min-height:200px;justify-content:flex-end"><div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.24em;color:#F39801">INTERIOR ARCHITECTURE</div><div style="font-family:'金萱',serif;font-weight:900;font-size:24px;color:#F8F8F6;margin-top:12px;letter-spacing:.05em">空間是靜默的畫布</div><div style="font-family:'Söhne',serif;font-size:14px;color:rgba(248,248,246,.6);margin-top:8px;letter-spacing:.08em">Space is the silent canvas</div></div></div><div class="bd"><strong>Hero</strong>情境照片滿版底 · 文字壓左下 · 單一 CTA「預約諮詢」</div></div>
+    <div>
+      <table class="d" style="margin-top:0">
+        <tr><td>頁首</td><td>Forest 底 · 標誌純圖案版 B 左置 · 導覽 5 項</td></tr>
+        <tr><td>作品列表</td><td>3:2 橫式圖 · 每列 3 件 · 點擊展開全案</td></tr>
+        <tr><td>關於頁</td><td>Editorial 密度 · 品牌故事長版 · 右側資訊欄</td></tr>
+        <tr><td>聯繫頁</td><td>Forest 滿版 · 表單白底 · 地址 Google Map</td></tr>
+        <tr><td style="border:none">頁尾</td><td style="border:none">Forest 底 · 三欄 · 社群連結</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 183</span>
+  <span class="eyebrow" style="color:#0C5170">08 — Social</span>
+  <h2 style="font-family:'金萱',serif">社群模板</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock"><div class="hd" style="background:var(--mist);justify-content:flex-end"><div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.2em;color:#0C5170">PROJECT 014</div><div style="font-family:'金萱',serif;font-weight:900;font-size:17px;letter-spacing:.06em;margin-top:8px">左營青田路<br>整層住宅</div></div></div><div class="bd"><strong>IG 貼文 · 1080×1350</strong>情境照佔上 2/3 · 文字壓下 1/3</div></div>
+    <div class="mock"><div class="hd" style="background:#232E1E;justify-content:center;align-items:center"><div style="text-align:center"><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.2em;color:#F39801;margin-bottom:12px">BEFORE / AFTER</div><div style="display:flex;gap:4px"><div style="width:50px;height:50px;background:#5A6A52"></div><div style="width:50px;height:50px;background:#0C5170"></div></div></div></div><div class="bd"><strong>限動 Story</strong>Before/After 左右分割 · 無文字</div></div>
+    <div class="mock"><div class="hd" style="background:var(--mist);justify-content:center;align-items:center"><div style="text-align:center"><div style="font-family:'金萱',serif;font-size:15px;letter-spacing:.06em">為什麼我堅持<br>不做主燈</div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.18em;color:#0C5170;margin-top:12px">01 / 06 →</div></div></div><div class="bd"><strong>Threads 觀點</strong>問句開頭 · 純文字 · 附輪播說明</div></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 184</span>
+  <span class="eyebrow" style="color:#0C5170">09 — YouTube</span>
+  <h2 style="font-family:'金萱',serif">YouTube 封面</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock"><div class="hd" style="background:linear-gradient(90deg,#232E1E 0%,#232E1E 45%,#3A4835 100%);justify-content:flex-end;min-height:130px"><div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.22em;color:#F39801">EP.14</div><div style="font-family:'金萱',serif;font-weight:900;font-size:20px;color:#F8F8F6;margin-top:8px">不用主燈的家</div></div></div><div class="bd"><strong>標題型 · 7字以內</strong></div></div>
+    <div class="mock"><div class="hd" style="background:var(--mist);justify-content:flex-end;min-height:130px"><div><div style="font-family:'金萱',serif;font-weight:900;font-size:17px;letter-spacing:.06em">左營青田路整層<br>住宅改造全紀錄</div></div></div><div class="bd"><strong>案例型 · 9字以內</strong></div></div>
+    <div class="mock"><div class="hd" style="background:#0C5170;justify-content:center;align-items:center;min-height:130px"><div style="text-align:center"><div style="font-family:'Söhne',serif;font-size:38px;color:#F8F8F6">14</div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.22em;color:rgba(248,248,246,.6);margin-top:8px">SERIES</div></div></div><div class="bd"><strong>系列型 · 數字為主</strong></div></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 185</span>
+  <span class="eyebrow" style="color:#0C5170">10 — Deck</span>
+  <h2 style="font-family:'金萱',serif">簡報模板</h2>
+  <table class="d">
+    <tr><td>封面</td><td>Forest 滿版 · 標題宋體 900 白色 · 右下置標誌</td></tr>
+    <tr><td>章節頁</td><td>Navy 滿版 · 章號 Söhne 大字 · 章名宋體</td></tr>
+    <tr><td>內頁</td><td>Paper 底 · 頂部 3pt Navy 線 · 標題 H3 · 單一訊息原則</td></tr>
+    <tr><td>作品頁</td><td>圖佔 70% · 資訊欄 30% · 左側 Navy 直線分隔</td></tr>
+    <tr><td style="border:none">收尾頁</td><td style="border:none">Forest 底 · 標誌反白版 · 聯絡資訊</td></tr>
+  </table>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 186 — 187</span>
+  <span class="eyebrow" style="color:#0C5170">11 — AI Prompt</span>
+  <h2 style="font-family:'金萱',serif">AI 生成規範</h2>
+  <h3 style="font-family:'金萱',serif">靜態圖像</h3>
+  <div class="code"><b>SUBJECT</b>   [interior living space with concrete wall, oak floor]
+<b>LIGHT</b>     single window light from left-back, shadows visible
+<b>PALETTE</b>   navy, forest green, warm grey, pink accent · desaturated
+<b>LENS</b>      35mm eye-level, subject 60% frame, negative space right
+<b>MOOD</b>      quiet luxury, minimal, editorial architecture magazine
+<b>FORMAT</b>    3:2 horizontal
+
+<span class="neg">--no  bright colors, colorful decor, cluttered, flat lighting,
+      HDR, white studio background, warm filter</span></div>
+  <h3 style="font-family:'金萱',serif">影片 / B-roll</h3>
+  <div class="code"><b>SHOT</b>      slow dolly-in on [oak dining table with ceramic bowl]
+<b>SPEED</b>     1% push per second, static camera preferred
+<b>GRADE</b>     low saturation, navy shadows, slight orange highlight
+<b>FORMAT</b>    16:9 primary
+<span class="neg">--no  fast cuts, handheld shake, trending audio sync</span></div>
+</div>
+
+</div><!-- end .mp .wrap -->
+</div><!-- end .mp -->
+
+<!-- ═══════════════════════════════════════
+     BOOK B ─ 軟構造 Soft Structure
+════════════════════════════════════════ -->
+<div class="chapter-divider"></div>
+<div class="ss" id="ss">
+<div class="brand-cover" style="background:#22282A;color:#EFEDE7">
+  <div class="num">Vol. 04 · Book B · P.188–202</div>
+  <h1 style="font-family:'金萱',serif;font-weight:900;font-size:clamp(42px,8vw,96px);letter-spacing:.1em">軟構造</h1>
+  <h1 style="font-family:'Marcellus',serif;font-size:clamp(26px,4.5vw,54px);letter-spacing:.18em;margin-top:var(--s3)">Soft Structure</h1>
+  <p class="desc" style="font-family:'Noto Sans TC',sans-serif;font-weight:300">居家軟裝 · 器物 · 裝飾選品電商</p>
+  <div class="page-range">P.188 — 202 · 15 pages</div>
+</div>
+
+<div class="wrap">
+<div class="book-section first">
+  <span class="pg">P. 189</span>
+  <span class="eyebrow" style="color:#9C8352">01 — Brand Positioning</span>
+  <h2 style="font-family:'金萱',serif">品牌定位</h2>
+  <p class="lead" style="font-family:'金萱',serif">以建築師的秩序，挑選柔軟的東西。</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s5)">
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">一句話定位</div><p style="font-family:'Marcellus',serif;font-size:17px;margin-top:10px;letter-spacing:.08em">Structure chooses.<br>Softness stays.</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">品類</div><p style="font-size:14px;margin-top:8px;line-height:1.8">織品 · 燈器 · 陶瓷 · 玻璃 · 花器 · 盤皿 · 擺件 · 香氛</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">目標客層</div><p style="font-size:14px;margin-top:8px;line-height:1.8">28–45 歲 · 剛完成裝修或調整家的狀態 · 重視材質與比例</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">不做</div><p style="font-size:14px;margin-top:8px;line-height:1.8">可配戴首飾 · 家具主件 · 快時尚消耗品</p></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 190 — 191</span>
+  <span class="eyebrow" style="color:#9C8352">02 — Story &amp; Voice</span>
+  <h2 style="font-family:'金萱',serif">品牌故事與語氣</h2>
+  <div class="g2">
+    <div>
+      <p style="font-size:15px;line-height:2">硬的東西決定一個家的骨架——牆、樑、地坪。它們一旦完成就幾乎不可能更動。</p>
+      <p style="font-size:15px;line-height:2;margin-top:var(--s3)">軟的東西不一樣。一塊亞麻、一盞光線偏黃的燈、一只手感不均的碗，隨時可以換，卻是每天真正被手碰到、被眼睛看到的部分。</p>
+      <p style="font-size:15px;line-height:2;margin-top:var(--s3)">軟構造用做空間的方法挑選器物：先看比例，再看材質，最後才看好不好看。</p>
+    </div>
+    <div>
+      <h3 style="font-family:'金萱',serif">語氣硬規則</h3>
+      <table class="d" style="margin-top:0">
+        <tr><td style="color:#2D8C5A">✓ 說</td><td>「比利時亞麻，水洗後會出現細褶」</td></tr>
+        <tr><td style="color:#2D8C5A">✓ 寫</td><td>產地、材質、尺寸、保養方式</td></tr>
+        <tr><td style="color:#C4453A">✗ 禁</td><td>「質感爆棚」「絕美」「必買」</td></tr>
+        <tr><td style="color:#C4453A">✗ 禁</td><td>倒數計時、限時搶購的壓迫語言</td></tr>
+        <tr><td style="border:none;color:#C4453A">✗ 禁</td><td style="border:none">「北歐風」「侘寂風」當賣點</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 192 — 193</span>
+  <span class="eyebrow" style="color:#9C8352">03 — Logo &amp; Colour</span>
+  <h2 style="font-family:'金萱',serif">Logo 與色彩</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="box ctr" style="background:#22282A;min-height:160px">
+      <svg width="80" height="80" viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" fill="#22282A"/><path d="M10 44 Q60 136 110 44 L110 110 L10 110 Z" fill="#9C8352"/></svg>
+      <div class="cap" style="color:rgba(239,237,231,.5)">A — 主要</div>
+    </div>
+    <div class="box ctr" style="min-height:160px">
+      <div style="display:flex;align-items:center;gap:14px">
+        <svg width="48" height="48" viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" fill="#22282A"/><path d="M10 44 Q60 136 110 44 L110 110 L10 110 Z" fill="#9C8352"/></svg>
+        <div><div style="font-family:'金萱',serif;font-weight:900;font-size:18px;letter-spacing:.14em">軟構造</div><div style="font-family:'Marcellus',serif;font-size:10px;letter-spacing:.32em;color:#9C8352;margin-top:5px">SOFT STRUCTURE</div></div>
+      </div>
+      <div class="cap">橫式複合版</div>
+    </div>
+    <div class="box ctr" style="background:#EFEDE7;min-height:160px">
+      <svg width="60" height="60" viewBox="0 0 120 120"><rect x="10" y="10" width="100" height="100" fill="none" stroke="#22282A" stroke-width="7"/><path d="M10 44 Q60 136 110 44" fill="none" stroke="#22282A" stroke-width="7"/></svg>
+      <div class="cap">B — 線條版</div>
+    </div>
+  </div>
+  <div class="pal">
+    <div class="sw"><i style="background:#22282A"></i><div><b style="font-family:'Marcellus',serif">Ink Slate</b><span class="h">#22282A</span><em>主色 · 文字框架</em></div></div>
+    <div class="sw"><i style="background:#EFEDE7;border-bottom:1px solid #D9D7D1"></i><div><b style="font-family:'Marcellus',serif">Chalk</b><span class="h">#EFEDE7</span><em>底色 · 商品襯底</em></div></div>
+    <div class="sw"><i style="background:#9C8352"></i><div><b style="font-family:'Marcellus',serif">Brass</b><span class="h">#9C8352</span><em>唯一強調色 · CTA</em></div></div>
+    <div class="sw"><i style="background:#43293A"></i><div><b style="font-family:'Marcellus',serif">Deep Plum</b><span class="h">#43293A</span><em>檔期限定</em></div></div>
+    <div class="sw"><i style="background:#B4B7B0"></i><div><b style="font-family:'Marcellus',serif">Fog Grey</b><span class="h">#B4B7B0</span><em>分隔線</em></div></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 194 — 198</span>
+  <span class="eyebrow" style="color:#9C8352">04 — Applications</span>
+  <h2 style="font-family:'金萱',serif">應用：廣告、官網、社群、YouTube、簡報</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock"><div class="hd" style="background:#EFEDE7;justify-content:flex-end"><div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.28em;color:#9C8352">NEW ARRIVALS</div><div style="font-family:'金萱',serif;font-weight:900;font-size:20px;letter-spacing:.06em;margin-top:8px">秋季織品</div><div style="border:1px solid #9C8352;color:#9C8352;font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.2em;padding:7px 14px;display:inline-block;margin-top:12px">SHOP NOW</div></div></div><div class="bd"><strong>官網 Hero</strong>Chalk 底 · 文字下三分之一 · 無填色 CTA</div></div>
+    <div class="mock"><div class="hd" style="background:#22282A;justify-content:space-between;min-height:160px"><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.22em;color:#9C8352">MATERIAL NOTE</div><div><div style="font-family:'金萱',serif;font-weight:900;font-size:18px;color:#EFEDE7;letter-spacing:.06em">亞麻為什麼<br>越洗越軟</div></div></div><div class="bd"><strong>IG 直式貼文</strong>Ink 底 · 材質教育型 · 九宮格第 2 張位</div></div>
+    <div class="mock"><div class="hd" style="background:#EFEDE7;justify-content:flex-end;min-height:160px"><div><div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.22em;color:#9C8352">HOW TO CHOOSE</div><div style="font-family:'金萱',serif;font-weight:900;font-size:18px;letter-spacing:.06em;margin-top:8px">選一只碗的<br>7 個標準</div></div></div><div class="bd"><strong>YouTube 縮圖</strong>Chalk 底 · 中文 7 字以內 · 左下文字</div></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 199 — 200</span>
+  <span class="eyebrow" style="color:#9C8352">05 — AI Prompt</span>
+  <h2 style="font-family:'金萱',serif">AI 生成規範</h2>
+  <div class="code"><b>SUBJECT</b>   [a stoneware bowl, matte oatmeal glaze, 24cm diameter]
+<b>SETTING</b>   on raw linen surface, chalk-white background
+<b>LIGHT</b>     single window light back-left 45°, shadows visible
+<b>PALETTE</b>   #EFEDE7 #22282A #9C8352 · desaturated warm neutrals
+<b>LENS</b>      85mm f/4.5, 4:5 vertical, subject 58% frame
+<b>MOOD</b>      quiet, editorial, unstyled, material-focused
+
+<span class="neg">--no  pure white, studio softbox, flat lighting, glossy,
+      warm filter, props clutter, HDR, oversaturated</span></div>
+</div>
+
+</div></div><!-- end .ss -->
+
+<!-- ═══════════════════════════════════════
+     BOOK C ─ COREY 馮凱瑞
+════════════════════════════════════════ -->
+<div class="chapter-divider"></div>
+<div class="cy" id="cy">
+<div class="brand-cover" style="background:#14110F;color:#EAE3D8">
+  <div class="num">Vol. 04 · Book C · P.203–217</div>
+  <h1 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(42px,8vw,96px);letter-spacing:-.01em">COREY</h1>
+  <h1 style="font-family:'IBM Plex Mono',monospace;font-size:clamp(18px,2.8vw,34px);color:#7A1F2B;margin-top:var(--s3)">馮凱瑞 / AI_CREATOR</h1>
+  <p class="desc" style="font-family:'Noto Sans TC',sans-serif;font-weight:300">AI Creator · 個人品牌 · 工作流方法論</p>
+  <div class="page-range">P.203 — 217 · 15 pages</div>
+</div>
+
+<div class="wrap">
+<div class="book-section first">
+  <span class="pg">P. 204</span>
+  <span class="eyebrow" style="color:#7A1F2B">01 — Brand Positioning</span>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600">品牌定位</h2>
+  <p class="lead" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:400">Where craft meets machine intelligence.</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s5)">
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">角色</div><p style="font-size:14px;margin-top:8px;line-height:1.8">AI Creator · 設計師背景 · 建築人的秩序感帶入 AI 生成</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">內容主軸</div><p style="font-size:14px;margin-top:8px;line-height:1.8">生成式影像 · AI 工作流 · Prompt 方法論 · 創作筆記</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">受眾</div><p style="font-size:14px;margin-top:8px;line-height:1.8">設計師 · 創作者 · 對 AI 有好奇但不知從何開始的人</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">差異化</div><p style="font-size:14px;margin-top:8px;line-height:1.8">建築人視角 · 講秩序與比例 · 不走快速出圖的路線</p></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 205 — 206</span>
+  <span class="eyebrow" style="color:#7A1F2B">02 — Story &amp; Logo</span>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600">品牌故事與標誌</h2>
+  <div class="g2">
+    <div>
+      <p style="font-size:15px;line-height:2">以設計師背景跨入 AI 內容創作，COREY 是加減設計多媒體工作站創辦人馮凱瑞的個人品牌，聚焦生成式影像、AI 工作流與創作方法分享。</p>
+      <p style="font-size:15px;line-height:2;margin-top:var(--s3)">建築人的秩序感，不是用來壓制 AI 的隨機性，而是用來框住它最好的一面。</p>
+    </div>
+    <div>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif">COREY 標誌描述</h3>
+      <p style="font-size:14px">六層旋轉光圈，半徑由外而內遞減、角度各錯開 60°，米白與酒紅交替疊繞、螺旋收攏至中心留白。外觀既是相機光圈的開闔瞬間，也像 AI 疊代收斂的軌跡。</p>
+      <h3 style="font-family:'Bricolage Grotesque',sans-serif">Logo 圈環示意</h3>
+      <div style="display:flex;align-items:center;justify-content:center;margin-top:var(--s3)">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <g transform="translate(60,60)">
+            <circle r="54" fill="none" stroke="#EAE3D8" stroke-width="8" stroke-dasharray="282 30" transform="rotate(0)"/>
+            <circle r="44" fill="none" stroke="#7A1F2B" stroke-width="7" stroke-dasharray="225 30" transform="rotate(60)"/>
+            <circle r="34" fill="none" stroke="#EAE3D8" stroke-width="6" stroke-dasharray="169 28" transform="rotate(120)"/>
+            <circle r="25" fill="none" stroke="#7A1F2B" stroke-width="5" stroke-dasharray="121 26" transform="rotate(180)"/>
+            <circle r="17" fill="none" stroke="#EAE3D8" stroke-width="4" stroke-dasharray="80 22" transform="rotate(240)"/>
+            <circle r="10" fill="none" stroke="#7A1F2B" stroke-width="3" stroke-dasharray="42 18" transform="rotate(300)"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 207 — 208</span>
+  <span class="eyebrow" style="color:#7A1F2B">03 — Typeface &amp; Colour</span>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600">字體與色彩</h2>
+  <div class="g2">
+    <div>
+      <table class="d" style="margin-top:0">
+        <tr><td>主字體</td><td style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px">Bricolage Grotesque</td></tr>
+        <tr><td>技術文字</td><td style="font-family:'IBM Plex Mono',monospace;font-size:18px">IBM Plex Mono</td></tr>
+        <tr><td style="border:none">中文</td><td style="font-family:'Noto Sans TC',sans-serif;font-size:18px;border:none">思源黑體 CJK</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)">Bricolage 傳達人的創意手感；IBM Plex Mono 傳達機器的精準——兩者的反差是品牌核心。</p>
+    </div>
+    <div class="pal">
+      <div class="sw"><i style="background:#14110F"></i><div><b>Charcoal</b><span class="h">#14110F</span><em>主色</em></div></div>
+      <div class="sw"><i style="background:#EAE3D8;border-bottom:1px solid #D9D7D1"></i><div><b>Bone</b><span class="h">#EAE3D8</span><em>底色</em></div></div>
+      <div class="sw"><i style="background:#7A1F2B"></i><div><b>Oxblood</b><span class="h">#7A1F2B</span><em>唯一強調</em></div></div>
+      <div class="sw"><i style="background:#5C5C52"></i><div><b>Warm Grey</b><span class="h">#5C5C52</span><em>次要文字</em></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 209 — 213</span>
+  <span class="eyebrow" style="color:#7A1F2B">04 — Applications</span>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600">應用版型</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock"><div class="hd" style="background:#14110F;justify-content:space-between"><div style="font-family:'IBM Plex Mono',monospace;font-size:8.5px;color:#7A1F2B;letter-spacing:.1em">WORKFLOW_NOTE.014</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:20px;color:#EAE3D8">用建築師的邏輯<br>設計 AI 工作流</div></div></div><div class="bd"><strong>YouTube 縮圖</strong>Charcoal 底 · Bone 主標 · Oxblood 強調</div></div>
+    <div class="mock"><div class="hd" style="background:#EAE3D8;justify-content:space-between"><div style="font-family:'IBM Plex Mono',monospace;font-size:8px;color:#5C5C52">AI_CREATOR / COREY</div><div><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600;font-size:17px">Prompt 不是關鍵，<br>框架才是。</div></div></div><div class="bd"><strong>IG 貼文</strong>Bone 底 · 觀點型文字 · 系列式排版</div></div>
+    <div class="mock"><div class="hd" style="background:#14110F;justify-content:center;align-items:center"><div style="text-align:center"><div style="font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:28px;color:#EAE3D8;letter-spacing:-.01em">COREY</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#7A1F2B;margin-top:10px;letter-spacing:.1em">馮凱瑞 / AI_CREATOR</div></div></div><div class="bd"><strong>社群頭像</strong>純文字版 · 標誌尚未完稿時使用</div></div>
+  </div>
+  <h3 style="font-family:'Bricolage Grotesque',sans-serif">簡報模板</h3>
+  <table class="d" style="margin-top:0">
+    <tr><td>封面</td><td>Charcoal 底 · Bone 主標 Bricolage · Oxblood 眉標 Mono</td></tr>
+    <tr><td>內頁</td><td>Bone 底 · 左側 2px Oxblood 直線 · 標題 Bricolage · 內文黑體</td></tr>
+    <tr><td style="border:none">Prompt 頁</td><td style="border:none">Charcoal 底 · IBM Plex Mono 排版 · 等寬格式</td></tr>
+  </table>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 214 — 215</span>
+  <span class="eyebrow" style="color:#7A1F2B">05 — AI Prompt</span>
+  <h2 style="font-family:'Bricolage Grotesque',sans-serif;font-weight:600">AI 生成規範</h2>
+  <div class="code"><b>STYLE</b>      architectural editorial, human-machine aesthetic
+<b>PALETTE</b>   charcoal #14110F, bone #EAE3D8, oxblood #7A1F2B
+           monochromatic with single wine-red accent
+<b>SUBJECT</b>   [person at desk with multiple screens, architectural drawings]
+<b>MOOD</b>      focused, precise, quiet intensity, late-night studio
+<b>LIGHT</b>     screen glow + single overhead, low key, strong shadows
+<b>FORMAT</b>    16:9 horizontal for YT, 4:5 vertical for social
+
+<span class="neg">--no  colorful, bright office, daylight, casual clothes,
+      ai robot aesthetics, neon, cyberpunk, futuristic cliché</span></div>
+  <h3 style="font-family:'Bricolage Grotesque',sans-serif">影片 / Workflow Demo</h3>
+  <div class="code"><b>SHOT</b>      screen recording with picture-in-picture face cam
+<b>GRADE</b>     near-monochrome, oxblood shadows, bone highlights
+<b>CAPTION</b>   Bricolage + Mono mixed, left-aligned, bone on charcoal
+<span class="neg">--no  YouTube reaction face, green screen gimmick</span></div>
+</div>
+
+</div></div><!-- end .cy -->
+
+<!-- ═══════════════════════════════════════
+     BOOK D ─ Aether Vibes 以太律動
+════════════════════════════════════════ -->
+<div class="chapter-divider"></div>
+<div class="av" id="av">
+<div class="brand-cover" style="background:#3B2A22;color:#E8DCC8">
+  <div class="num">Vol. 04 · Book D · P.218–232</div>
+  <h1 style="font-family:'Cormorant',serif;font-weight:300;font-size:clamp(42px,8vw,96px);letter-spacing:.1em;font-style:italic">Aether Vibes</h1>
+  <h1 style="font-family:'金萱',serif;font-weight:300;font-size:clamp(22px,3.5vw,46px);letter-spacing:.16em;margin-top:var(--s3)">以太律動</h1>
+  <p class="desc" style="font-family:'Noto Sans TC',sans-serif;font-weight:300">自然療癒 · 感官品牌 · 漂浮於虛空的想像空間</p>
+  <div class="page-range">P.218 — 232 · 15 pages</div>
+</div>
+
+<div class="wrap">
+<div class="book-section first">
+  <span class="pg">P. 219</span>
+  <span class="eyebrow" style="color:#B5673A">01 — Brand Positioning</span>
+  <h2 style="font-family:'Cormorant',serif;font-weight:600;font-size:28px;letter-spacing:.06em">品牌定位</h2>
+  <p class="lead" style="font-family:'Cormorant',serif;font-weight:300;font-size:24px;font-style:italic;letter-spacing:.06em">A I R · L I G H T · R E T U R N</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s5)">
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">一句話定位</div><p style="font-family:'Cormorant',serif;font-weight:600;font-size:18px;margin-top:10px;letter-spacing:.06em">漂浮於虛空的無限想像空間</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">品類</div><p style="font-size:14px;margin-top:8px;line-height:1.8">礦物香氛 · 薰香器具 · 大地質地感官選品</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">受眾</div><p style="font-size:14px;margin-top:8px;line-height:1.8">重視身心平衡、嚮往自然靜謐的世代</p></div>
+    <div style="background:var(--paper);padding:var(--s3)"><div class="t5">品牌角色</div><p style="font-size:14px;margin-top:8px;line-height:1.8">加減設計多媒體工作站靜奢美學向自然療癒延伸的品牌實驗</p></div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 220 — 221</span>
+  <span class="eyebrow" style="color:#B5673A">02 — Story &amp; Logo</span>
+  <h2 style="font-family:'Cormorant',serif;font-weight:600;font-size:28px">品牌故事與標誌</h2>
+  <div class="g2">
+    <div>
+      <p style="font-size:15px;line-height:2;font-family:'金萱',serif;font-weight:300">以純色量體、氣息與大地質地，經營一個「漂浮於虛空的無限想像空間」。</p>
+      <p style="font-size:15px;line-height:2;margin-top:var(--s3)">三顆大小懸殊、彼此不對齊的純色圓，最大的一顆刻意超出畫面邊界——暗示無邊無際、無法被完全看見的想像空間。沒有光影、沒有筆觸，只有色塊本身的重量與留白。</p>
+    </div>
+    <div class="box ctr" style="background:#3B2A22;min-height:180px">
+      <svg width="140" height="120" viewBox="0 0 140 120">
+        <circle cx="30" cy="60" r="50" fill="#B5673A" opacity=".9"/>
+        <circle cx="85" cy="48" r="30" fill="#E8DCC8" opacity=".85"/>
+        <circle cx="118" cy="78" r="18" fill="#8A9A7E" opacity=".8"/>
+      </svg>
+      <div class="cap" style="color:rgba(232,220,200,.5)">標誌草圖 — 三圓漂浮</div>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 222 — 223</span>
+  <span class="eyebrow" style="color:#B5673A">03 — Typeface &amp; Colour</span>
+  <h2 style="font-family:'Cormorant',serif;font-weight:600;font-size:28px">字體與色彩</h2>
+  <div class="g2">
+    <div>
+      <table class="d" style="margin-top:0">
+        <tr><td>英文</td><td style="font-family:'Cormorant',serif;font-weight:300;font-size:24px;font-style:italic">Cormorant · Light Italic</td></tr>
+        <tr><td style="border:none">中文</td><td style="border:none"><span style="font-size:18px">霞鶩文楷 TC · 沒有安裝時以金萱 (justfont) 300 代替</span></td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)">Cormorant 是舊體，有羽毛般的髮絲線，讓文字本身有了質地。禁止用粗體。</p>
+    </div>
+    <div class="pal">
+      <div class="sw"><i style="background:#B5673A"></i><div><b>Terracotta</b><span class="h">#B5673A</span><em>主色</em></div></div>
+      <div class="sw"><i style="background:#E8DCC8;border-bottom:1px solid #D9D7D1"></i><div><b>Sand Mist</b><span class="h">#E8DCC8</span><em>底色</em></div></div>
+      <div class="sw"><i style="background:#8A9A7E"></i><div><b>Sage Mist</b><span class="h">#8A9A7E</span><em>次強調</em></div></div>
+      <div class="sw"><i style="background:#3B2A22"></i><div><b>Espresso</b><span class="h">#3B2A22</span><em>深底</em></div></div>
+      <div class="sw"><i style="background:#211A15"></i><div><b>Warm Black</b><span class="h">#211A15</span><em>文字</em></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 224 — 229</span>
+  <span class="eyebrow" style="color:#B5673A">04 — Applications</span>
+  <h2 style="font-family:'Cormorant',serif;font-weight:600;font-size:28px">應用版型</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="mock"><div class="hd" style="background:#3B2A22;justify-content:flex-end"><div><div style="font-family:'Cormorant',serif;font-weight:300;font-size:10px;letter-spacing:.34em;color:#B5673A">SENSORY COLLECTION</div><div style="font-family:'Cormorant',serif;font-weight:300;font-size:22px;color:#E8DCC8;letter-spacing:.12em;margin-top:10px;font-style:italic">礦物香氛<br>系列 01</div></div></div><div class="bd"><strong>包裝 / 廣告</strong>Espresso 底 · Cormorant 斜體 · 無圖標</div></div>
+    <div class="mock"><div class="hd" style="background:#E8DCC8;justify-content:center;align-items:center"><svg width="90" height="80" viewBox="0 0 90 80"><circle cx="22" cy="40" r="32" fill="#B5673A" opacity=".9"/><circle cx="58" cy="32" r="20" fill="#E8DCC8" stroke="#8A9A7E" stroke-width="1" opacity=".8"/><circle cx="76" cy="56" r="12" fill="#8A9A7E" opacity=".75"/></svg></div><div class="bd"><strong>IG 貼文</strong>Sand Mist 底 · 純色圓圖形 · 無文字貼文</div></div>
+    <div class="mock"><div class="hd" style="background:#3B2A22;justify-content:space-between;min-height:160px"><div style="font-family:'Cormorant',serif;font-weight:300;font-size:10px;letter-spacing:.28em;color:#8A9A7E">AETHER VIBES</div><div style="font-family:'Cormorant',serif;font-weight:300;font-size:20px;color:#E8DCC8;letter-spacing:.1em;font-style:italic">香氛是空間<br>最後的皮膚</div></div><div class="bd"><strong>YouTube / 品牌影片</strong>Espresso 底 · Cormorant 斜體文案</div></div>
+  </div>
+  <h3 style="font-family:'Cormorant',serif;font-size:20px">包裝命名系統</h3>
+  <table class="d" style="margin-top:0">
+    <tr><td>命名格式</td><td class="n">Aether Vibes · [系列名] · [No.XX]</td></tr>
+    <tr><td>例</td><td class="n">Aether Vibes · Mineral Air · No.03</td></tr>
+    <tr><td>字體</td><td>Cormorant Light 34pt · Sand Mist 色 · 字距 0.1em</td></tr>
+    <tr><td style="border:none">版面</td><td style="border:none">上置名稱、下置系列號 · 留白 60% 以上</td></tr>
+  </table>
+</div>
+
+<div class="book-section">
+  <span class="pg">P. 230 — 232</span>
+  <span class="eyebrow" style="color:#B5673A">05 — AI Prompt</span>
+  <h2 style="font-family:'Cormorant',serif;font-weight:600;font-size:28px">AI 生成規範</h2>
+  <div class="code"><b>SUBJECT</b>   [mineral incense holder, rough stone texture]
+<b>SETTING</b>   sand mist linen surface, no background clutter
+<b>LIGHT</b>     overcast soft diffused, zero hard shadows
+<b>PALETTE</b>   terracotta #B5673A, sand #E8DCC8, sage #8A9A7E · muted
+<b>LENS</b>      85mm macro, 1:1 ratio, subject 55% frame
+<b>MOOD</b>      floating, meditative, natural, no human presence
+
+<span class="neg">--no  colorful, bright studio, artificial light, trendy,
+      hands in frame, text overlay, sharp shadows</span></div>
+  <h3 style="font-family:'Cormorant',serif;font-size:20px">品牌影片</h3>
+  <div class="code"><b>SHOT</b>      extreme slow orbit around [incense rising from stone]
+<b>SPEED</b>     0.5% move per second · nearly static
+<b>GRADE</b>     lifted shadows, terracotta highlights, sage midtones
+           maximum Halation 0.15, grain intensity 0.25
+<b>SOUND</b>     ambient nature · no music · let smoke move in silence
+<span class="neg">--no  fast edit, trending audio, text pop-ups</span></div>
+</div>
+
+</div></div><!-- end .av -->
+
+<div class="wrap">
+<footer>CBDS 2027 · Volume 04 四本品牌 Brand Book · P.173–232 ／ Rev. A ／ 2026.07</footer>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CBDS 2027 — Vol. 03 影片與動態規範</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Söhne+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;1,6..96,400&family=Noto+Serif+TC:wght@300;400;500;600;900&family=Noto+Sans+TC:wght@200;300;400;500;700&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#232E1E; --navy:#0C5170; --pink:#F29CA7; --red:#E93429; --orange:#F39801;
+  --navy-a:#225065; --pink-a:#E5BEC3; --red-a:#9D4742; --orange-a:#A57930;
+  --paper:#F8F8F6; --mist:#ECEAE5; --line:#D9D7D1; --slate:#6E7069; --ink:#1A1A18;
+  --s1:8px;--s2:16px;--s3:24px;--s4:32px;--s5:40px;--s6:64px;--s7:96px;--s8:128px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:"Noto Sans TC",sans-serif;font-weight:300;line-height:1.85;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 var(--s4)}
+.mono{font-family:"IBM Plex Mono",monospace}
+p{max-width:70ch}
+
+.spectrum{display:flex;height:6px}
+.spectrum i{flex:1}
+.spectrum i:nth-child(1){background:var(--navy)}
+.spectrum i:nth-child(2){background:var(--red)}
+.spectrum i:nth-child(3){background:var(--pink)}
+.spectrum i:nth-child(4){background:var(--orange)}
+.spectrum i:nth-child(5){background:var(--forest)}
+
+nav{position:sticky;top:0;z-index:60;background:var(--forest)}
+nav .inner{max-width:1060px;margin:0 auto;padding:11px var(--s4);display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+nav .inner::-webkit-scrollbar{display:none}
+nav a{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#9CA398;text-decoration:none;white-space:nowrap;font-weight:500}
+nav a:hover{color:var(--orange)}
+
+.pg{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.2em;color:var(--slate);display:block;margin-bottom:10px}
+.eyebrow{font-family:"Archivo",sans-serif;font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--navy);display:block;margin-bottom:var(--s3)}
+h1{font-family:"Söhne",serif;font-weight:400;font-size:clamp(38px,6.5vw,76px);line-height:1.03}
+h1 em{font-style:italic}
+h2{font-family:"金萱",serif;font-weight:900;font-size:clamp(20px,2.8vw,28px);letter-spacing:.05em;margin-bottom:var(--s3)}
+h3{font-family:"金萱",serif;font-weight:600;font-size:17px;letter-spacing:.04em;margin-bottom:var(--s2);margin-top:var(--s5)}
+h3:first-of-type{margin-top:0}
+section{padding:var(--s7) 0;border-top:1px solid var(--line)}
+header{padding:var(--s8) 0 var(--s7)}
+.lead{font-family:"金萱",serif;font-weight:400;font-size:clamp(16px,2.1vw,19px);line-height:1.95;color:#3E423B;max-width:60ch}
+
+table.d{width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--s3)}
+table.d th{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);text-align:left;padding:0 14px 11px 0;border-bottom:1px solid var(--ink);font-weight:600}
+table.d td{padding:11px 14px 11px 0;border-bottom:1px solid var(--line);vertical-align:top}
+table.d td.n{font-family:"IBM Plex Mono",monospace;font-size:12.5px;white-space:nowrap}
+table.d td.r{text-align:right}
+
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:var(--s5);align-items:start}
+.g3{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--s3)}
+.tight{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-top:var(--s4)}
+.tight > div{background:var(--paper);padding:var(--s3)}
+.t5{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate)}
+
+.box{border:1px solid var(--line);background:#fff;padding:var(--s4);min-height:180px}
+.box.ctr{display:flex;flex-direction:column;align-items:center;justify-content:center}
+.box.dk{background:var(--forest);border-color:var(--forest);color:var(--paper)}
+.box.ms{background:var(--mist)}
+.cap{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--slate);margin-top:var(--s3);text-align:center}
+.capzh{font-size:12px;color:var(--slate);text-align:center;margin-top:4px}
+.box.dk .cap,.box.dk .capzh{color:rgba(255,255,255,.55)}
+
+.code{background:var(--forest);color:#C6CCC2;padding:var(--s4);font-family:"IBM Plex Mono",monospace;font-size:12.5px;line-height:1.9;margin-top:var(--s3);overflow-x:auto;white-space:pre}
+.code b{color:var(--orange);font-weight:500}
+.code .c{color:#7E8A78}
+
+.callout{background:var(--forest);color:#D2D8CE;padding:var(--s5);margin-top:var(--s5)}
+.callout h3{color:var(--paper);margin-top:0}
+.callout p{color:#D2D8CE}
+.callout strong{color:var(--orange);font-weight:500}
+
+.rule{font-family:"Archivo",sans-serif;font-size:10px;letter-spacing:.16em;padding:3px 8px;text-transform:uppercase;color:#fff}
+.rule.must{background:#C4453A}
+.rule.should{background:var(--navy)}
+
+.dd{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s4);margin-top:var(--s4)}
+.dd > div{padding:var(--s4);border-top:3px solid var(--navy)}
+.dd > div.no{border-top-color:#C4453A}
+.dd h4{font-family:"Archivo",sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:var(--s2);color:var(--navy);font-weight:600}
+.dd > div.no h4{color:#C4453A}
+.dd ul{list-style:none;font-size:14px}
+.dd li{padding:6px 0 6px 20px;position:relative;line-height:1.7}
+.dd li:before{content:"—";position:absolute;left:0;color:var(--line)}
+
+/* comparison */
+.cmp{width:100%;border-collapse:collapse;font-size:14px;margin-top:var(--s4)}
+.cmp th{font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;text-align:left;padding:0 14px 11px 0;border-bottom:1px solid var(--ink);font-weight:600}
+.cmp th.us{color:var(--orange-a)}
+.cmp td{padding:12px 14px 12px 0;border-bottom:1px solid var(--line);vertical-align:top;font-size:13.5px}
+.cmp td.us{color:var(--ink);font-weight:400}
+.cmp td.them{color:var(--slate)}
+
+/* storyboard */
+.sb{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:var(--s3);margin-top:var(--s4)}
+.sbf{border:1px solid var(--line)}
+.sbf .fr{aspect-ratio:16/9;background:var(--forest);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.sbf .lb{padding:12px;font-size:12px;color:var(--slate);line-height:1.7;border-top:1px solid var(--line);background:#fff}
+.sbf .lb b{display:block;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink);margin-bottom:5px}
+
+/* grade cards */
+.grade{border:1px solid var(--line);background:#fff}
+.grade .strip{display:flex;height:56px}
+.grade .strip i{flex:1}
+.grade .body{padding:var(--s3)}
+.grade h4{font-family:"金萱",serif;font-weight:600;font-size:15px;letter-spacing:.04em;margin-bottom:10px}
+
+footer{padding:var(--s7) 0 var(--s8);border-top:1px solid var(--line);font-family:"Archivo",sans-serif;font-size:10.5px;letter-spacing:.18em;color:var(--slate);text-transform:uppercase}
+@media(max-width:640px){.wrap{padding:0 var(--s3)} section{padding:var(--s6) 0}}
+</style>
+<style>
+@media (max-width: 768px) {
+  body { font-size: 16px; overflow-x: hidden; width: 100vw; }
+  svg, img, video { max-width: 100% !important; height: auto !important; }
+  table.d { display: block; width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  table.d td, table.d th { white-space: normal; min-width: 120px; }
+  .box { min-height: auto !important; padding: 24px !important; }
+  h1 { font-size: clamp(32px, 8vw, 42px) !important; }
+  h2 { font-size: clamp(24px, 6vw, 28px) !important; }
+  .wrap { padding: 0 16px !important; }
+  .g2, .g3, .dd, .pal, .tight, .ratio { display: flex !important; flex-direction: column !important; gap: 16px !important; }
+  .ratio span { padding: 10px; }
+}
+</style>
+</head>
+<body>
+<div class="spectrum"><i></i><i></i><i></i><i></i><i></i></div>
+<nav><div class="inner">
+  <a href="#philo">哲學</a><a href="#principles">三原則</a><a href="#light">佈光</a><a href="#natural">自然光</a><a href="#lens">鏡頭</a><a href="#compose">構圖</a>
+  <a href="#speed">運鏡速度</a><a href="#language">鏡頭語言</a><a href="#cut">轉場剪接</a>
+  <a href="#lut">LUT</a><a href="#curves">四品牌色調</a><a href="#skin">膚色顆粒</a><a href="#deliver">交付</a>
+  <a href="#sub">字幕</a><a href="#lower">Lower Third</a><a href="#sting">片頭</a><a href="#end">片尾</a><a href="#audio">聲音</a>
+  <a href="#safe169">16:9</a><a href="#safe916">9:16</a><a href="#safe219">21:9</a>
+</div></nav>
+
+<div class="wrap">
+
+<header>
+  <span class="pg">P. 125</span>
+  <span class="eyebrow">Volume 03 — Motion &amp; Film Guideline</span>
+  <h1>Motion<br>&amp; <em>Film</em></h1>
+  <p class="lead" style="margin-top:var(--s5)">第三冊 · 影片與動態規範<br>這一冊定義的不是「怎麼把影片做得好看」，而是「怎麼讓四個品牌的影片看起來像同一個人拍的」。</p>
+</header>
+
+<!-- ===== 3.1 PHILOSOPHY ===== -->
+
+<section id="philo">
+  <span class="pg">P. 126 — 128</span>
+  <span class="eyebrow">3.1.1 — Reference Frame</span>
+  <h2>A24 × Apple TV+，而非 Netflix</h2>
+  <p class="lead">這句話常被當成一種氛圍描述，但它其實是一組可以量化的技術決定。以下是三者在製作層面的實際差異。</p>
+
+  <table class="cmp">
+    <thead><tr><th>面向</th><th class="us">本系統（A24 / Apple TV+ 取向）</th><th>Netflix 取向</th></tr></thead>
+    <tr><td class="n">平均鏡長</td><td class="us">6–12 秒</td><td class="them">2–4 秒</td></tr>
+    <tr><td class="n">每分鐘鏡數</td><td class="us">6–10 顆</td><td class="them">18–30 顆</td></tr>
+    <tr><td class="n">運鏡</td><td class="us">緩慢、單向、常為靜止</td><td class="them">頻繁、複合、手持增加能量</td></tr>
+    <tr><td class="n">對比</td><td class="us">高反差，暗部保留、不提亮</td><td class="them">中反差，暗部提亮確保手機可見</td></tr>
+    <tr><td class="n">飽和度</td><td class="us">低（−12 至 −18）</td><td class="them">中高，膚色偏暖</td></tr>
+    <tr><td class="n">構圖</td><td class="us">大量留白、對稱、前景遮擋</td><td class="them">主體填滿、淺景深、緊構圖</td></tr>
+    <tr><td class="n">音樂</td><td class="us">環境音為主，音樂稀疏或無</td><td class="them">全片鋪底，情緒引導明確</td></tr>
+    <tr><td class="n">開場</td><td class="us">先給環境，人與物件後出現</td><td class="them">前 3 秒必須有鉤子</td></tr>
+    <tr><td class="n">目的</td><td class="us">讓觀眾停留</td><td class="them">讓觀眾不划走</td></tr>
+  </table>
+
+  <div class="callout">
+    <h3>這不是說 Netflix 的做法比較差</h3>
+    <p>那套語彙在演算法驅動的環境裡是正確的，只是<strong>它會讓一個賣「靜」的品牌看起來很吵</strong>。四個品牌賣的都是慢下來的價值——空間、器物、方法、氛圍——影片的節奏必須和商品的節奏一致，否則觀眾會感覺到不對勁，即使說不出哪裡不對。</p>
+  </div>
+</section>
+
+<section id="principles">
+  <span class="pg">P. 129 — 130</span>
+  <span class="eyebrow">3.1.2 — Three Principles</span>
+  <h2>三大原則</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="box">
+      <div style="font-family:'Söhne',serif;font-size:38px;color:var(--navy)">01</div>
+      <h3 style="margin-top:12px">留白</h3>
+      <p style="font-size:14px">畫面中至少 35% 是空的。空的地方不是浪費，是讓觀眾的眼睛有地方休息、也是壓字的位置。物件不填滿畫框。</p>
+    </div>
+    <div class="box">
+      <div style="font-family:'Söhne',serif;font-size:38px;color:var(--navy)">02</div>
+      <h3 style="margin-top:12px">緩慢</h3>
+      <p style="font-size:14px">每秒推鏡不超過畫面的 3%。單顆鏡頭不短於 4 秒。剪接點落在動作結束後，而不是動作進行中。</p>
+    </div>
+    <div class="box">
+      <div style="font-family:'Söhne',serif;font-size:38px;color:var(--navy)">03</div>
+      <h3 style="margin-top:12px">低飽和高反差</h3>
+      <p style="font-size:14px">飽和度下壓、對比拉開。陰影保留不提亮，高光保留不壓死。這是「質感」在技術上的具體定義。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3.2 CINEMATOGRAPHY ===== -->
+
+<section id="light">
+  <span class="pg">P. 131 — 133</span>
+  <span class="eyebrow">3.2.1 — Lighting</span>
+  <h2>三種佈光</h2>
+  <p>所有影片只用這三種佈光。不用第四種，也不混用。</p>
+
+  <div class="g3" style="margin-top:var(--s5)">
+    <div class="box ctr">
+      <svg width="190" height="150" viewBox="0 0 190 150">
+        <rect x="10" y="10" width="170" height="130" fill="none" stroke="#D9D7D1"/>
+        <circle cx="95" cy="82" r="15" fill="#232E1E"/>
+        <text x="95" y="86" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#F8F8F6">主體</text>
+        <g stroke="#F39801" stroke-width="1.6"><line x1="38" y1="34" x2="80" y2="70"/></g>
+        <rect x="20" y="20" width="24" height="14" fill="#F39801"/>
+        <text x="32" y="30" text-anchor="middle" font-family="IBM Plex Mono" font-size="6" fill="#232E1E">窗</text>
+        <rect x="80" y="120" width="30" height="10" fill="none" stroke="#0C5170" stroke-dasharray="3 2"/>
+        <text x="95" y="128" text-anchor="middle" font-family="IBM Plex Mono" font-size="6" fill="#0C5170">攝影機</text>
+        <path d="M60 45 A 45 45 0 0 1 130 45" fill="none" stroke="#D9D7D1" stroke-dasharray="2 3"/>
+        <text x="95" y="40" text-anchor="middle" font-family="IBM Plex Mono" font-size="6.5" fill="#6E7069">45°</text>
+      </svg>
+      <div class="cap">A — Key Light</div>
+      <div class="capzh">主光：單一側後方 45°<br>用於空間全景、器物</div>
+    </div>
+
+    <div class="box ctr">
+      <svg width="190" height="150" viewBox="0 0 190 150">
+        <rect x="10" y="10" width="170" height="130" fill="none" stroke="#D9D7D1"/>
+        <circle cx="95" cy="82" r="15" fill="#232E1E"/>
+        <text x="95" y="86" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#F8F8F6">主體</text>
+        <rect x="83" y="18" width="24" height="12" fill="#F39801"/>
+        <text x="95" y="27" text-anchor="middle" font-family="IBM Plex Mono" font-size="6" fill="#232E1E">背光</text>
+        <line x1="95" y1="32" x2="95" y2="64" stroke="#F39801" stroke-width="1.6"/>
+        <rect x="18" y="74" width="16" height="20" fill="none" stroke="#B4B7B0"/>
+        <text x="26" y="104" text-anchor="middle" font-family="IBM Plex Mono" font-size="5.5" fill="#6E7069">反光板</text>
+        <line x1="36" y1="82" x2="76" y2="82" stroke="#B4B7B0" stroke-dasharray="3 2"/>
+        <rect x="80" y="120" width="30" height="10" fill="none" stroke="#0C5170" stroke-dasharray="3 2"/>
+        <text x="95" y="128" text-anchor="middle" font-family="IBM Plex Mono" font-size="6" fill="#0C5170">攝影機</text>
+      </svg>
+      <div class="cap">B — Rim Light</div>
+      <div class="capzh">輪廓光：背光 ＋ 微量反光<br>用於人物、織品質感</div>
+    </div>
+
+    <div class="box ctr">
+      <svg width="190" height="150" viewBox="0 0 190 150">
+        <rect x="10" y="10" width="170" height="130" fill="none" stroke="#D9D7D1"/>
+        <circle cx="95" cy="82" r="15" fill="#232E1E"/>
+        <text x="95" y="86" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="#F8F8F6">主體</text>
+        <circle cx="42" cy="46" r="6" fill="#F39801"/><circle cx="146" cy="60" r="5" fill="#F39801"/><circle cx="60" cy="118" r="4.5" fill="#F39801"/>
+        <text x="42" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="5.5" fill="#6E7069">燈具</text>
+        <text x="146" y="48" text-anchor="middle" font-family="IBM Plex Mono" font-size="5.5" fill="#6E7069">壁燈</text>
+        <text x="60" y="132" text-anchor="middle" font-family="IBM Plex Mono" font-size="5.5" fill="#6E7069">桌燈</text>
+        <rect x="80" y="120" width="30" height="10" fill="none" stroke="#0C5170" stroke-dasharray="3 2" opacity=".4"/>
+      </svg>
+      <div class="cap">C — Practical Light</div>
+      <div class="capzh">實用光：畫面內的燈具本身<br>用於夜景、氛圍、香氛品牌</div>
+    </div>
+  </div>
+
+  <table class="d">
+    <thead><tr><th>佈光</th><th>光比（主：補）</th><th>色溫</th><th>禁止</th></tr></thead>
+    <tr><td>A 主光</td><td class="n">8 : 1</td><td class="n">現場自然色溫，不統一</td><td>不加補光燈把暗部打亮</td></tr>
+    <tr><td>B 輪廓光</td><td class="n">12 : 1</td><td class="n">背光可略暖 (+200K)</td><td>不用柔光箱正面打平</td></tr>
+    <tr><td>C 實用光</td><td class="n">現場為準</td><td class="n">2700–3000K</td><td>不在畫面外加燈模擬</td></tr>
+  </table>
+</section>
+
+<section id="natural">
+  <span class="pg">P. 134 — 135</span>
+  <span class="eyebrow">3.2.2 — Natural Light</span>
+  <h2>自然光時段</h2>
+  <table class="d">
+    <thead><tr><th>時段</th><th>特性</th><th>適用</th><th>色調</th></tr></thead>
+    <tr><td><b style="font-weight:500">Golden Hour</b><br><span style="font-size:12.5px;color:var(--slate)">日出後／日落前 1 小時</span></td><td>低角度、長陰影、暖色</td><td>空間全景、外觀、生活感畫面</td><td class="n">3200–4000K</td></tr>
+    <tr><td><b style="font-weight:500">Blue Hour</b><br><span style="font-size:12.5px;color:var(--slate)">日落後 20–40 分鐘</span></td><td>柔和均勻、冷藍、室內燈亮起</td><td>建築外觀、夜間氛圍、實用光</td><td class="n">7000–9000K</td></tr>
+    <tr><td><b style="font-weight:500">Overcast</b><br><span style="font-size:12.5px;color:var(--slate)">陰天全日</span></td><td>零硬陰影、極柔、低反差</td><td>器物、織品、材質特寫</td><td class="n">6000–6500K</td></tr>
+    <tr><td><b style="font-weight:500">Hard Noon</b><br><span style="font-size:12.5px;color:var(--slate)">正午直射</span></td><td>頂光、短硬陰影、高反差</td><td class="n" style="color:#C4453A">禁止用於空間與人物</td><td class="n">5600K</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule should">應該</span> 同一支影片的所有畫面必須來自同一個時段。跨時段拍攝的素材不得剪在同一段落。</p>
+</section>
+
+<section id="lens">
+  <span class="pg">P. 136 — 138</span>
+  <span class="eyebrow">3.2.3 — Lens &amp; Exposure</span>
+  <h2>鏡頭、景深與快門</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div>
+      <h3>鏡頭選擇</h3>
+      <table class="d">
+        <thead><tr><th>焦段</th><th>用途</th><th>光圈</th></tr></thead>
+        <tr><td class="n">24mm</td><td>僅限空間廣角全景</td><td class="n">T4.0 – T5.6</td></tr>
+        <tr><td class="n">35mm</td><td>空間、動線、環境人像</td><td class="n">T2.8 – T4.0</td></tr>
+        <tr><td class="n">50mm</td><td>局部、器物群組、對話</td><td class="n">T2.8</td></tr>
+        <tr><td class="n">85mm</td><td>單一物件、材質特寫</td><td class="n">T2.8 – T4.0</td></tr>
+        <tr><td class="n">100mm Macro</td><td>織紋、釉面、木紋</td><td class="n">T5.6 – T8.0</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)">預設光圈為 <b style="font-weight:500">T2.8</b>。極淺景深（T1.4）不使用——它會讓空間失去脈絡，也是「網紅感」的主要來源之一。</p>
+    </div>
+    <div>
+      <h3>曝光與快門</h3>
+      <table class="d">
+        <tr><td>快門角度</td><td class="n r">180°</td></tr>
+        <tr><td>24fps 對應快門</td><td class="n r">1/48 s</td></tr>
+        <tr><td>25fps 對應快門</td><td class="n r">1/50 s</td></tr>
+        <tr><td>基準 ISO</td><td class="n r">依機身原生，不越級</td></tr>
+        <tr><td>曝光策略</td><td class="n r">保護高光，ETTR 不使用</td></tr>
+        <tr><td>幀率</td><td class="n r">24fps（電影感）</td></tr>
+        <tr><td>升格</td><td class="n r">最高 60fps → 24fps（2.5×）</td></tr>
+        <tr><td style="border:none">禁止</td><td class="n r" style="border:none">120fps 以上極慢動作</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)"><span class="rule must">必須</span> 快門角度固定 180°。加快快門會產生生硬的動態，那是動作片的語彙。</p>
+    </div>
+  </div>
+</section>
+
+<section id="compose">
+  <span class="pg">P. 139 — 140</span>
+  <span class="eyebrow">3.2.4 — Composition</span>
+  <h2>構圖法則</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="box ctr">
+      <svg width="200" height="113" viewBox="0 0 200 113">
+        <rect width="200" height="113" fill="#232E1E"/>
+        <rect x="118" y="42" width="52" height="52" fill="#5A6A52"/>
+        <g stroke="#F39801" stroke-width=".8" stroke-dasharray="3 3"><line x1="66" y1="0" x2="66" y2="113"/></g>
+        <text x="30" y="60" font-family="IBM Plex Mono" font-size="7" fill="#F39801">留白 35%+</text>
+      </svg>
+      <div class="capzh">留白：主體偏一側，留出壓字空間</div>
+    </div>
+    <div class="box ctr">
+      <svg width="200" height="113" viewBox="0 0 200 113">
+        <rect width="200" height="113" fill="#232E1E"/>
+        <rect x="70" y="26" width="60" height="70" fill="#5A6A52"/>
+        <g stroke="#F39801" stroke-width=".8" stroke-dasharray="3 3"><line x1="100" y1="0" x2="100" y2="113"/></g>
+      </svg>
+      <div class="capzh">對稱：中軸置中，用於建築立面</div>
+    </div>
+    <div class="box ctr">
+      <svg width="200" height="113" viewBox="0 0 200 113">
+        <rect width="200" height="113" fill="#232E1E"/>
+        <rect x="80" y="34" width="54" height="54" fill="#5A6A52"/>
+        <rect x="0" y="0" width="34" height="113" fill="#141C11"/>
+        <rect x="0" y="88" width="200" height="25" fill="#141C11"/>
+        <text x="4" y="50" font-family="IBM Plex Mono" font-size="6" fill="#9CA398">前景</text>
+      </svg>
+      <div class="capzh">前景遮擋：用門框、樑柱、植栽建立層次</div>
+    </div>
+  </div>
+  <table class="d">
+    <tr><td>垂直線</td><td class="n">必須垂直</td><td>後製校正或使用移軸；不接受「梯形」空間照</td></tr>
+    <tr><td>水平線</td><td class="n">落在上或下 1/3</td><td>不置中，除非刻意對稱</td></tr>
+    <tr><td>主體佔比</td><td class="n">≤ 65%</td><td>物件不填滿畫框</td></tr>
+    <tr><td>頭部空間</td><td class="n">人物眼睛在上 1/3 線</td><td>不切頭頂、不留過多頭上空間</td></tr>
+    <tr><td>禁止</td><td class="n">—</td><td>荷蘭角、魚眼、極端仰俯角</td></tr>
+  </table>
+</section>
+
+<!-- ===== 3.3 CAMERA MOVEMENT ===== -->
+
+<section id="speed">
+  <span class="pg">P. 141 — 142</span>
+  <span class="eyebrow">3.3.1 — Movement Speed</span>
+  <h2>運鏡速度</h2>
+  <p class="lead">規則只有一條：<b style="font-weight:500">每秒的畫面變化不超過 3%</b>。這是本冊最容易被違反的一條，也是最能決定成品質感的一條。</p>
+  <table class="d">
+    <thead><tr><th>鏡頭長度</th><th>推鏡總量（1%/秒）</th><th>推鏡總量（3%/秒）</th><th>觀感</th></tr></thead>
+    <tr><td class="n">4 秒</td><td class="n">4%</td><td class="n">12%</td><td>幾乎察覺不到，適合靜物</td></tr>
+    <tr><td class="n">6 秒</td><td class="n">6%</td><td class="n">18%</td><td>標準，適合多數場合</td></tr>
+    <tr><td class="n">10 秒</td><td class="n">10%</td><td class="n">30%</td><td>明顯但仍緩慢，適合開場</td></tr>
+    <tr><td class="n">15 秒</td><td class="n">15%</td><td class="n">45%</td><td>上限。超過即為快速推鏡</td></tr>
+  </table>
+  <div class="code"><span class="c">/* 換算範例：Dolly In，6 秒鏡頭 */</span>
+起始畫面寬度  <b>100%</b>
+結束畫面寬度  <b>88%</b>      <span class="c">→ 總推進 12%，即 2%/秒 ✓</span>
+
+<span class="c">/* 違規範例 */</span>
+起始 100% → 結束 <b>60%</b>   <span class="c">→ 6.7%/秒 ✕ 過快</span></div>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 運鏡必須<b style="font-weight:500">等速</b>——不加速、不減速、不使用 ease in/out。緩起緩停是廣告語彙，不是本系統的語彙。</p>
+</section>
+
+<section id="language">
+  <span class="pg">P. 143 — 144</span>
+  <span class="eyebrow">3.3.2 — Camera Language</span>
+  <h2>允許與禁止的鏡頭語言</h2>
+  <div class="dd">
+    <div>
+      <h4>允許</h4>
+      <ul>
+        <li><b style="font-weight:500">Static</b> — 完全靜止。應佔全片 40% 以上</li>
+        <li><b style="font-weight:500">Dolly In / Out</b> — 直線推拉，等速</li>
+        <li><b style="font-weight:500">Slider</b> — 水平橫移，揭露空間層次</li>
+        <li><b style="font-weight:500">Slow Orbit</b> — 繞行物件，單向不折返</li>
+        <li><b style="font-weight:500">Crane Down / Up</b> — 垂直升降，配合立面</li>
+        <li><b style="font-weight:500">Tilt</b> — 緩慢俯仰，僅用於揭露高度</li>
+        <li><b style="font-weight:500">Focus Pull</b> — 前後景對焦轉移，2 秒以上</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h4>禁止</h4>
+      <ul>
+        <li>快速 Pan、Whip Pan</li>
+        <li>抖動手持（含刻意的「紀錄感」）</li>
+        <li>Zoom（變焦），任何速度</li>
+        <li>空拍機環繞掃視（Drone Sweep）</li>
+        <li>Hyperlapse、Timelapse</li>
+        <li>穩定器的「跟拍穿梭」運鏡</li>
+        <li>同一顆鏡頭內複合兩種運動</li>
+      </ul>
+    </div>
+  </div>
+  <table class="d">
+    <thead><tr><th>鏡頭類型</th><th>全片佔比</th></tr></thead>
+    <tr><td>Static 靜止</td><td class="n">≥ 40%</td></tr>
+    <tr><td>Dolly / Slider 直線運動</td><td class="n">30 – 40%</td></tr>
+    <tr><td>Orbit / Crane</td><td class="n">≤ 15%</td></tr>
+    <tr><td>Focus Pull</td><td class="n">≤ 10%</td></tr>
+  </table>
+</section>
+
+<section id="cut">
+  <span class="pg">P. 145 — 148</span>
+  <span class="eyebrow">3.3.3 — Transitions &amp; Editing</span>
+  <h2>轉場與剪接節奏</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div>
+      <h3>轉場</h3>
+      <table class="d">
+        <tr><td>硬切 Cut</td><td class="n">預設 · 佔 90% 以上</td></tr>
+        <tr><td>溶接 Dissolve</td><td class="n">12–18 frame（0.5–0.75 秒）</td></tr>
+        <tr><td>淡入淡出 Fade</td><td class="n">僅用於片頭尾 · 24 frame</td></tr>
+        <tr><td>禁止</td><td class="n">滑動、翻頁、光斑、遮罩、變形、閃白</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)">溶接只用於<b style="font-weight:500">時間或地點的跳躍</b>，不用於同一場景的鏡頭連接。</p>
+    </div>
+    <div>
+      <h3>剪接節奏</h3>
+      <table class="d">
+        <tr><td>單鏡最短</td><td class="n">4 秒</td></tr>
+        <tr><td>單鏡最長</td><td class="n">15 秒</td></tr>
+        <tr><td>平均鏡長</td><td class="n">6–8 秒</td></tr>
+        <tr><td>每分鐘鏡數</td><td class="n">6–10 顆</td></tr>
+        <tr><td>剪接點</td><td class="n">動作結束後 4–8 frame</td></tr>
+        <tr><td>開場</td><td class="n">首顆鏡頭 ≥ 8 秒，先給環境</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="callout">
+    <h3>關於「前三秒鉤子」</h3>
+    <p>短影音的標準建議是前三秒必須有衝擊。本系統<strong>刻意不遵守</strong>：開場第一顆鏡頭至少 8 秒，先建立環境與空氣感。代價是完播率會低於同類帳號，換來的是留下來的觀眾對品牌的印象完全不同。這是有意識的取捨，不是疏忽。</p>
+  </div>
+</section>
+
+<!-- ===== 3.4 GRADING ===== -->
+
+<section id="lut">
+  <span class="pg">P. 149 — 150</span>
+  <span class="eyebrow">3.4.1 — Grading Workflow</span>
+  <h2>LUT 與調色工作流</h2>
+  <div class="code"><span class="c">/* 四階段，順序不可調換 */</span>
+
+<b>01  Log → Rec.709</b>      機身原生轉換 LUT（S-Log3 / V-Log / C-Log3）
+                        此階段不做任何創作性調整
+
+<b>02  一級調光 Primary</b>    曝光、白平衡、對比、飽和
+                        目標：所有素材在此階段看起來一致
+
+<b>03  品牌 Look</b>          套用該品牌的 Lift / Gamma / Gain（見下頁）
+                        強度固定，不逐鏡微調
+
+<b>04  二級調光 Secondary</b>  局部修正、膚色保護、窗光壓制
+                        顆粒與 Halation 在此階段最後加入</div>
+  <table class="d">
+    <tr><td>色彩空間</td><td class="n">工作 DaVinci Wide Gamut · 輸出 Rec.709 Gamma 2.4</td></tr>
+    <tr><td>參考監看</td><td class="n">100 nits · D65 · 校色過的螢幕</td></tr>
+    <tr><td>波形檢查</td><td class="n">高光 ≤ 95 IRE · 陰影 ≥ 3 IRE</td></tr>
+    <tr><td>禁止</td><td class="n">直接套用第三方「電影感 LUT」取代二至四階段</td></tr>
+  </table>
+</section>
+
+<section id="curves">
+  <span class="pg">P. 151 — 154</span>
+  <span class="eyebrow">3.4.2 — Brand Looks</span>
+  <h2>四品牌色調曲線</h2>
+  <p>四個品牌共用工作流，但第三階段的 Look 各自不同。數值為 DaVinci Resolve 的 Lift / Gamma / Gain 色輪偏移量。</p>
+
+  <div class="g2" style="margin-top:var(--s5)">
+    <div class="grade">
+      <div class="strip"><i style="background:#1B2B33"></i><i style="background:#2E4A54"></i><i style="background:#6E8288"></i><i style="background:#C3C9C4"></i><i style="background:#EDEDE7"></i></div>
+      <div class="body">
+        <h4>加減設計多媒體工作站 MINUS PLUS STUDIO</h4>
+        <table class="d" style="margin-top:0;font-size:13px">
+          <tr><td>Lift</td><td class="n r">+Navy 0.06 · −0.01 亮度</td></tr>
+          <tr><td>Gamma</td><td class="n r">中性 · −0.02 亮度</td></tr>
+          <tr><td>Gain</td><td class="n r">+Orange 0.03</td></tr>
+          <tr><td>飽和</td><td class="n r">−16</td></tr>
+          <tr><td style="border:none">對比</td><td class="n r" style="border:none">+14（樞軸 0.42）</td></tr>
+        </table>
+        <p style="font-size:12.5px;color:var(--slate);margin-top:10px">冷陰影、微暖高光。空間感優先，木質與織品保留質地。</p>
+      </div>
+    </div>
+
+    <div class="grade">
+      <div class="strip"><i style="background:#22282A"></i><i style="background:#4A4A44"></i><i style="background:#8E8778"></i><i style="background:#C9C2B4"></i><i style="background:#EFEDE7"></i></div>
+      <div class="body">
+        <h4>軟構造 Soft Structure</h4>
+        <table class="d" style="margin-top:0;font-size:13px">
+          <tr><td>Lift</td><td class="n r">中性 · +0.01 亮度</td></tr>
+          <tr><td>Gamma</td><td class="n r">+Yellow 0.02</td></tr>
+          <tr><td>Gain</td><td class="n r">+Brass 0.04（橙黃向）</td></tr>
+          <tr><td>飽和</td><td class="n r">−12</td></tr>
+          <tr><td style="border:none">對比</td><td class="n r" style="border:none">+10（樞軸 0.45）</td></tr>
+        </table>
+        <p style="font-size:12.5px;color:var(--slate);margin-top:10px">暖中性。商品必須忠實還原材質色，Look 強度最低。</p>
+      </div>
+    </div>
+
+    <div class="grade">
+      <div class="strip"><i style="background:#0E0C0B"></i><i style="background:#3A2A2C"></i><i style="background:#7A5A56"></i><i style="background:#B8AEA2"></i><i style="background:#EAE3D8"></i></div>
+      <div class="body">
+        <h4>COREY 馮凱瑞</h4>
+        <table class="d" style="margin-top:0;font-size:13px">
+          <tr><td>Lift</td><td class="n r">−0.03 亮度（壓黑）</td></tr>
+          <tr><td>Gamma</td><td class="n r">+Oxblood 0.03</td></tr>
+          <tr><td>Gain</td><td class="n r">+Bone 0.02</td></tr>
+          <tr><td>飽和</td><td class="n r">−22</td></tr>
+          <tr><td style="border:none">對比</td><td class="n r" style="border:none">+22（樞軸 0.38）</td></tr>
+        </table>
+        <p style="font-size:12.5px;color:var(--slate);margin-top:10px">四者中對比最高、飽和最低。近乎單色，酒紅為唯一色相。</p>
+      </div>
+    </div>
+
+    <div class="grade">
+      <div class="strip"><i style="background:#211A15"></i><i style="background:#4E3A2C"></i><i style="background:#9A7A5E"></i><i style="background:#C8B79E"></i><i style="background:#E8DCC8"></i></div>
+      <div class="body">
+        <h4>以太律動 Aether Vibes</h4>
+        <table class="d" style="margin-top:0;font-size:13px">
+          <tr><td>Lift</td><td class="n r">+Terracotta 0.05 · +0.02 亮度</td></tr>
+          <tr><td>Gamma</td><td class="n r">+Sage 0.02</td></tr>
+          <tr><td>Gain</td><td class="n r">+Sand 0.05</td></tr>
+          <tr><td>飽和</td><td class="n r">−8</td></tr>
+          <tr><td style="border:none">對比</td><td class="n r" style="border:none">+6（樞軸 0.50）</td></tr>
+        </table>
+        <p style="font-size:12.5px;color:var(--slate);margin-top:10px">最柔、對比最低、陰影上提。大地色系，接近底片的通透感。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skin">
+  <span class="pg">P. 155</span>
+  <span class="eyebrow">3.4.3 — Skin, Grain &amp; Halation</span>
+  <h2>膚色保護、顆粒與光暈</h2>
+  <table class="d">
+    <thead><tr><th>項目</th><th>設定</th><th>上限</th></tr></thead>
+    <tr><td>膚色保護</td><td class="n">HSL 限定 · Hue 15–35°</td><td>飽和降幅不超過全片的一半</td></tr>
+    <tr><td>膚色亮度</td><td class="n">55–70 IRE</td><td>不得低於 45 IRE</td></tr>
+    <tr><td>顆粒 Grain</td><td class="n">Kodak 5219 模擬</td><td>強度 ≤ 0.35 · 尺寸 0.6</td></tr>
+    <tr><td>Halation</td><td class="n">高光邊緣暖色暈散</td><td>強度 ≤ 0.20 · 半徑 ≤ 12px</td></tr>
+    <tr><td>暗角 Vignette</td><td class="n">可選</td><td>≤ 0.15 · 柔邊 ≥ 0.6</td></tr>
+    <tr><td>禁止</td><td class="n">—</td><td>漏光、刮痕、跳幀、老電影特效</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 顆粒與 Halation 一律在最後一階段加入，且四個品牌使用完全相同的參數。這兩項是把四個品牌的影片綁在一起的技術線索。</p>
+</section>
+
+<section id="deliver">
+  <span class="pg">P. 156</span>
+  <span class="eyebrow">3.4.4 — Delivery</span>
+  <h2>輸出與交付規格</h2>
+  <table class="d">
+    <thead><tr><th>用途</th><th>編碼</th><th>解析度</th><th>位元率</th></tr></thead>
+    <tr><td>母帶存檔</td><td class="n">ProRes 422 HQ</td><td class="n">3840×2160</td><td class="n">依編碼</td></tr>
+    <tr><td>YouTube</td><td class="n">H.264 / H.265</td><td class="n">3840×2160</td><td class="n">45–60 Mbps</td></tr>
+    <tr><td>Instagram Reels</td><td class="n">H.264</td><td class="n">1080×1920</td><td class="n">12–16 Mbps</td></tr>
+    <tr><td>官網 Hero</td><td class="n">H.264 · 無音軌</td><td class="n">1920×1080</td><td class="n">6–8 Mbps</td></tr>
+    <tr><td>簡報嵌入</td><td class="n">H.264</td><td class="n">1920×1080</td><td class="n">10 Mbps</td></tr>
+  </table>
+  <table class="d">
+    <tr><td>色彩空間</td><td class="n">Rec.709 · Gamma 2.4 · 全範圍標記</td></tr>
+    <tr><td>音訊</td><td class="n">AAC 320kbps · −14 LUFS · 峰值 −1 dBTP</td></tr>
+    <tr><td>幀率</td><td class="n">24fps（社群平台可 30fps）</td></tr>
+    <tr><td>檔名</td><td class="n">依序冊 P.011 命名規則</td></tr>
+  </table>
+</section>
+
+<!-- ===== 3.5 SUBTITLES ===== -->
+
+<section id="sub">
+  <span class="pg">P. 157 — 159</span>
+  <span class="eyebrow">3.5.1 — Subtitles</span>
+  <h2>字幕規範</h2>
+  <div class="box dk ctr" style="margin-top:var(--s4);padding:0;overflow:hidden">
+    <div style="width:100%;aspect-ratio:16/9;background:#141C11;position:relative;display:flex;align-items:flex-end">
+      <div style="position:absolute;inset:0;border:1px dashed rgba(255,255,255,.16);margin:8%  8% 10% 8%"></div>
+      <div style="padding:0 0 8% 8%;max-width:70%">
+        <div style="font-family:'Noto Sans TC',sans-serif;font-size:clamp(11px,1.7vw,17px);color:rgba(248,248,246,.9);line-height:1.6">我們不定義風格，我們為您定格歲月的安寧。</div>
+        <div style="font-family:'Archivo',sans-serif;font-size:clamp(8px,1.1vw,11px);color:rgba(248,248,246,.55);margin-top:6px;letter-spacing:.04em">We don't define style. We frame stillness.</div>
+      </div>
+    </div>
+    <div class="cap" style="padding:14px">Subtitle Placement · 16:9</div>
+  </div>
+  <table class="d">
+    <thead><tr><th>項目</th><th>16:9</th><th>9:16</th></tr></thead>
+    <tr><td>位置</td><td class="n">左下對齊</td><td class="n">中下，齊左</td></tr>
+    <tr><td>距左邊界</td><td class="n">8% 畫面寬</td><td class="n">8% 畫面寬</td></tr>
+    <tr><td>距下邊界</td><td class="n">96px（以 1080p 計）</td><td class="n">畫面高的 22%</td></tr>
+    <tr><td>字級</td><td class="n">42px（1080p）</td><td class="n">54px（1920 高）</td></tr>
+    <tr><td>顏色</td><td class="n">#F8F8F6 · 90% 不透明</td><td class="n">同左</td></tr>
+    <tr><td>單行字數</td><td class="n">中文 ≤ 18 字</td><td class="n">中文 ≤ 13 字</td></tr>
+    <tr><td>行數</td><td class="n">最多 2 行</td><td class="n">最多 2 行</td></tr>
+    <tr><td>停留時間</td><td class="n">≥ 1.2 秒 · 每字 0.15 秒</td><td class="n">同左</td></tr>
+  </table>
+  <h3>中英雙語字幕</h3>
+  <table class="d">
+    <tr><td>主語言（中文）</td><td class="n">思源黑體 300 · 100% 字級 · 90% 不透明</td></tr>
+    <tr><td>副語言（英文）</td><td class="n">Archivo 400 · 62% 字級 · 55% 不透明</td></tr>
+    <tr><td>行距</td><td class="n">主副之間 0.4 × 主字級</td></tr>
+    <tr><td>對齊</td><td class="n">兩行皆齊左，共用同一基準線</td></tr>
+  </table>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 字幕不置中、不加背景色條、不加外框描邊、不加陰影。若對比不足，改變畫面而非改變字幕。</p>
+</section>
+
+<section id="lower">
+  <span class="pg">P. 160 — 162</span>
+  <span class="eyebrow">3.5.2 — Lower Third &amp; Title Cards</span>
+  <h2>Lower Third 與字卡</h2>
+  <div class="g3" style="margin-top:var(--s4)">
+    <div class="box ctr" style="padding:0">
+      <div style="width:100%;aspect-ratio:16/9;background:#232E1E;display:flex;align-items:flex-end;padding:0 0 12% 8%">
+        <div style="border-left:2px solid #F39801;padding-left:12px">
+          <div style="font-family:'金萱',serif;font-weight:600;font-size:13px;color:#F8F8F6;letter-spacing:.05em">馮凱瑞</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:8px;color:#9CA398;letter-spacing:.16em;margin-top:3px">FOUNDER · MINUS PLUS STUDIO</div>
+        </div>
+      </div>
+      <div class="capzh" style="padding:12px">A — 人物名銜<br>進場 400ms 由左展開 · 停留 4 秒</div>
+    </div>
+    <div class="box ctr" style="padding:0">
+      <div style="width:100%;aspect-ratio:16/9;background:#232E1E;display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center">
+          <div style="font-family:'Archivo',sans-serif;font-size:7.5px;letter-spacing:.28em;color:#F39801">CHAPTER 02</div>
+          <div style="font-family:'金萱',serif;font-weight:900;font-size:16px;color:#F8F8F6;letter-spacing:.08em;margin-top:8px">材質的重量</div>
+        </div>
+      </div>
+      <div class="capzh" style="padding:12px">B — 章節字卡<br>淡入 600ms · 停留 2.5 秒 · 淡出 400ms</div>
+    </div>
+    <div class="box ctr" style="padding:0">
+      <div style="width:100%;aspect-ratio:16/9;background:#232E1E;display:flex;align-items:flex-start;justify-content:flex-end;padding:8% 8% 0 0">
+        <div style="text-align:right">
+          <div style="font-family:'Archivo',sans-serif;font-size:8px;letter-spacing:.2em;color:#9CA398">LOCATION</div>
+          <div style="font-family:'Noto Sans TC',sans-serif;font-size:11px;color:#F8F8F6;margin-top:4px">高雄 · 左營</div>
+        </div>
+      </div>
+      <div class="capzh" style="padding:12px">C — 地點／資訊標<br>淡入 300ms · 停留 3 秒</div>
+    </div>
+  </div>
+  <p style="font-size:13.5px;color:var(--slate);margin-top:var(--s3)"><span class="rule must">必須</span> 所有文字動畫只能是<b style="font-weight:500">淡入</b>或<b style="font-weight:500">由左展開</b>。禁止打字機效果、彈跳、逐字浮現、旋轉、縮放。</p>
+</section>
+
+<!-- ===== 3.6 LOGO ANIMATION ===== -->
+
+<section id="sting">
+  <span class="pg">P. 163 — 165</span>
+  <span class="eyebrow">3.6.1 — Logo Sting</span>
+  <h2>片頭 Logo 動畫</h2>
+  <p class="lead">三秒。加減設計多媒體工作站的標誌動畫必須來自標誌本身的結構——<b style="font-weight:500">減號先出現，加號後補上</b>，這正是「以加法疊加、以減法還原」的動態化。</p>
+
+  <div class="sb">
+    <div class="sbf">
+      <div class="fr"></div>
+      <div class="lb"><b>00:00 — 00:12</b>全黑 Forest 底。無聲。<br>建立空白。</div>
+    </div>
+    <div class="sbf">
+      <div class="fr">
+        <svg viewBox="53.754 3.918 95.957 47.984" width="88">
+          <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/>
+          <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/>
+          <circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/>
+        </svg>
+      </div>
+      <div class="lb"><b>00:12 — 00:30</b>粉圓自中心淡入（400ms）。<br>減號由左向右滑出。</div>
+    </div>
+    <div class="sbf">
+      <div class="fr">
+        <svg viewBox="53.754 3.918 95.957 47.984" width="88">
+          <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/>
+          <circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/>
+          <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/>
+          <circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/>
+          <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/>
+        </svg>
+      </div>
+      <div class="lb"><b>00:30 — 00:48</b>藍圓自右滑入貼合。<br>紅橫棒同步出現。</div>
+    </div>
+    <div class="sbf">
+      <div class="fr">
+        <svg viewBox="53.754 3.918 95.957 47.984" width="88">
+          <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/>
+          <circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/>
+          <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/>
+          <circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/>
+          <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/>
+          <rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/>
+        </svg>
+      </div>
+      <div class="lb"><b>00:48 — 01:12</b>橙直棒由上而下落下，完成加號。<br>唯一的音效點。</div>
+    </div>
+    <div class="sbf">
+      <div class="fr" style="flex-direction:column;gap:8px">
+        <svg viewBox="0 0 157.633 57.664" width="96">
+          <rect width="157.633" height="57.664" fill="#232E1E"/>
+          <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/>
+          <circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/>
+          <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#0C5170"/>
+          <circle cx="93.086" cy="27.918" r="5.113" fill="#E93429"/>
+          <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#E93429"/>
+          <rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F39801"/>
+        </svg>
+        <div style="font-family:'Söhne',serif;font-size:9px;color:#F8F8F6;letter-spacing:.1em">MINUS PLUS STUDIO</div>
+      </div>
+      <div class="lb"><b>01:12 — 02:12</b>綠量體自兩側展開包覆。<br>標準字淡入。靜置 1 秒。</div>
+    </div>
+    <div class="sbf">
+      <div class="fr"></div>
+      <div class="lb"><b>02:12 — 03:00</b>整體淡出（600ms）。<br>直接切入正片首顆鏡頭。</div>
+    </div>
+  </div>
+
+  <table class="d">
+    <tr><td>總長</td><td class="n">3 秒 · 72 frame @24fps</td></tr>
+    <tr><td>緩動</td><td class="n">cubic-bezier(.2,.8,.2,1) · 快出慢進</td></tr>
+    <tr><td>元素位移</td><td class="n">≤ 1.5 × 元素本身寬度</td></tr>
+    <tr><td>底色</td><td class="n">Forest #232E1E 滿版</td></tr>
+    <tr><td>禁止</td><td class="n">旋轉、彈跳、粒子、光暈掃過、3D 翻轉</td></tr>
+    <tr><td>短版</td><td class="n">1.5 秒版：跳過 00:00–00:12，其餘等比壓縮</td></tr>
+  </table>
+</section>
+
+<section id="end">
+  <span class="pg">P. 166 — 167</span>
+  <span class="eyebrow">3.6.2 — End Card</span>
+  <h2>片尾</h2>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div class="box ctr" style="padding:0">
+      <div style="width:100%;aspect-ratio:16/9;background:#232E1E;position:relative;display:flex;align-items:center;justify-content:center">
+        <div style="text-align:center">
+          <svg viewBox="53.754 3.918 95.957 47.984" width="74">
+            <circle cx="77.746" cy="27.910" r="23.992" fill="#F29CA7"/><circle cx="125.742" cy="27.926" r="23.969" fill="#0C5170"/>
+            <rect x="57.313" y="22.805" width="40.886" height="10.227" rx="5.113" fill="#F8F8F6"/>
+            <rect x="105.285" y="22.805" width="40.887" height="10.227" rx="5.113" fill="#F8F8F6"/>
+            <rect x="120.613" y="7.477" width="10.231" height="40.883" rx="5.115" fill="#F8F8F6"/>
+          </svg>
+          <div style="font-family:'Söhne',serif;font-size:11px;color:#F8F8F6;letter-spacing:.12em;margin-top:14px">MINUS PLUS STUDIO</div>
+          <div style="font-family:'Archivo',sans-serif;font-size:7.5px;color:#9CA398;letter-spacing:.2em;margin-top:8px">MINUS PLUS STUDIO.DESIGN</div>
+        </div>
+        <div style="position:absolute;right:6%;bottom:8%;width:22%;aspect-ratio:16/9;border:1px dashed rgba(255,255,255,.25)"></div>
+      </div>
+      <div class="capzh" style="padding:12px">End Card · 16:9</div>
+    </div>
+    <div>
+      <table class="d">
+        <tr><td>總長</td><td class="n">6–8 秒</td></tr>
+        <tr><td>標誌</td><td class="n">反白版 E · 寬度 = 畫面寬 22%</td></tr>
+        <tr><td>網址</td><td class="n">Archivo 500 · 字距 .2em · Slate</td></tr>
+        <tr><td>YouTube 資訊卡區</td><td class="n">右下 22% 方框內須留空</td></tr>
+        <tr><td>訂閱鈕位置</td><td class="n">左下，不與標誌重疊</td></tr>
+        <tr><td>進場</td><td class="n">淡入 600ms</td></tr>
+        <tr><td>禁止</td><td class="n">「記得訂閱按小鈴鐺」語音與動畫箭頭</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)">片尾不重複整段 Logo Sting，只用靜態標誌淡入。片頭與片尾的重量必須不同。</p>
+    </div>
+  </div>
+</section>
+
+<section id="audio">
+  <span class="pg">P. 168</span>
+  <span class="eyebrow">3.6.3 — Sound</span>
+  <h2>音效與配樂</h2>
+  <table class="d">
+    <thead><tr><th>層</th><th>方向</th><th>音量</th></tr></thead>
+    <tr><td>環境音 Ambience</td><td>現場收音為主：風、腳步、布料摩擦、陶器碰觸</td><td class="n">−18 至 −24 LUFS</td></tr>
+    <tr><td>音效 SFX</td><td>極少。Logo Sting 只有一個音效點（橙棒落下）</td><td class="n">−16 LUFS</td></tr>
+    <tr><td>配樂 Music</td><td>鋼琴獨奏、弦樂長音、環境電子。稀疏、無明顯節拍</td><td class="n">−26 至 −30 LUFS</td></tr>
+    <tr><td>旁白 VO</td><td>若有，音量最高；不用廣告式抑揚頓挫</td><td class="n">−14 LUFS</td></tr>
+  </table>
+  <div class="dd">
+    <div>
+      <h4>應該</h4>
+      <ul>
+        <li>允許整段無配樂，只有環境音</li>
+        <li>配樂在旁白或關鍵畫面時降至 −34 LUFS</li>
+        <li>結尾留 2 秒的靜默再切黑</li>
+        <li>使用授權明確的音樂庫（Musicbed、Artlist）</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h4>不應該</h4>
+      <ul>
+        <li>使用平台熱門音軌</li>
+        <li>音樂與剪接點強行對拍</li>
+        <li>Riser、Whoosh、Impact 等轉場音效</li>
+        <li>全片鋪滿音樂不留呼吸</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 3.7 SAFE AREAS ===== -->
+
+<section id="safe169">
+  <span class="pg">P. 169 — 170</span>
+  <span class="eyebrow">3.7.1 — 16:9</span>
+  <h2>16:9 安全區與版面系統</h2>
+  <div class="box ms ctr" style="margin-top:var(--s4);padding:var(--s5)">
+    <svg viewBox="0 0 320 180" width="100%" style="max-width:480px">
+      <rect width="320" height="180" fill="#232E1E"/>
+      <rect x="25.6" y="18" width="268.8" height="144" fill="none" stroke="#F39801" stroke-width="1" stroke-dasharray="4 3"/>
+      <rect x="16" y="9" width="288" height="162" fill="none" stroke="#6E7069" stroke-width=".8"/>
+      <g stroke="rgba(255,255,255,.12)" stroke-width=".6"><line x1="106.7" y1="0" x2="106.7" y2="180"/><line x1="213.3" y1="0" x2="213.3" y2="180"/><line x1="0" y1="60" x2="320" y2="60"/><line x1="0" y1="120" x2="320" y2="120"/></g>
+      <text x="30" y="14" font-family="IBM Plex Mono" font-size="6" fill="#F39801">TITLE SAFE 8% / 10%</text>
+      <text x="20" y="177" font-family="IBM Plex Mono" font-size="6" fill="#6E7069">ACTION SAFE 5%</text>
+      <rect x="25.6" y="138" width="130" height="18" fill="rgba(248,248,246,.14)"/>
+      <text x="30" y="150" font-family="IBM Plex Mono" font-size="6" fill="#F8F8F6">SUBTITLE ZONE</text>
+    </svg>
+    <div class="cap">16:9 Safe Area · 1920 × 1080</div>
+  </div>
+  <table class="d">
+    <thead><tr><th>區域</th><th>邊界</th><th>用途</th></tr></thead>
+    <tr><td>Action Safe</td><td class="n">左右 5% · 上下 5%</td><td>重要動作不得超出</td></tr>
+    <tr><td>Title Safe</td><td class="n">左右 8% · 上下 10%</td><td>所有文字與標誌</td></tr>
+    <tr><td>字幕區</td><td class="n">距左 8% · 距下 96px</td><td>字幕與 Lower Third</td></tr>
+    <tr><td>標誌角標</td><td class="n">右上 · 距邊 8% · 寬 8%</td><td>浮水印標誌（若使用）</td></tr>
+    <tr><td>參考線</td><td class="n">三分法</td><td>主體落在交點或分線上</td></tr>
+  </table>
+</section>
+
+<section id="safe916">
+  <span class="pg">P. 171</span>
+  <span class="eyebrow">3.7.2 — 9:16</span>
+  <h2>9:16 直式版面系統</h2>
+  <p>直式的關鍵不是安全區，而是<b style="font-weight:500">四段分區</b>：每一段各有固定用途，內容不得跨區。</p>
+  <div class="g2" style="margin-top:var(--s4)">
+    <div class="box ms ctr">
+      <svg viewBox="0 0 120 213" width="150">
+        <rect width="120" height="213" fill="#232E1E"/>
+        <rect x="0" y="0" width="120" height="30" fill="rgba(233,52,41,.18)"/>
+        <rect x="0" y="30" width="120" height="42" fill="rgba(243,152,1,.16)"/>
+        <rect x="0" y="141" width="120" height="42" fill="rgba(242,156,167,.16)"/>
+        <rect x="0" y="183" width="120" height="30" fill="rgba(12,81,112,.3)"/>
+        <g font-family="IBM Plex Mono" font-size="5" fill="#F8F8F6">
+          <text x="6" y="18">01 LOGO</text>
+          <text x="6" y="55">02 TITLE</text>
+          <text x="6" y="110" fill="#9CA398">03 主畫面</text>
+          <text x="6" y="166">04 SUBTITLE</text>
+          <text x="6" y="201">05 CTA</text>
+        </g>
+        <rect x="9.6" y="0" width="100.8" height="213" fill="none" stroke="#F39801" stroke-width=".7" stroke-dasharray="3 2"/>
+      </svg>
+      <div class="cap">9:16 Zones · 1080 × 1920</div>
+    </div>
+    <div>
+      <table class="d">
+        <thead><tr><th>分區</th><th>高度</th><th>內容</th></tr></thead>
+        <tr><td>01 Logo 區</td><td class="n">上 0–14%</td><td>標誌角標。介面遮蔽區，不放關鍵資訊</td></tr>
+        <tr><td>02 Title 區</td><td class="n">14–34%</td><td>主標題，最多兩行</td></tr>
+        <tr><td>03 主畫面</td><td class="n">34–66%</td><td>影像主體。垂直置中</td></tr>
+        <tr><td>04 字幕區</td><td class="n">66–86%</td><td>字幕。單行 ≤13 字</td></tr>
+        <tr><td>05 CTA 區</td><td class="n">下 86–100%</td><td>行動呼籲。介面遮蔽區，僅放次要資訊</td></tr>
+      </table>
+      <p style="font-size:13px;color:var(--slate);margin-top:var(--s2)"><span class="rule must">必須</span> 左右邊界各留 8%。上下各 250px（以 1920 計）為平台介面遮蔽區，關鍵資訊不得進入。</p>
+    </div>
+  </div>
+</section>
+
+<section id="safe219">
+  <span class="pg">P. 172</span>
+  <span class="eyebrow">3.7.3 — 21:9</span>
+  <h2>21:9 寬幅版面系統</h2>
+  <div class="box ms ctr" style="margin-top:var(--s4);padding:var(--s5)">
+    <svg viewBox="0 0 420 180" width="100%" style="max-width:520px">
+      <rect width="420" height="180" fill="#0A0A0A"/>
+      <rect x="0" y="21.5" width="420" height="137" fill="#232E1E"/>
+      <rect x="33.6" y="35" width="352.8" height="110" fill="none" stroke="#F39801" stroke-width="1" stroke-dasharray="4 3"/>
+      <text x="38" y="31" font-family="IBM Plex Mono" font-size="6" fill="#F39801">TITLE SAFE 8% / 10%</text>
+      <text x="4" y="12" font-family="IBM Plex Mono" font-size="6" fill="#6E7069">LETTERBOX</text>
+      <rect x="33.6" y="120" width="150" height="16" fill="rgba(248,248,246,.14)"/>
+      <text x="38" y="131" font-family="IBM Plex Mono" font-size="5.5" fill="#F8F8F6">SUBTITLE — 降位至遮幅上緣</text>
+    </svg>
+    <div class="cap">21:9 Safe Area · 2560 × 1080</div>
+  </div>
+  <table class="d">
+    <thead><tr><th>項目</th><th>規格</th></tr></thead>
+    <tr><td>用途</td><td>官網 Hero、空間全景、影展／作品集版本</td></tr>
+    <tr><td>遮幅方式</td><td class="n">拍攝 16:9 後上下裁切，非變形壓縮</td></tr>
+    <tr><td>Title Safe</td><td class="n">左右 8% · 上下 10%（以 21:9 畫面計）</td></tr>
+    <tr><td>字幕位置</td><td class="n">降至遮幅上緣內側 24px，不壓在黑邊上</td></tr>
+    <tr><td>16:9 相容</td><td class="n">構圖須同時通過 16:9 中央裁切檢查</td></tr>
+    <tr><td>不使用於</td><td class="n">社群平台、器物特寫、人物訪談</td></tr>
+  </table>
+  <div class="callout">
+    <h3>一次拍攝，三種輸出</h3>
+    <p>所有影片以 16:9 拍攝並保留 4K 餘裕，後製時裁出 9:16 與 21:9。<strong>構圖階段就必須同時檢查三種比例</strong>——把主體放在 16:9 的正中央看起來很好，但裁成 9:16 時字幕會壓在臉上。這是最常見、也最貴的重拍原因。</p>
+  </div>
+</section>
+
+<footer>CBDS 2027 · Volume 03 影片與動態規範 · P.125–172 ／ Rev. A ／ 2026.07</footer>
+
+</div>
+</body>
+</html>
