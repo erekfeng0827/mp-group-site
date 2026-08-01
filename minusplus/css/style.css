@@ -442,3 +442,11 @@ footer ul li a:hover{color:var(--orange)}
   svg, video, canvas, iframe { max-width: 100% !important; height: auto !important; }
   .brand-logo, .hero-svg, .mark { max-width: 80vw !important; height: auto !important; }
 }
+
+@media (max-width: 768px) {
+  .concept-presentation-grid { grid-template-columns: 1fr !important; }
+  .concept-visual, .concept-content { width: 100% !important; }
+  .floorplan-container { aspect-ratio: 1/1 !important; padding: 12px !important; }
+  .swatches-row { justify-content: flex-start !important; flex-wrap: wrap !important; }
+  .project-spec-grid { grid-template-columns: 1fr 1fr !important; gap: 12px 16px !important; }
+}

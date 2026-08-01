@@ -55,3 +55,7 @@
   svg, video, canvas, iframe { max-width: 100% !important; height: auto !important; }
   .brand-logo, .hero-svg, .mark { max-width: 80vw !important; height: auto !important; }
 }
+
+@media (max-width: 768px) {
+  .group-bar { display: none; }
+}

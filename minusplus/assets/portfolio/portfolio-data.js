@@ -12,7 +12,9 @@ const PORTFOLIO = [
   "scale": "辦公空間 ｜ 50 坪",
   "cover": "IMG_9681.jpg",
   "images": [
-    "IMG_9681.jpg", "01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg"
+    "IMG_9681.jpg", "IMG_0586.jpg", "IMG_1426.jpg", "IMG_2598.jpg",
+    "IMG_4751.JPG", "IMG_4755.JPG", "IMG_4763.JPG", "IMG_4771.JPG",
+    "IMG_4772.JPG", "IMG_4779.JPG"
   ],
   "floorplans": [
     "floorplan_1.png", "floorplan_2.png", "floorplan_3.png", "floorplan_4.png"
