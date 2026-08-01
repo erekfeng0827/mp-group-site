@@ -145,7 +145,7 @@
     }
 
     function render(filter) {
-      var list = PORTFOLIO.filter(function (p) { return p.images && !p.isPrivate
+      var list = PORTFOLIO.filter(function (p) { return p.images && !p.isPrivate; });
       if (filter && filter !== "all") list = list.filter(function (p) { return p.type === filter; });
       grid.innerHTML = list.map(projectCard).join("");
       initReveal();

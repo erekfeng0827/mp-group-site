@@ -37,13 +37,13 @@ const PORTFOLIO = [
   "propertyAttr": "毛胚屋全案",
   "occupants": "2 成人 1 幼童",
   "scale": "毛胚屋 ｜ 85 坪 ｜ 4房2廳3衛",
-  "cover": "new/cover.jpg_2K_202608011217.jpeg",
+  "cover": "cover.jpg",
   "images": [
-    "new/01.jpg_2K_202608011217.jpeg",
-    "new/02.jpg_2K_202608011308.jpeg",
-    "new/03.jpg_2K_202608011207.jpeg",
-    "new/04.jpg_2K_202608011309.jpeg",
-    "new/05.jpg_2K_202608011207.jpeg"
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -99,14 +99,13 @@ const PORTFOLIO = [
   "propertyAttr": "老屋翻修",
   "occupants": "造型師團隊與顧客",
   "scale": "髮藝沙龍 ｜ 40 坪",
-  "cover": "new/cover.jpg_2K_202608010534.jpeg",
+  "cover": "cover.jpg",
   "images": [
-    "new/01.jpg_2K_202608010534 (1).jpeg",
-    "new/02.jpg_2K_202608011150.jpeg",
-    "new/03.jpg_2K_202608010534 (2).jpeg",
-    "new/04.jpg_2K_202608010534.jpeg",
-    "new/05.jpg_2K_202608011150.jpeg",
-    "new/05.jpg_2K_202608011207 (1).jpeg"
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -131,14 +130,14 @@ const PORTFOLIO = [
   "propertyAttr": "老屋翻修",
   "occupants": "3 人家庭",
   "scale": "私宅改造 ｜ 42 坪 ｜ 3房2廳1衛",
-  "cover": "new/cover.jpg_2K_202608010528.jpeg",
+  "cover": "cover.jpg",
   "images": [
-    "new/02.jpg_2K_202608010530.jpeg",
-    "new/03.jpg_2K_202608010525 (1).jpeg",
-    "new/05_2K_202608010525 .jpg",
-    "new/06.jpg_2K_202608010525.jpeg",
-    "new/2_(1).jpg_2K_202608011147.jpeg",
-    "new/4_(2).jpg_2K_202608011055.jpeg"
+    "02.jpg",
+    "03.jpg",
+    "05.jpg",
+    "06.jpg",
+    "2_(1).jpg",
+    "4_(2).jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -163,13 +162,13 @@ const PORTFOLIO = [
   "propertyAttr": "新成屋客變",
   "occupants": "2 成人 2 貓",
   "scale": "奢華私宅 ｜ 78 坪 ｜ 4房2廳3衛",
-  "cover": "new/01.jpg_2K_202608010533 (2).jpeg",
+  "cover": "01.jpg",
   "images": [
-    "new/02.jpg_2K_202608010533.jpeg",
-    "new/03.jpg_2K_202608010533 (3).jpeg",
-    "new/04.jpg_2K_202608010533 (1).jpeg",
-    "new/05.jpg_2K_202608010533 (1).jpeg",
-    "new/06.jpg_2K_202608010533 (1).jpeg"
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg",
+    "06.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -194,15 +193,13 @@ const PORTFOLIO = [
   "propertyAttr": "新成屋",
   "occupants": "4 人家庭",
   "scale": "森林系私宅 ｜ 52 坪 ｜ 3房2廳2衛",
-  "cover": "new/cover.jpg_2K_202608011302.jpeg",
+  "cover": "cover.jpg",
   "images": [
-    "new/03.jpg_2K_202608011229.jpeg",
-    "new/05.jpg_2K_202608011229.jpeg",
-    "new/06.jpg_2K_202608011228.jpeg"
+    "03.jpg",
+    "05.jpg",
+    "06.jpg"
   ],
-  "floorplans": [
-    "floorplan_raw.png"
-  ],
+  "floorplans": [],
   "isRendering": false,
   "layoutVersion": "B",
   "features": [
@@ -251,11 +248,11 @@ const PORTFOLIO = [
   "propertyAttr": "老屋翻修",
   "occupants": "2 成人",
   "scale": "極簡私宅 ｜ 38 坪 ｜ 2房2廳1衛",
-  "cover": "new/01.jpg_2K_202608010532 (1).jpeg",
+  "cover": "01.jpg",
   "images": [
-    "new/02.jpg_2K_202608010532.jpeg",
-    "new/03.jpg_2K_202608010531 (2).jpeg",
-    "new/05.jpg_2K_202608010531 (1).jpeg"
+    "02.jpg",
+    "03.jpg",
+    "05.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -280,11 +277,11 @@ const PORTFOLIO = [
   "propertyAttr": "新成屋",
   "occupants": "2 成人",
   "scale": "藝術私宅 ｜ 45 坪 ｜ 2房2廳2衛",
-  "cover": "new/cover.jpg_2K_202608010525.jpeg",
+  "cover": "cover.jpg",
   "images": [
-    "new/01.jpg_2K_202608011216.jpeg",
-    "new/02.jpg_2K_202608011209.jpeg",
-    "new/03.jpg_2K_202608011227.jpeg"
+    "01.jpg",
+    "02.jpg",
+    "03.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -365,13 +362,13 @@ const PORTFOLIO = [
   "propertyAttr": "新成屋全案",
   "occupants": "4 人家庭",
   "scale": "璞真私宅 ｜ 68 坪 ｜ 4房2廳2衛",
-  "cover": "new/01.jpg_2K_202608011106.jpeg",
+  "cover": "01.jpg",
   "images": [
-    "new/01.jpg_2K_202608011106.jpeg",
-    "new/02.jpg_2K_202608011105.jpeg",
-    "new/03.jpg_2K_202608011104.jpeg",
-    "new/04.jpg_2K_202608011105.jpeg",
-    "new/05.jpg_2K_202608011104.jpeg"
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "05.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -400,9 +397,7 @@ const PORTFOLIO = [
   "images": [
     "01.jpg", "02.jpg", "03.jpg", "04.jpg", "05.jpg", "06.jpg"
   ],
-  "floorplans": [
-    "floorplan_raw.png"
-  ],
+  "floorplans": [],
   "isRendering": false,
   "layoutVersion": "B",
   "isPrivate": true,
@@ -424,12 +419,12 @@ const PORTFOLIO = [
   "propertyAttr": "商業空間重構",
   "occupants": "企業高階主管與貴賓",
   "scale": "企業招待所 ｜ 150 坪",
-  "cover": "new/cover.jpg_2K_202608011325.jpeg",
+  "cover": "cover.jpg",
   "images": [
-    "new/01.jpg_2K_202608010534.jpeg",
-    "new/02.jpg_2K_202608010532 (4).jpeg",
-    "new/03.jpg_2K_202608010533.jpeg",
-    "new/04.jpg_2K_202608010532 (2).jpeg"
+    "01.jpg",
+    "02.jpg",
+    "03.jpg",
+    "04.jpg"
   ],
   "floorplans": [
     "floorplan-a.png", "floorplan-b.png"
@@ -454,13 +449,11 @@ const PORTFOLIO = [
   "propertyAttr": "舊建築改建",
   "occupants": "展示導覽團隊與顧客",
   "scale": "建材精品館 ｜ 90 坪",
-  "cover": "cover.jpg",
+  "cover": "03.jpg",
   "images": [
-    "01.jpg", "new/03.jpg_2K_202608010534 (1).jpeg", "new/05.jpg_2K_202608010534.jpeg"
+    "03.jpg", "05.jpg"
   ],
-  "floorplans": [
-    "floorplan_raw.png"
-  ],
+  "floorplans": [],
   "isRendering": false,
   "layoutVersion": "B",
   "features": [
@@ -481,12 +474,12 @@ const PORTFOLIO = [
   "propertyAttr": "老屋翻修",
   "occupants": "醫師團隊與候診患者",
   "scale": "現代中醫診所 ｜ 50 坪",
-  "cover": "new/cover.jpg_2K_202608011121.jpeg",
+  "cover": "cover.jpg",
   "images": [
-    "new/02.jpg_2K_202608010530 (1).jpeg",
-    "new/03.jpg_2K_202608010531.jpeg",
-    "new/04.jpg_2K_202608010530 (1).jpeg",
-    "new/1.jpg_2K_202608011122.jpeg"
+    "02.jpg",
+    "03.jpg",
+    "04.jpg",
+    "1.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -511,9 +504,9 @@ const PORTFOLIO = [
   "propertyAttr": "新成屋",
   "occupants": "2 成人",
   "scale": "都會私宅 ｜ 35 坪 ｜ 2房2廳1衛",
-  "cover": "cover.jpg",
+  "cover": "03.jpg",
   "images": [
-    "01.jpg", "02.jpg", "new/03.jpg", "new/5.jpg_2K_202608011203.jpeg", "new/7.jpg_2K_202608011221.jpeg"
+    "03.jpg", "5.jpg", "7.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -538,9 +531,9 @@ const PORTFOLIO = [
   "propertyAttr": "老屋改造",
   "occupants": "匠人團隊",
   "scale": "工藝工作室 ｜ 65 坪",
-  "cover": "01.jpg",
+  "cover": "02.jpg",
   "images": [
-    "01.jpg", "new/02.jpg_2K_202608011313.jpeg", "new/03.jpg_2K_202608011313.jpeg", "new/04.jpg_2K_202608011313.jpeg"
+    "02.jpg", "03.jpg", "04.jpg"
   ],
   "floorplans": [
     "floorplan.png"
@@ -565,11 +558,11 @@ const PORTFOLIO = [
   "propertyAttr": "老屋翻修",
   "occupants": "4 人家庭",
   "scale": "古典私宅 ｜ 62 坪 ｜ 3房2廳2衛",
-  "cover": "new/01.jpg_2K_202608011152.jpeg",
+  "cover": "01.jpg",
   "images": [
-    "new/03.jpg_2K_202608011152.jpeg",
-    "new/04.jpg_2K_202608011155.jpeg",
-    "new/1.jpg_2K_202608011146.jpeg"
+    "03.jpg",
+    "04.jpg",
+    "1.jpg"
   ],
   "floorplans": [
     "floorplan.png"

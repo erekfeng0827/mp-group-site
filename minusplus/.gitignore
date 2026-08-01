@@ -1,0 +1,20 @@
+# .gitignore
+# Node
+node_modules/
+
+# Build outputs
+dist/
+.build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+
+# Editor
+.vscode/
+
+# Logs
+*.log
