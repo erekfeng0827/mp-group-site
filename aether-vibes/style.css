@@ -211,3 +211,25 @@ body, html {
   svg, video, canvas, iframe { max-width: 100% !important; height: auto !important; }
   .brand-logo, .hero-svg, .mark { max-width: 80vw !important; height: auto !important; }
 }
+
+/* Homepage grid only: rotate the space + starry bands 90deg so their portrait
+   video lines up with the wide horizontal band -- shows far more of the frame
+   than a straight cover-crop would (was cropping ~80% of the frame away).
+   Theme sub-pages (space.html / starry.html) are untouched, still full portrait. */
+@media (max-width: 768px) {
+  .bg-space video, .bg-starry video {
+    top: 50% !important;
+    left: 50% !important;
+    width: calc(100vh / 6) !important;
+    height: 100vw !important;
+    max-width: none !important;
+    transform: translate(-50%, -50%) rotate(90deg) !important;
+  }
+
+  /* Shift the modern band's crop focus down onto the orange-robed figure
+     (measured at ~60% down the source frame) instead of the dead-center
+     default, which was cropping the figure mostly out of view. */
+  .bg-modern video {
+    object-position: 50% 60% !important;
+  }
+}
