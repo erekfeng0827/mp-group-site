@@ -219,15 +219,15 @@ body, html {
   .accordion-container {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    grid-template-rows: repeat(3, 1fr) !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    align-content: stretch !important;
+    grid-template-rows: repeat(3, auto) !important;
+    height: auto !important;
+    align-content: start !important;
     flex-direction: unset !important;
   }
   .main-title-overlay { display: none !important; }
   .slice {
     flex: unset !important;
+    aspect-ratio: 4 / 3;
     border-right: 1px solid rgba(255,255,255,0.15) !important;
     border-bottom: 1px solid rgba(255,255,255,0.15) !important;
   }
