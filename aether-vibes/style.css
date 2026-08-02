@@ -221,9 +221,10 @@ body, html {
     grid-template-columns: 1fr 1fr !important;
     grid-template-rows: repeat(3, auto) !important;
     height: auto !important;
-    min-height: 100vh;
+    align-content: start !important;
     flex-direction: unset !important;
   }
+  .main-title-overlay { display: none !important; }
   .slice {
     flex: unset !important;
     aspect-ratio: 4 / 3;
