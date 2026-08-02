@@ -32,72 +32,88 @@
 <div class="accordion-container">
 
 <!-- 1. Forest -->
-<a href="forest.html" class="slice bg-forest">
+<div class="slice bg-forest" data-href="forest.html">
 <video autoplay muted loop playsinline disablepictureinpicture preload="none" poster="img/forest.jpg"><source src="img/Video-light/forest_1080p.mp4" type="video/mp4"></video>
-<div class="slice-title-vertical">01 / Forest</div>
+<a href="forest.html" class="slice-title-vertical">01 / Forest</a>
 <div class="slice-content">
 <h2>迷霧森林的吐息</h2>
 <p>在幽深的針葉林中尋找內心的寧靜。感受木質調精油的沈穩，與大自然同頻共振。</p>
-<span class="btn">Enter Dimension</span>
+<a href="forest.html" class="btn">Enter Dimension</a>
 </div>
-</a>
+</div>
 
 <!-- 2. Outer Space -->
-<a href="space.html" class="slice bg-space">
+<div class="slice bg-space" data-href="space.html">
 <video autoplay muted loop playsinline disablepictureinpicture preload="none" poster="img/space.jpg"><source src="img/Video-light/space_1080p.mp4" type="video/mp4"></video>
-<div class="slice-title-vertical">02 / Space</div>
+<a href="space.html" class="slice-title-vertical">02 / Space</a>
 <div class="slice-content">
 <h2>浩瀚無垠的真空</h2>
 <p>抽離一切繁雜，進入完全無重力的心靈深淵。傾聽宇宙邊緣的低頻震動。</p>
-<span class="btn">Enter Dimension</span>
+<a href="space.html" class="btn">Enter Dimension</a>
 </div>
-</a>
+</div>
 
 <!-- 3. Ocean -->
-<a href="ocean.html" class="slice bg-ocean">
+<div class="slice bg-ocean" data-href="ocean.html">
 <video autoplay muted loop playsinline disablepictureinpicture preload="none" poster="img/ocean.jpg"><source src="img/Video-light/ocean_1080p.mp4" type="video/mp4"></video>
-<div class="slice-title-vertical">03 / Ocean</div>
+<a href="ocean.html" class="slice-title-vertical">03 / Ocean</a>
 <div class="slice-content">
 <h2>深海的光脊</h2>
 <p>潛入寧靜的湛藍，讓水流與光影洗滌疲憊，尋回最純粹的平靜。</p>
-<span class="btn">Enter Dimension</span>
+<a href="ocean.html" class="btn">Enter Dimension</a>
 </div>
-</a>
+</div>
 
 <!-- 4. Starry Sky -->
-<a href="starry.html" class="slice bg-starry">
+<div class="slice bg-starry" data-href="starry.html">
 <video autoplay muted loop playsinline disablepictureinpicture preload="none" poster="img/starry.jpg"><source src="img/Video-light/starry_1080p.mp4" type="video/mp4"></video>
-<div class="slice-title-vertical">04 / Starry</div>
+<a href="starry.html" class="slice-title-vertical">04 / Starry</a>
 <div class="slice-content">
 <h2>銀河的見證</h2>
 <p>仰望星辰，感受時間的流動與空間的廣袤。在星空下，找回最微小卻強大的自己。</p>
-<span class="btn">Enter Dimension</span>
+<a href="starry.html" class="btn">Enter Dimension</a>
 </div>
-</a>
+</div>
 
 <!-- 5. Modern -->
-<a href="modern.html" class="slice bg-modern">
+<div class="slice bg-modern" data-href="modern.html">
 <video autoplay muted loop playsinline disablepictureinpicture preload="none" poster="img/modern.jpg"><source src="img/Video-light/modem_1080p.mp4" type="video/mp4"></video>
-<div class="slice-title-vertical">05 / Modern</div>
+<a href="modern.html" class="slice-title-vertical">05 / Modern</a>
 <div class="slice-content">
 <h2>當代極簡與理性</h2>
 <p>俐落的幾何與光影，屏除所有多餘的干擾。專注於當下，享受絕對的理性空間。</p>
-<span class="btn">Enter Dimension</span>
+<a href="modern.html" class="btn">Enter Dimension</a>
 </div>
-</a>
+</div>
 
 <!-- 6. Classical -->
-<a href="classical.html" class="slice bg-classical">
+<div class="slice bg-classical" data-href="classical.html">
 <video autoplay muted loop playsinline disablepictureinpicture preload="none" poster="img/classical.jpg"><source src="img/Video-light/classicalt_1080p.mp4" type="video/mp4"></video>
-<div class="slice-title-vertical">06 / Classical</div>
+<a href="classical.html" class="slice-title-vertical">06 / Classical</a>
 <div class="slice-content">
 <h2>東方禪意與歲月</h2>
 <p>深山古寺與晨霧飛簷。傳承時間的重量，沉浸於東方美學的空無頻率。</p>
-<span class="btn">Enter Dimension</span>
+<a href="classical.html" class="btn">Enter Dimension</a>
 </div>
-</a>
+</div>
 
 </div>
 <script src="../assets/group/cart.js"></script>
+<script>
+(function(){
+  var slices = document.querySelectorAll('.accordion-container .slice');
+  slices.forEach(function(slice){
+    slice.addEventListener('click', function(e){
+      // Let real links (title label / Enter Dimension button) navigate normally.
+      if (e.target.closest('a')) return;
+      // Tapping the video/background area just expands the preview -- never navigates.
+      e.preventDefault();
+      var wasExpanded = slice.classList.contains('is-expanded');
+      slices.forEach(function(s){ s.classList.remove('is-expanded'); });
+      if (!wasExpanded) slice.classList.add('is-expanded');
+    });
+  });
+})();
+</script>
 </body>
 </html>

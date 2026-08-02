@@ -85,6 +85,7 @@ body, html {
   transition: opacity 0.4s ease;
   white-space: nowrap;
   color: #fff;
+  text-decoration: none;
   text-shadow: 0 2px 8px rgba(0,0,0,0.95), 0 1px 2px rgba(0,0,0,0.95);
   font-weight: 500;
 }
@@ -137,6 +138,7 @@ body, html {
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: #fff;
+  text-decoration: none;
   background: rgba(0,0,0,0.3);
   backdrop-filter: blur(4px);
 }
@@ -232,4 +234,39 @@ body, html {
   .bg-modern video {
     object-position: 50% 60% !important;
   }
+}
+
+/* Mobile: declutter duplicate branding -- the big centered AETHER VIBES mark
+   already carries the brand, so hide the small redundant top-left wordmark
+   that was colliding visually with the "01 / FOREST" style band labels.
+   Purely a visibility toggle on a position:fixed element -- doesn't touch
+   the grid geometry at all. */
+@media (max-width: 768px) {
+  .fixed-header { display: none !important; }
+}
+
+/* Hide the big centered AETHER VIBES mark whenever a band is expanded (desktop
+   hover or mobile tap) -- it was overlapping the revealed heading/description
+   since the overlay is centered on the whole document, which grows taller
+   the moment any band expands. */
+body:has(.accordion-container .slice:hover) .main-title-overlay,
+body:has(.accordion-container .slice.is-expanded) .main-title-overlay {
+  opacity: 0 !important;
+  transition: opacity 0.3s ease;
+}
+
+/* Mobile: tap-to-preview interaction.
+   .slice is no longer itself a link (see index.html / JS) -- tapping the
+   video/background area toggles this class to show the same preview that
+   desktop gets on hover, WITHOUT navigating. The small title label and the
+   "Enter Dimension" button are real links and navigate immediately when tapped. */
+@media (max-width: 768px) {
+  .slice.is-expanded { flex: 4; }
+  .slice.is-expanded .slice-title-vertical { opacity: 0; }
+  .slice.is-expanded .slice-content {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.2s;
+  }
+  .slice.is-expanded .slice-content .btn { pointer-events: auto; }
 }
