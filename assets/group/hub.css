@@ -71,7 +71,7 @@ section{padding:var(--s7) 0}
 /* Specific Brand Images */
 .minusplus-card { background-image: url('minusplus_card_bg.jpg'); }
 .ss-card { background-image: url('../../soft-structure/assets/images/khaki_room.jpg'); }
-.corey-card { background-image: url('../../aether-vibes/img/modern.jpg'); }
+.corey-card { background-image: url('../../corey/img/homepage_card_bg.jpg'); }
 .aether-card { background-image: url('../../aether-vibes/img/ocean.jpg'); }
 
 .brand-card .bc-top .tag{font-family:var(--f-label);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,0.7) !important;}
