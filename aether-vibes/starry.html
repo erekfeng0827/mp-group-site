@@ -57,16 +57,20 @@
 <ul class="playlist-panel" id="plPanel"></ul>
 <audio id="audioPlayer" preload="auto"></audio>
 <script>
-const playlist = [{"title": "Frozen Valley", "src": "audio/Frozen%20Valley.mp3"}, {"title": "Frozen Valley 1", "src": "audio/Frozen%20Valley_1.mp3"}, {"title": "Glacier Cavern Overture", "src": "audio/Glacier%20Cavern%20Overture.mp3"}, {"title": "Glacier Cavern Overture 1", "src": "audio/Glacier%20Cavern%20Overture_1.mp3"}, {"title": "Glacier Cavern Overture 2", "src": "audio/Glacier%20Cavern%20Overture_2.mp3"}, {"title": "Glacier Cavern Overture 3", "src": "audio/Glacier%20Cavern%20Overture_3.mp3"}, {"title": "Glacier Cavern Overture 4", "src": "audio/Glacier%20Cavern%20Overture_4.mp3"}, {"title": "Glacier Cavern Overture 5", "src": "audio/Glacier%20Cavern%20Overture_5.mp3"}, {"title": "AI Calm", "src": "audio/AI_Calm_01.mp3"}, {"title": "Endless Glacier Echo (Reprise)", "src": "audio/Endless%20Glacier%20Echo.mp3"}];
+const playlist = [{"title": "Starry Calm", "src": "audio/AI_Calm_01.mp3"}, {"title": "Frozen Valley", "src": "audio/Frozen%20Valley.mp3"}, {"title": "Frozen Valley 1", "src": "audio/Frozen%20Valley_1.mp3"}, {"title": "Glacier Cavern Overture", "src": "audio/Glacier%20Cavern%20Overture.mp3"}, {"title": "Glacier Cavern Overture 1", "src": "audio/Glacier%20Cavern%20Overture_1.mp3"}, {"title": "Glacier Cavern Overture 2", "src": "audio/Glacier%20Cavern%20Overture_2.mp3"}, {"title": "Glacier Cavern Overture 3", "src": "audio/Glacier%20Cavern%20Overture_3.mp3"}, {"title": "Glacier Cavern Overture 4", "src": "audio/Glacier%20Cavern%20Overture_4.mp3"}, {"title": "Glacier Cavern Overture 5", "src": "audio/Glacier%20Cavern%20Overture_5.mp3"}, {"title": "Endless Glacier Echo", "src": "audio/Endless%20Glacier%20Echo.mp3"}];
 let idx=0, playing=false;
 const audio=document.getElementById('audioPlayer'), btn=document.getElementById('playBtn'),
   bg=document.getElementById('bgLayer'), info=document.getElementById('trackInfo'),
   counter=document.getElementById('trackCounter'), fill=document.getElementById('progressFill'),
   panel=document.getElementById('plPanel'), toggle=document.getElementById('plToggle');
+const preloadAudio=new Audio();
+preloadAudio.preload='auto';
 
 function loadTrack(i){
   idx=i;
   audio.src=playlist[i].src;
+  preloadAudio.src=playlist[(i+1)%playlist.length].src;
+  preloadAudio.load();
   info.textContent=playlist[i].title;
   counter.textContent="TRACK " + (i+1) + " / " + playlist.length;
   renderPL();
@@ -94,6 +98,7 @@ function renderPL(){
 
 function startPlay() {
   audio.play().then(() => {
+    info.textContent = playlist[idx].title;
     btn.textContent = '⏸';
     bg.classList.add('playing');
     playing = true;
@@ -101,6 +106,10 @@ function startPlay() {
     document.removeEventListener('click', startPlay);
     document.removeEventListener('touchstart', startPlay);
   }).catch(e => {
+    playing = false;
+    btn.textContent = '▶';
+    bg.classList.remove('playing');
+    info.textContent = playlist[idx].title + ' · 點一下播放';
     console.log('Autoplay waiting for user interaction:', e);
   });
 }

@@ -53,20 +53,24 @@
     <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
   </div>
 </div>
-<button class="playlist-toggle" id="plToggle">♫ PLAYLIST (9)</button>
+<button class="playlist-toggle" id="plToggle">♫ PLAYLIST (10)</button>
 <ul class="playlist-panel" id="plPanel"></ul>
 <audio id="audioPlayer" preload="auto"></audio>
 <script>
-const playlist = [{"title": "Midnight Guzheng", "src": "audio/Midnight%20Guzheng.mp3"}, {"title": "Midnight Guzheng 1", "src": "audio/Midnight%20Guzheng_1.mp3"}, {"title": "Midnight Guzheng 2", "src": "audio/Midnight%20Guzheng_2.mp3"}, {"title": "Midnight Guzheng 3", "src": "audio/Midnight%20Guzheng_3.mp3"}, {"title": "[PROJECT 2099] Chinese Lofi Beats to Reset Your Br", "src": "audio/%5BPROJECT%202099%5D%20Chinese%20Lofi%20Beats%20to%20Reset%20Your%20Br.MP3"}, {"title": "Moonlight on Bamboo", "src": "audio/Moonlight%20on%20Bamboo.mp3"}, {"title": "Rain on the Yangqin 1", "src": "audio/Rain%20on%20the%20Yangqin_1.mp3"}, {"title": "Rain on the Yangqin (2)", "src": "audio/Rain%20on%20the%20Yangqin%20%282%29.mp3"}, {"title": "Rain on the Yangqin", "src": "audio/Rain%20on%20the%20Yangqin.mp3"}, {"title": "Evening Bamboo", "src": "audio/Evening%20Bamboo.mp3"}];
+const playlist = [{"title": "Midnight Guzheng", "src": "audio/Midnight%20Guzheng.mp3"}, {"title": "Midnight Guzheng 1", "src": "audio/Midnight%20Guzheng_1.mp3"}, {"title": "Midnight Guzheng 2", "src": "audio/Midnight%20Guzheng_2.mp3"}, {"title": "Midnight Guzheng 3", "src": "audio/Midnight%20Guzheng_3.mp3"}, {"title": "Rain on the Yangqin", "src": "audio/Rain%20on%20the%20Yangqin.mp3"}, {"title": "Rain on the Yangqin 1", "src": "audio/Rain%20on%20the%20Yangqin_1.mp3"}, {"title": "Rain on the Yangqin (2)", "src": "audio/Rain%20on%20the%20Yangqin%20%282%29.mp3"}, {"title": "Moonlight on Bamboo", "src": "audio/Moonlight%20on%20Bamboo.mp3"}, {"title": "Moonlight on Bamboo 1", "src": "audio/Moonlight%20on%20Bamboo_1.mp3"}, {"title": "Moonlight on Bamboo 2", "src": "audio/Moonlight%20on%20Bamboo_2.mp3"}];
 let idx=0, playing=false;
 const audio=document.getElementById('audioPlayer'), btn=document.getElementById('playBtn'),
   bg=document.getElementById('bgLayer'), info=document.getElementById('trackInfo'),
   counter=document.getElementById('trackCounter'), fill=document.getElementById('progressFill'),
   panel=document.getElementById('plPanel'), toggle=document.getElementById('plToggle');
+const preloadAudio=new Audio();
+preloadAudio.preload='auto';
 
 function loadTrack(i){
   idx=i;
   audio.src=playlist[i].src;
+  preloadAudio.src=playlist[(i+1)%playlist.length].src;
+  preloadAudio.load();
   info.textContent=playlist[i].title;
   counter.textContent="TRACK " + (i+1) + " / " + playlist.length;
   renderPL();
@@ -94,6 +98,7 @@ function renderPL(){
 
 function startPlay() {
   audio.play().then(() => {
+    info.textContent = playlist[idx].title;
     btn.textContent = '⏸';
     bg.classList.add('playing');
     playing = true;
@@ -101,6 +106,10 @@ function startPlay() {
     document.removeEventListener('click', startPlay);
     document.removeEventListener('touchstart', startPlay);
   }).catch(e => {
+    playing = false;
+    btn.textContent = '▶';
+    bg.classList.remove('playing');
+    info.textContent = playlist[idx].title + ' · 點一下播放';
     console.log('Autoplay waiting for user interaction:', e);
   });
 }
