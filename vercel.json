@@ -1,0 +1,30 @@
+{
+  "redirects": [
+    { "source": "/", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/index.html", "destination": "/minusplus/index.html", "permanent": false },
+
+    { "source": "/soft-structure", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/soft-structure/", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/soft-structure/index.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/soft-structure/collection.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/soft-structure/product.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/soft-structure/checkout.html", "destination": "/minusplus/index.html", "permanent": false },
+
+    { "source": "/corey", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/corey/", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/corey/index.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/corey/project1.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/corey/project2.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/corey/project3.html", "destination": "/minusplus/index.html", "permanent": false },
+
+    { "source": "/aether-vibes", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/index.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/classical.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/forest.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/modern.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/ocean.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/space.html", "destination": "/minusplus/index.html", "permanent": false },
+    { "source": "/aether-vibes/starry.html", "destination": "/minusplus/index.html", "permanent": false }
+  ]
+}
