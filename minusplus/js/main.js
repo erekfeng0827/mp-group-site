@@ -84,8 +84,8 @@
     var loc = p.location ? p.location : "TAIWAN";
     var enTitle = EN_TITLES[p.slug] || "PROJECT GALLERY";
     
-    // Keep original ratio for all images so nothing is cropped
-    var ratioScript = "this.parentElement.style.aspectRatio = this.naturalWidth + '/' + this.naturalHeight;";
+    // Uniform 4:3 cards (aspect-ratio set in CSS); no per-image ratio override
+    var ratioScript = "";
     
     return (
       '<a class="magazine-card reveal" href="project.html?p=' + p.slug + '" data-type="' + p.type + '">' +
@@ -108,7 +108,7 @@
                '<div class="zh-name">' + p.name + '</div>' +
                '<div class="en-desc">' + enTitle + '</div>' +
              '</div>' +
-             '<div class="mc-cell mc-cell-arrow">EXPLORE PROJECT →</div>' +
+             '<div class="mc-cell mc-cell-arrow" aria-hidden="true">→</div>' +
           '</div>' +
         '</div>' +
         

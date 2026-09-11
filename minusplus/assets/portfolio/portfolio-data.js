@@ -132,7 +132,7 @@ const PORTFOLIO = [
   "propertyAttr": "老屋翻修",
   "occupants": "3 人家庭",
   "scale": "私宅改造 ｜ 42 坪 ｜ 3房2廳1衛",
-  "cover": "cover.jpg",
+  "cover": "2_(1).jpg",
   "images": [
     "02.jpg",
     "03.jpg",
@@ -451,7 +451,7 @@ const PORTFOLIO = [
   "propertyAttr": "舊建築改建",
   "occupants": "展示導覽團隊與顧客",
   "scale": "建材精品館 ｜ 90 坪",
-  "cover": "03.jpg",
+  "cover": "cover.jpg",
   "images": [
     "03.jpg", "05.jpg"
   ],
@@ -560,7 +560,7 @@ const PORTFOLIO = [
   "propertyAttr": "老屋翻修",
   "occupants": "4 人家庭",
   "scale": "古典私宅 ｜ 62 坪 ｜ 3房2廳2衛",
-  "cover": "01.jpg",
+  "cover": "1.jpg",
   "images": [
     "03.jpg",
     "04.jpg",
