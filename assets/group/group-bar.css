@@ -3,7 +3,10 @@
   background: #1A1A18;
   border-bottom: 1px solid rgba(248,248,246,.12);
   font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
-  position: relative;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 9999;
 }
 .group-bar .gb-inner {
