@@ -244,7 +244,7 @@ section{padding:var(--s7) 0}
 .mc-cell span { font-size: 9.5px; line-height: 1.15; letter-spacing: 0.2em; text-transform: uppercase; color: var(--orange); display: block; }
 .mc-cell .mc-value {
   color: #F2F0EA;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.35;
   text-shadow: 0 1px 7px rgba(0,0,0,0.88);
 }
