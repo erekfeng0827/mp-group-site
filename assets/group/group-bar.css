@@ -57,5 +57,16 @@
 }
 
 @media (max-width: 768px) {
-  .group-bar { display: none; }
+  .group-bar .gb-inner {
+    height: 40px;
+    padding: 0 14px;
+    gap: 16px;
+  }
+  .group-bar a {
+    font-size: 9.5px;
+    letter-spacing: .1em;
+  }
+  .group-bar a.gb-home {
+    padding-right: 14px;
+  }
 }
