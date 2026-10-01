@@ -95,12 +95,12 @@
         
         '<div class="mc-col mc-col-main">' +
           '<div class="mc-row mc-row-top">' +
-            '<div class="mc-cell"><span>LOCATION</span><br>' + loc + '</div>' +
-            '<div class="mc-cell"><span>TYPE</span><br>' + (p.typeLabel || p.type || "空間") + '</div>' +
-            '<div class="mc-cell"><span>SCALE</span><br>' + (p.scale || "—") + '</div>' +
+            '<div class="mc-cell"><span>LOCATION</span><div class="mc-value">' + loc + '</div></div>' +
+            '<div class="mc-cell"><span>TYPE</span><div class="mc-value">' + (p.typeLabel || p.type || "空間") + '</div></div>' +
+            '<div class="mc-cell"><span>SCALE</span><div class="mc-value">' + (p.scale || "—") + '</div></div>' +
             ((p.houseType || p.propertyAttr || p.occupants) ? 
-              '<div class="mc-cell"><span>INFO</span><br>' + [p.houseType, p.propertyAttr, p.occupants].filter(Boolean).join(' · ') + '</div>' : 
-              '<div class="mc-cell"><span>INFO</span><br>—</div>') +
+              '<div class="mc-cell"><span>INFO</span><div class="mc-value">' + [p.houseType, p.propertyAttr, p.occupants].filter(Boolean).join(' · ') + '</div></div>' : 
+              '<div class="mc-cell"><span>INFO</span><div class="mc-value">—</div></div>') +
           '</div>' +
           '<div class="mc-row mc-row-mid"></div>' +
           '<div class="mc-row mc-row-bottom">' +
