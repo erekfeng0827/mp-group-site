@@ -53,6 +53,7 @@
 .gb-ss   { background: #9C8352; }
 .gb-cy   { background: #7A1F2B; }
 .gb-av   { background: #B5673A; }
+.gb-music{ background: #E0A83C; }
 
 @media (max-width: 768px) {
   svg, video, canvas, iframe { max-width: 100% !important; height: auto !important; }

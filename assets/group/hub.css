@@ -82,6 +82,15 @@ section{padding:var(--s7) 0}
 .brand-card .bc-cta{font-family:var(--f-label);font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-top:var(--s5);display:inline-flex;align-items:center;gap:8px;color:#fff !important;}
 .brand-card .bc-mark{position:absolute;top:var(--s5);right:var(--s5);opacity:1;}
 
+.digital-release{padding:0 0 var(--s7)}
+.music-release{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s5);align-items:end;padding:var(--s6);background:var(--forest);color:var(--paper);text-decoration:none;border-left:6px solid #E0A83C;transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
+.music-release:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(35,46,30,.18)}
+.music-release .eyebrow{color:#E0A83C;margin-bottom:var(--s2)}
+.music-release h2{font-family:var(--f-label);font-size:clamp(28px,4vw,48px);letter-spacing:.08em;line-height:1.1}
+.music-release p{margin-top:var(--s3);color:#DEE2D8;font-size:15px}
+.release-cta{font-family:var(--f-label);font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+.release-cta b{color:#E0A83C;font-size:18px;margin-left:8px}
+
 .about-hub{background:var(--mist)}
 .about-hub .g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:var(--s6);align-items:start}
 .about-hub h3{font-family:var(--f-serif);font-weight:600;font-size:19px;letter-spacing:.04em;margin-bottom:var(--s2)}
@@ -101,4 +110,8 @@ footer a{font-family:var(--f-label);font-size:11px;letter-spacing:.14em;text-tra
 footer a:hover{color:var(--paper)}
 footer .fcopy{font-family:var(--f-label);font-size:10.5px;letter-spacing:.1em;color:#7C8377;margin-top:var(--s3);width:100%}
 
-@media(max-width:640px){ .wrap{padding:0 var(--s3)} }
+@media(max-width:640px){
+  .wrap{padding:0 var(--s3)}
+  .music-release{grid-template-columns:1fr;align-items:start;padding:var(--s5) var(--s4)}
+  .release-cta{white-space:normal}
+}
